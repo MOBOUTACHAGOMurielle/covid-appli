@@ -1,0 +1,15 @@
+<p>Trouver un centre de vaccination</p>
+<div>
+    <input type="search" id="name" [(ngModel)]="city" name="rechercher" placeholder="Dans quelle ville?">
+    <button (click)="search()" class="search">Search</button>    
+</div>
+
+<h2 *ngIf="listeCentres.length>0"><!-- Liste Des centres de vaccination --></h2>
+<ul>
+    <p class="liste" *ngFor="let aCenter of listeCentres">
+       <app-affichage-des-centres [center] ="aCenter"></app-affichage-des-centres>
+    </p>
+</ul>
+
+
+

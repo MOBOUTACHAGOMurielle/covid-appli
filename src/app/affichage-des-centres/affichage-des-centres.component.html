@@ -1,0 +1,10 @@
+<div class="BoiteMere">
+    <h2 [title]="center.name">{{center.name}}</h2>
+    <div class="detailCentre">{{center.address}}
+        <span>{{center.postalcode}} {{center.city}}</span>
+        <button class="styled" type="button" (click)="choisir()" >choisir</button> 
+    </div>
+    
+    <p>Prise de rendez-vous vaccination</p>
+    <app-informations-sur-lutilisateur [centerClient]="aclient"></app-informations-sur-lutilisateur>
+</div>

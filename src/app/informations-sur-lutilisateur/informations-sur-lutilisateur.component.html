@@ -1,0 +1,18 @@
+<form action="/page-traitement-donnees" method="post">
+    <div>
+        <label for="nom" [title]="centerClient.name">nom</label>
+        <input type="text" id="nom" name="nom" [(ngModel)]="nom" placeholder="nom" required>
+    </div>
+    <div>
+        <label for="prénom">prenom</label>
+        <input type="text" id="Prenom" name="Prenom" [(ngModel)]="prenom" placeholder="prenom" required>
+    </div>
+    <div>
+        <label for="email">email</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="email" required>
+    </div>
+    <div>
+        <label for="date">Date</label>
+        <input type="date" id="date" [(ngModel)]="Date" name="date" required>
+    </div>
+</form>

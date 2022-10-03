@@ -1,0 +1,24 @@
+p {
+    text-align: center;
+}
+
+div {
+    text-align: center;
+}
+
+#name {
+    width: 400px;
+    height: 40px;
+}
+
+.liste {
+    position: relative;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.search {
+    width: 100px;
+    height: 40px;
+    background-color: beige;
+}

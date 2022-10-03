@@ -1,0 +1,19 @@
+div {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+form div> label {
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+form div > input {
+    height: 30px;
+
+    padding-left: 20px;
+    background: rgb(248, 247, 247);
+    border-radius: 10px;
+    border: 0.1em solid rgb(158, 157, 157);
+}
