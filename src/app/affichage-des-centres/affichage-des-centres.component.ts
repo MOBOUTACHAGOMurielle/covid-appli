@@ -12,13 +12,9 @@ import { covid } from '../interfaceCovid';
 
 export class AffichageDesCentresComponent implements OnInit {
  
-  @Input() center: covid = {
-    id: 2,
-    name: "CH Narbonne",
-    address: "Boulevard Dr Lacroix",
-    postalcode: "11100",
-    city: "Narbonne"
-  }; 
+  @Input() center?: covid; 
+
+  @Output() selected = new EventEmitter<covid>();
 
   aclient: client = {
     id: 3,
@@ -33,16 +29,8 @@ export class AffichageDesCentresComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  choisir(): void{
-    /* this.aclient={
-      id: 3,
-      name: "Dupont",
-      prenom: "Jules",
-      email: "DupontJules@gmail.com",
-      Date: new Date()
-    }; 
-    console.log(registerForm.form);
-    console.log('values: ', JSON.stringify(registerForm.value));*/
-    console.log(this.aclient);
+  choisir(){ 
+    this.selected.emit(this.center);
   }
+
 }

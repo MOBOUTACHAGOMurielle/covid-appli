@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { client } from '../interfaceClient';
+import { covid } from '../interfaceCovid';
 
 @Component({
   selector: 'app-informations-sur-lutilisateur',
@@ -11,13 +12,16 @@ export class InformationsSurLutilisateurComponent implements OnInit {
   prenom: string= "";
   email: string= "";
   Date: Date = new Date();
-  @Input() centerClient: client = {
+
+  centerClient?: client;/*  = {
     id: 7,
     name: "Dupont",
     prenom: "junior",
     email: "dupontJunior@gmail.com",
     Date: new Date()
-  };
+  }; */
+
+  @Input() center?: covid;
 
   onChosed(aclient: client){
      /* this.centerClient.splice(this.centerClient) */
@@ -26,6 +30,10 @@ export class InformationsSurLutilisateurComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  Reserver(): void {
+    
   }
 
 }

@@ -9,6 +9,12 @@ import { AffichageDesCentresComponent } from './affichage-des-centres/affichage-
 import { InformationsSurLutilisateurComponent } from './informations-sur-lutilisateur/informations-sur-lutilisateur.component';
 import { ConfirmationDeRendezVousComponent } from './confirmation-de-rendez-vous/confirmation-de-rendez-vous.component';
 import { PageClientsComponent } from './page-clients/page-clients.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -22,9 +28,16 @@ import { PageClientsComponent } from './page-clients/page-clients.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

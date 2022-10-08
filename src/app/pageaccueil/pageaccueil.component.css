@@ -18,7 +18,32 @@ div {
 }
 
 .search {
-    width: 100px;
+    width: 80px;
     height: 40px;
-    background-color: beige;
+    background-color: dodgerblue;
+/*     border: 2em solid dodgerblue; */
 }
+
+.plus {
+    background-color: aqua;
+    border: 0;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 10px;
+    position: relative;
+    bottom: 0px;
+    right: -630px;
+    border: 0.1em solid black;
+}
+
+/* .mdl-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  } */

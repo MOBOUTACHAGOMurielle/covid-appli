@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { client } from '../interfaceClient';
 import { covid } from '../interfaceCovid';
 
 @Component({
@@ -10,6 +11,8 @@ export class PageaccueilComponent implements OnInit {
 
   city: string= "Dans quelle ville?";
   listeCentres: covid[] = [];
+
+  selected?: covid;
 
   constructor() { }
 
@@ -48,4 +51,11 @@ export class PageaccueilComponent implements OnInit {
     console.log(this.city);
   }
 
+  onChoose(centre:covid){
+    this.selected = centre;
+  }
+
+  AfficherPlus(): void {
+    
+  }
 }
