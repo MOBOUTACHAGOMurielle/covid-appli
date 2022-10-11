@@ -58,4 +58,9 @@ export class PageaccueilComponent implements OnInit {
   AfficherPlus(): void {
     
   }
+
+  onReserved(patient: client) {
+    
+  }
+
 }

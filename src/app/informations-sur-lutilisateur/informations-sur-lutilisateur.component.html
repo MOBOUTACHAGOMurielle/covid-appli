@@ -1,8 +1,8 @@
 <div class="BoiteMere">
-    <p> prise de rendez-vous vaccination </p>
-<div class="BoiteMere" *ngIf="center">
-    <h2 [title]="center.name">{{center.name}}</h2>
-    <div class="detailCentre">{{center.address}}
+    <p> Prise de rendez-vous vaccination </p>
+    <div class="BoiteMere" *ngIf="center">
+        <h2 [title]="center.name">{{center.name}}</h2>
+        <div class="detailCentre">{{center.address}}
         <span>{{center.postalcode}} {{center.city}}</span>
     </div>
 </div>
@@ -25,5 +25,5 @@
         <input type="date" id="date" [(ngModel)]="Date" name="date" required>
     </div>
 </form>
-<button class="reservation" type="button" (click)="Reserver()" >Réserver</button> 
+<button class="reservation" mat-raised-button color="primary" (click)="Reserver()" >Réserver</button> 
 </div>

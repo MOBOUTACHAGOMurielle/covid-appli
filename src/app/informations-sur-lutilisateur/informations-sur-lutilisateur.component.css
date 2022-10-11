@@ -11,7 +11,6 @@ form div> label {
 
 form div > input {
     height: 30px;
-
     padding-left: 20px;
     background: rgb(248, 247, 247);
     border-radius: 10px;
@@ -30,14 +29,11 @@ h2,.detailCentre,p {
 }
 
 .reservation {
-    background-color: aqua;
-    border: 0;
-    padding: 10px 20px;
+    padding: 5px 20px;
     color: #fff;
     border-radius: 10px;
     position: relative;
     bottom: 0px;
     right: -660px;
-    border: 0.1em solid black;
     width: 100px;
 }

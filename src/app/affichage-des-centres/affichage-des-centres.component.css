@@ -10,13 +10,10 @@ h2,.detailCentre,p {
 }
 
 .styled {
-    background-color: aqua;
     border: 0;
-    padding: 10px 20px;
-    color: #fff;
+    padding: 5px 20px;
     border-radius: 10px;
     position: relative;
     bottom: 0px;
     right: -20px;
-    border: 0.1em solid black;
 }

@@ -1,27 +1,15 @@
 <p>Trouver un centre de vaccination</p>
+
 <div>
-    <input type="search" id="name" [(ngModel)]="city" name="rechercher" placeholder="Dans quelle ville?">
-    <button (click)="search()" class="search">Search</button>    
-</div>
-<!-- <div>
     <mat-form-field appearance="outline">
         <mat-label>Rechercher une ville</mat-label>
-        <input matInput type="search" id="name" [(ngModel)]="city" name="rechercher" placeholder="Dans quelle ville?">
-    </mat-form-field> -->
+        <input matInput [(ngModel)]="city" type="search" id="name" placeholder="Dans quelle ville?">
+    </mat-form-field>
 
-    <!-- <button mat-fab color="primary" (click)="search()" class="mdl-button mdl-button--fab mdl-button--colored">
+    <button mat-fab color="primary" (click)="search()" class="mdl-button mdl-button--fab mdl-button--colored">
         search
-    </button> -->
-   <!--  <div class="example-button-container">
-        <button mat-button color="primary">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-</div> -->
-
-<!-- <div class="example-button-row">
-    <button mat-mini-fab color="primary" (click)="search()">search</button>
-</div> -->
+    </button> 
+</div>
 
 <h2 *ngIf="listeCentres.length>0"><!-- Liste Des centres de vaccination --></h2>
 <ul>
@@ -29,12 +17,12 @@
        <app-affichage-des-centres [center] ="aCenter" (selected) = "onChoose($event)">
        </app-affichage-des-centres>
     </p>
-    <button *ngIf="listeCentres.length>0" type="button" class="plus" (click)="AfficherPlus()">Afficher Plus</button> 
+    <button *ngIf="listeCentres.length>0" mat-raised-button color="primary" class="plus" (click)="AfficherPlus()">Afficher Plus</button> 
 </ul>
 
 <div *ngIf="selected">
     <app-informations-sur-lutilisateur [center] = "selected">
-
+        (reserve) = "onReserved($event)"
     </app-informations-sur-lutilisateur>
 </div>
 

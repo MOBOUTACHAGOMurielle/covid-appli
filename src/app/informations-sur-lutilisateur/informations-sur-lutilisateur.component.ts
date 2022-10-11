@@ -23,6 +23,10 @@ export class InformationsSurLutilisateurComponent implements OnInit {
 
   @Input() center?: covid;
 
+  @Input() patient?: client;
+
+  @Output() reserve = new EventEmitter<client>();
+
   onChosed(aclient: client){
      /* this.centerClient.splice(this.centerClient) */
   }
@@ -33,7 +37,7 @@ export class InformationsSurLutilisateurComponent implements OnInit {
   }
 
   Reserver(): void {
-    
+    this.reserve.emit(this.patient);
   }
 
 }
