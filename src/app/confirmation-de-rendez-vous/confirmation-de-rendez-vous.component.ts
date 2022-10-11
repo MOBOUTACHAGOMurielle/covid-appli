@@ -12,4 +12,6 @@ export class ConfirmationDeRendezVousComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
 }
