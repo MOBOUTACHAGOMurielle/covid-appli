@@ -1,0 +1,83 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  1
+       author:  will
+       changes:
+         -  createTable:
+              tableName:  person
+              columns:
+                -  column:
+                     name:  id
+                     type:  int
+                     autoIncrement:  true
+                     constraints:
+                       primaryKey:  true
+                       nullable:  false
+                -  column:
+                     name:  nom
+                     type:  varchar(255)
+                - column:
+                    name: prenom
+                    type: varchar(255)
+                - column:
+                    name: mail
+                    type: varchar(255)
+                - column:
+                    name: telephone
+                    type: numeric
+                - column:
+                    name: date
+                    type: date
+
+  -  changeSet:
+       id:  2
+       author:  will
+       changes:
+         -  createTable:
+              tableName:  centre
+              columns:
+                -  column:
+                     name:  id
+                     type:  int
+                     autoIncrement:  true
+                     constraints:
+                       primaryKey:  true
+                       nullable:  false
+                -  column:
+                     name:  nom
+                     type:  varchar(255)
+                - column:
+                    name: ville
+                    type: varchar(255)
+                - column:
+                    name: adresse
+                    type: varchar(255)
+                - column:
+                    name: telephone
+                    type: numeric
+  -  changeSet:
+       id:  3
+       author:  will
+       changes:
+         -  createTable:
+              tableName:  Utilisateur
+              columns:
+                -  column:
+                     name:  id
+                     type:  bigint
+                     autoIncrement:  true
+                     constraints:
+                       primaryKey:  true
+                       nullable:  false
+                -  column:
+                     name:  login
+                     type:  varchar(255)
+                - column:
+                    name: password
+                    type: varchar(255)
+
+
+
+
+
+
