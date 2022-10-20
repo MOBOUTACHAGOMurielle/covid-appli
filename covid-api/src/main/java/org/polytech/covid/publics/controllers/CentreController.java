@@ -4,10 +4,8 @@ package org.polytech.covid.publics.controllers;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.services.CentreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
@@ -31,8 +29,8 @@ public class CentreController {
     public ResponseEntity<Centre> addNewCentre(@RequestParam("address") String address,
                                                @RequestParam("name") String name,
                                                @RequestParam("ville") String ville,
-                                               @RequestParam("tel") Integer tel){
-    Centre newCentre = centreService.addNewCentre(address,name,ville,tel);
+                                               @RequestParam("codePostal") String codePostal){
+    Centre newCentre = centreService.addNewCentre(address,name,ville,codePostal);
     return  new ResponseEntity<>(newCentre, OK);
 
     }

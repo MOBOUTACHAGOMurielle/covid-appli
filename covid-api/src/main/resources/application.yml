@@ -2,12 +2,12 @@ spring:
     datasource:
         url: jdbc:postgresql://localhost:5432/covid-db
         username: postgres
-        password: Azertyui1*
+        password: Motamu2000?
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQLDialect
         show-sql: true
         hibernate :
-            ddl-auto: update
+            ddl-auto: create
     liquibase:
         change-log: db/changelog/db.changelog-master.yaml
 

@@ -1,9 +1,6 @@
 package org.polytech.covid.publics.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 import lombok.*;
 
@@ -19,32 +16,45 @@ import static javax.persistence.GenerationType.AUTO;
 public class Centre {
 @Id
 @GeneratedValue(strategy= AUTO)
-    public int id;
-    public String ville;
-//    public List<Personne> medecins;
-    public String nom;
-    public String adresse;
-    public Integer telephone;
-
-    @OneToMany
-    public List<Reservation> reservations;
+  public int id;
+  public String ville;
+  public String nom;
+  public String adresse;
+  public String codePostal;
 
 
+  @OneToMany
+  public List<Reservation> reservations;
 
+  @OneToMany
+  public List<Medecin> medecins;
 
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
+  @OneToMany
+  public List<Admin> admins;
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+  public void setVille(String ville) {
+      this.ville = ville;
+  }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
+  public void setNom(String nom) {
+      this.nom = nom;
+  }
 
-    public void setTelephone(Integer telephone) {
-        this.telephone = telephone;
-    }
+  public void setAdresse(String adresse) {
+      this.adresse = adresse;
+  }
+
+  public String getVille() { return ville; }
+
+  public String getAdresse() { return adresse; }
+
+  public String getNom() { return nom; }
+
+  public String getCodePostal() {
+    return codePostal;
+  }
+
+  public void setCodePostal(String codePostal) {
+    this.codePostal = codePostal;
+  }
 }

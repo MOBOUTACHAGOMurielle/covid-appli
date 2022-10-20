@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("login")
 public class LoginController {
-    
+
     @GetMapping()
     public ResponseEntity<Void> login() {
         return ResponseEntity.ok().build();
     }
-    
-    
+
 }

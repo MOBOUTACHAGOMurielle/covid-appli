@@ -9,32 +9,42 @@ import java.util.Locale;
 
 @Service
 public class CentreService {
-    private final ICentre iCentre;
+  private final ICentre iCentre;
 
-    public CentreService(ICentre iCentre) {
-        this.iCentre = iCentre;
-    }
+  public CentreService(ICentre iCentre) {
+      this.iCentre = iCentre;
+  }
 
-    public List<Centre> getCentres () {return  iCentre.findAll();}
+  public List<Centre> getCentres () {return  iCentre.findAll();}
 
-    public Centre addNewCentre (String address,String name, String ville,Integer tel ) {
+  public Centre addNewCentre (String address,String name, String ville,String codePostal) {
 
-        Centre centre = new Centre();
-        centre.setAdresse(address);
-        centre.setNom(name);
-        centre.setVille(ville.toLowerCase(Locale.ROOT));
-        centre.setTelephone(tel);
+    Centre centre = new Centre();
+    centre.setAdresse(address);
+    centre.setNom(name);
+    centre.setVille(ville.toLowerCase(Locale.ROOT));
+    centre.setCodePostal(codePostal);
 
+    this.iCentre.save(centre);
+    return centre;
+  }
 
-        this.iCentre.save(centre);
-        return centre;
-    }
+  public Centre modifierCentre (Centre centre, String address,String name, String ville,String codePostal) {
+    centre.setAdresse(address);
+    centre.setNom(name);
+    centre.setVille(ville.toLowerCase(Locale.ROOT));
+    centre.setCodePostal(codePostal);
 
-    public Centre getCentrebyName(String name) {
+    this.iCentre.save(centre);
+    return centre;
+  }
+
+  public Centre getCentrebyName(String name) {
         return iCentre.findCentreByNom(name);
     }
 
-    public Centre getCentre (String ville) {
-        return iCentre.findCentreByVille(ville);
+  public Centre getCentre (String ville) {
+    Centre a = iCentre.findCentreByVille(ville);
+        return a;
     }
 }

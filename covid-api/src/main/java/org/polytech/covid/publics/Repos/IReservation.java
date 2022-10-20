@@ -11,6 +11,5 @@ import java.util.List;
 public interface IReservation extends JpaRepository<Reservation, Long> {
 
     Reservation findReservationByCentre(String centre);
-    List<Reservation> findReservationsByCreneau(Date date);
-
+    Reservation findReservationsByCreneau(Date date);
 }
