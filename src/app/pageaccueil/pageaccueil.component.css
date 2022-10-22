@@ -31,10 +31,6 @@ div {
     text-align: center;
 }
 
-body {
-    background-color:#594242;
-}
-
 mat-grid-tile {
     background: lightblue;
     border-radius: 15px;
