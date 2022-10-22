@@ -47,7 +47,22 @@ export class PageaccueilComponent implements OnInit {
       address: "Rue charles III",
       postalcode: "11085",
       city: "Toulouse"
-    }]
+    },
+    {
+      id: 6,
+      name: "CH Nantes",
+      address: "Place Carnot",
+      postalcode: "10625",
+      city: "Nantes"
+    },
+    {
+      id: 7,
+      name: "CH Paris",
+      address: "Rue Hervé Bertrand",
+      postalcode: "84000",
+      city: "Paris"
+    }
+  ]
     console.log(this.city);
   }
 

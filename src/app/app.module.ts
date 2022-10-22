@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MatListModule} from '@angular/material/list';
     ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule
   ],
   providers: [
 

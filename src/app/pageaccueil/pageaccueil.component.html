@@ -1,31 +1,37 @@
-<p>Trouver un centre de vaccination</p>
+<body>
+    <h1>Bienvenue sur notre site de gestion des centres de vaccination!</h1>
 
-<div>
-    <mat-form-field appearance="outline">
-        <mat-label>Rechercher une ville</mat-label>
-        <input matInput [(ngModel)]="city" type="search" id="name" placeholder="Dans quelle ville?">
-    </mat-form-field>
+    <p>Trouvez un centre</p>
 
-    <button mat-fab color="primary" (click)="search()" class="mdl-button mdl-button--fab mdl-button--colored">
-        search
-    </button> 
-</div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Rechercher une ville</mat-label>
+            <input matInput [(ngModel)]="city" type="search" id="name" placeholder="Dans quelle ville?">
+        </mat-form-field>
 
-<h2 *ngIf="listeCentres.length>0"><!-- Liste Des centres de vaccination --></h2>
-<ul>
-    <p class="liste" *ngFor="let aCenter of listeCentres">
-       <app-affichage-des-centres [center] ="aCenter" (selected) = "onChoose($event)">
-       </app-affichage-des-centres>
-    </p>
-    <button *ngIf="listeCentres.length>0" mat-raised-button color="primary" class="plus" (click)="AfficherPlus()">Afficher Plus</button> 
-</ul>
+        <button mat-fab color="primary" (click)="search()" class="mdl-button mdl-button--fab mdl-button--colored">
+            search
+        </button> 
+    </div>
 
-<div *ngIf="selected">
-    <app-informations-sur-lutilisateur [center] = "selected">
-        (reserve) = "onReserved($event)"
-    </app-informations-sur-lutilisateur>
-</div>
+    <div id = "item" fxFlex>
+        <h2 *ngIf="listeCentres.length>0"><!-- Liste Des centres de vaccination --></h2>
+        <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile class="liste" *ngFor="let aCenter of listeCentres">
+                <app-affichage-des-centres [center] ="aCenter" (selected) = "onChoose($event)">
+                </app-affichage-des-centres>
+            </mat-grid-tile>
+           
+        </mat-grid-list>
+        <button *ngIf="listeCentres.length>0" mat-raised-button color="primary" class="plus" (click)="AfficherPlus()">Afficher Plus</button> 
+    </div>
 
+    <div *ngIf="selected">
+        <app-informations-sur-lutilisateur [center] = "selected">
+            (reserve) = "onReserved($event)"
+        </app-informations-sur-lutilisateur>
+    </div>
 
+<body>
 
 

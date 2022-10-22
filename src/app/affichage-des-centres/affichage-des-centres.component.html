@@ -1,8 +1,15 @@
 <div class="BoiteMere" *ngIf="center">
-    <h2 [title]="center.name">{{center.name}}</h2>
+    <h2 [title]="center.name" mat-line>{{center.name}}</h2>
     <div class="detailCentre">{{center.address}}
         <span>{{center.postalcode}} {{center.city}}</span>
         <button mat-raised-button color="primary" class="styled" (click)="choisir()" >choisir</button> 
     </div>  
 </div>
 
+
+   <!--  <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+      </mat-grid-list> -->
