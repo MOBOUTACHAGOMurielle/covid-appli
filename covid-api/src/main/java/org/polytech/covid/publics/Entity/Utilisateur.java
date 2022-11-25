@@ -3,8 +3,7 @@ package org.polytech.covid.publics.Entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+
 
 @Entity(name = "UTILISATEUR")
 public class Utilisateur {
@@ -23,9 +22,6 @@ public class Utilisateur {
   private String prenom;
 
   private String mail;
-
-//  @OneToMany
-//  public List<Reservation> reservations;
 
   public Long getId() {
       return id;

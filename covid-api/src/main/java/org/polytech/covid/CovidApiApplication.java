@@ -19,7 +19,7 @@ public class CovidApiApplication {
 
 	@Bean
 	CommandLineRunner runner(CentreService centreService,
-//							 UtilisateurService utilisateurService
+							 UtilisateurService utilisateurService,
                MedecinService medecinService,
                AdminService adminService,
                SuperAdminService superAdminService,
@@ -31,7 +31,7 @@ public class CovidApiApplication {
 			centreService.addNewCentre("2 Rue Jean l'amour, 54000", "Polytech Nancy","Nancy", "54500");
 			centreService.addNewCentre("3 Rue Jean d'arc, 95300", "OuiLab","Paris", "25480");
 			centreService.addNewCentre("2 Rue Marthyr, 75000", "","Anger", "33400");
-//			utilisateurService.createUserDefault();
+
 			medecinService.addNewMedecin("jean@durand.fr", "Durand", "jean", "Administrateur", centreService.getCentre("nancy"));
       medecinService.addNewMedecin("remi@Martin.fr", "Martin", "remi", "Administrateur", centreService.getCentre("paris"));
       medecinService.addNewMedecin("christine@Borne.fr", "Borne", "Christine", "Administrateur", centreService.getCentre("anger"));
