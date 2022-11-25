@@ -1,12 +1,19 @@
 package org.polytech.covid.publics.controllers;
 
+import io.github.bucket4j.Bandwidth;
+import io.github.bucket4j.Bucket;
+import io.github.bucket4j.ConsumptionProbe;
+import io.github.bucket4j.Refill;
 import org.polytech.covid.publics.Entity.*;
 import org.polytech.covid.publics.services.CentreService;
 import org.polytech.covid.publics.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +27,11 @@ public class ReservationController {
     public ReservationService reservationService;
     public CentreService centreService;
 
+    //rajoute 10 tokens toutes les minutes
+    Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
+    //capacité max de 10 token
+    Bandwidth limit = Bandwidth.classic(10, refill);
+    Bucket bucket = Bucket.builder().addLimit(limit).build();
 
     @Autowired
     public ReservationController(ReservationService reservationService) {
@@ -33,17 +45,24 @@ public class ReservationController {
     public Reservation getResevation(@PathVariable("creneau") Date creneau){ return reservationService.getReservationByCreneau(creneau);}
 
     @PostMapping(path = "save")
-    public ResponseEntity<Reservation> addNewReservation(@RequestParam("creneau") Date creneau,
-                                               @RequestParam("status") Boolean status,
-                                               @RequestParam("centre") Centre centre,
-                                               @RequestParam("patient") UserPatient _patient) throws Exception {
+    public ResponseEntity<Reservation> addNewReservation(@RequestBody Reservation reservation) throws Exception {
 
-    if (centre == null) {
+    ConsumptionProbe probe = bucket.tryConsumeAndReturnRemaining(1);
+
+    if(probe.isConsumed()) {
+      if (reservation.getCentre() == null) {
         throw new Exception("The center doesn't exist");
-    } else {
-        Reservation newReservation = reservationService.addnewReservation(creneau, status, centre,_patient);
-        return new ResponseEntity<>(newReservation, OK);
-      }
+      } else {
+        Reservation newReservation = reservationService.addnewReservation(reservation.getCreneau(), reservation.getStatus(), reservation.getCentre(), reservation.getPatient());
+        HttpHeaders head = new HttpHeaders();
+        head.set("X-Rate-Limit-Remaining", Long.toString(probe.getRemainingTokens()));
+        return new ResponseEntity<>(newReservation, head, OK);
 
+      }
+    }
+    long delaiEnSeconde = probe.getNanosToWaitForRefill() / 1_000_000_000;
+    return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+    .header("X-Rate-Limit-Retry-After-Seconds", String.valueOf(delaiEnSeconde))
+    .build();
     }
 }

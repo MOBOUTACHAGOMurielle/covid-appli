@@ -17,6 +17,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.filter.ShallowEtagHeaderFilter;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -39,5 +41,15 @@ public class SecurityConfig {
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  public ShallowEtagHeaderFilter shallowEtagHeaderFilterPost() {
+    return new MyEtag();
+  }
+
+  @Bean
+  public ShallowEtagHeaderFilter shallowEtagHeaderFilterGet() {
+    return new ShallowEtagHeaderFilter();
   }
 }

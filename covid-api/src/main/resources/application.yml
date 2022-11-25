@@ -26,3 +26,6 @@ logging:
   level:
     io:
       micrometer: DEBUG
+    org:
+      springframework:
+        security: DEBUG
