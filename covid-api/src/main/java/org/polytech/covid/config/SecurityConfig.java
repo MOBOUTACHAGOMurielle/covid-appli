@@ -48,8 +48,4 @@ public class SecurityConfig {
     return new MyEtag();
   }
 
-  @Bean
-  public ShallowEtagHeaderFilter shallowEtagHeaderFilterGet() {
-    return new ShallowEtagHeaderFilter();
-  }
 }
