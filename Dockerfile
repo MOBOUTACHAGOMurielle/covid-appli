@@ -4,7 +4,7 @@ WORKDIR $APP_HOME
 COPY covid-api/build.gradle covid-api/settings.gradle covid-api/gradlew $APP_HOME
 COPY covid-api/gradle $APP_HOME/gradle
 COPY . .
-RUN covid-api/gradlew build -x test
+RUN ./gradlew build -x test
 #sfdyzdgzufzcd
 FROM openjdk:17
 ENV ARTIFACT_NAME=covid-api-0.0.1-SNAPSHOT.jar
