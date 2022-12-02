@@ -5,7 +5,7 @@ COPY covid-api/build.gradle covid-api/settings.gradle covid-api/gradlew $APP_HOM
 COPY covid-api/gradle $APP_HOME/gradle
 COPY . .
 RUN ./gradlew build -x test
-#justePourTesterSurMogenius
+#justePourTesterSurMogeniusInternet
 FROM openjdk:17
 ENV ARTIFACT_NAME=covid-api-0.0.1-SNAPSHOT.jar
 ENV APP_HOME=/usr/app
