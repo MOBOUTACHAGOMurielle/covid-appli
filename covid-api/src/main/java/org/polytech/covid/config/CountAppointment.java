@@ -11,6 +11,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Configuration
 @Aspect
+@RequestMapping("rdv")
 public class CountAppointment {
   private final MeterRegistry registry;
 
@@ -39,6 +42,7 @@ public class CountAppointment {
     registry.counter("rdv-failed", List.of(tag)).increment();
   }
 
+  @GetMapping("count")
   @Around("execution(public * org.polytech.covid.publics.services.ReservationService.addnewReservation(..))") //garantit qu'une règle peut être exécuté avant et après l'exécution de la méthode.
   public Object duration(ProceedingJoinPoint joinPoint)
     throws Throwable {

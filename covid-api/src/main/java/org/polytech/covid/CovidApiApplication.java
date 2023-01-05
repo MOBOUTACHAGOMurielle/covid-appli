@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.hateoas.Link;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,7 +51,7 @@ public class CovidApiApplication {
       patientService.addNewPatient("Mergez", "Berenice", "berenicemergez@gmail.com", medecinService.getMedecinByNom("Durand"));
 
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-      reservation.addnewReservation(simpleDateFormat.parse("18/01/2022"), true, centreService.getCentre("nancy"), patientService.getPatientByName("Blondeau") );
+      reservation.addnewReservation(simpleDateFormat.parse("18/01/2022"), true, centreService.getCentre("nancy"), patientService.getPatientByName("Blondeau"));
       reservation.addnewReservation(simpleDateFormat.parse("20/12/2022"), false, centreService.getCentre("paris"), patientService.getPatientByName("Macron") );
       reservation.addnewReservation(simpleDateFormat.parse("25/12/2022"), true, centreService.getCentre("anger"), patientService.getPatientByName("Mergez") );
       reservation.addnewReservation(simpleDateFormat.parse("26/03/2023"), true, centreService.getCentre("nancy"), patientService.getPatientByName("Blondeau") );

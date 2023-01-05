@@ -3,7 +3,7 @@ services:
   metric:
     image: covid-api:latest
     ports:
-      - 8085:8080
+      - 8086:8080
     depends_on:
       - db
     environment:
@@ -26,4 +26,4 @@ services:
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
     ports:
-      - "9090:9090"
+      - "9095:9090"

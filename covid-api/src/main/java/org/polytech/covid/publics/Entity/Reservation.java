@@ -1,5 +1,6 @@
 package org.polytech.covid.publics.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -10,17 +11,25 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.AUTO;
 
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
+
 @Entity
 @Data
 @AllArgsConstructor
 @Getter
 @Setter
-public class Reservation {
+@Relation(collectionRelation = "bookings", itemRelation = "booking")
+public class Reservation extends RepresentationModel<Reservation> {
 
   @Id
   @GeneratedValue(strategy= AUTO)
+  @JsonProperty
   private Long id;
+  @JsonProperty
   private Date creneau;
+  @JsonProperty
   private Boolean status;
 
   @ManyToOne
@@ -33,6 +42,7 @@ public class Reservation {
   }
 
   public Reservation(Date creneau, Boolean status, Centre centre, UserPatient patient) {
+    add(Link.of("http://localhost:8080/reservations/id"));
   }
 
   public void setDate(Date date) {

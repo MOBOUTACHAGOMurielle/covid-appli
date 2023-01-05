@@ -4,10 +4,13 @@ import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.ConsumptionProbe;
 import io.github.bucket4j.Refill;
+import org.aspectj.lang.annotation.Aspect;
 import org.polytech.covid.publics.Entity.*;
 import org.polytech.covid.publics.services.CentreService;
 import org.polytech.covid.publics.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,8 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RestControllerAdvice
+@Configuration
+@Aspect
 @RequestMapping("reservations")
 public class ReservationController {
 
@@ -54,10 +59,10 @@ public class ReservationController {
         throw new Exception("The center doesn't exist");
       } else {
         Reservation newReservation = reservationService.addnewReservation(reservation.getCreneau(), reservation.getStatus(), reservation.getCentre(), reservation.getPatient());
+        newReservation.add(Link.of("http://localhost:12037/reservations/list"));
         HttpHeaders head = new HttpHeaders();
         head.set("X-Rate-Limit-Remaining", Long.toString(probe.getRemainingTokens()));
         return new ResponseEntity<>(newReservation, head, OK);
-
       }
     }
     long delaiEnSeconde = probe.getNanosToWaitForRefill() / 1_000_000_000;
