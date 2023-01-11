@@ -13,25 +13,33 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("centre")
 public class CentreController {
-    private final CentreService centreService;
+  private final CentreService centreService;
 
-@Autowired
-    public CentreController(CentreService centreService) {
-        this.centreService = centreService;
-    }
-@GetMapping("list")
-    public List<Centre> getCentres() {return centreService.getCentres();}
+  @Autowired
+  public CentreController(CentreService centreService) {
+    this.centreService = centreService;
+  }
 
-@GetMapping("list/{ville}")
-    public Centre getCentre(@PathVariable("ville") String ville) {return centreService.getCentre(ville);}
+  @GetMapping("list")
+  public List<Centre> getCentres() {
+    return centreService.getCentres();
+  }
 
-   @PostMapping(path = "save")
-    public ResponseEntity<Centre> addNewCentre(@RequestParam("address") String address,
-                                               @RequestParam("name") String name,
-                                               @RequestParam("ville") String ville,
-                                               @RequestParam("codePostal") String codePostal){
-    Centre newCentre = centreService.addNewCentre(address,name,ville,codePostal);
-    return  new ResponseEntity<>(newCentre, OK);
+  @GetMapping("list/{nom}")
+  public Centre getCentre(@PathVariable("nom") String nom) {
+    return centreService.getCentrebyName(nom);
+  }
 
-    }
+  @PostMapping(path = "save")
+  public ResponseEntity<Centre> addNewCentre(@RequestBody Centre center) {
+    Centre newCentre = centreService.addNewCentre(center.getAdresse(), center.getNom(), center.getVille(), center.getCodePostal());
+    return new ResponseEntity<>(newCentre, OK);
+  }
+
+  @PostMapping(path="modify/{id}")
+  public ResponseEntity<Centre> modifyCenter(@RequestBody Centre center,@PathVariable("id") int id) {
+    Centre newCentre = centreService.modifierCentre(center, id);
+    return new ResponseEntity<>(newCentre, OK);
+  }
 }
+

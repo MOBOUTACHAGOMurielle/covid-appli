@@ -8,8 +8,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.hateoas.Link;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 
 @SpringBootApplication
@@ -32,7 +37,7 @@ public class CovidApiApplication {
 
 			centreService.addNewCentre("2 Rue Jean l'amour, 54000", "Polytech Nancy","Nancy", "54500");
 			centreService.addNewCentre("3 Rue Jean d'arc, 95300", "OuiLab","Paris", "25480");
-			centreService.addNewCentre("2 Rue Marthyr, 75000", "","Anger", "33400");
+			centreService.addNewCentre("2 Rue Des Marthyr, 75000", "Ma santé","Anger", "33400");
 
 			medecinService.addNewMedecin("jean@durand.fr", "Durand", "jean", "Administrateur", centreService.getCentre("nancy"));
       medecinService.addNewMedecin("remi@Martin.fr", "Martin", "remi", "Administrateur", centreService.getCentre("paris"));
@@ -57,4 +62,23 @@ public class CovidApiApplication {
       reservation.addnewReservation(simpleDateFormat.parse("26/03/2023"), true, centreService.getCentre("nancy"), patientService.getPatientByName("Blondeau") );
 		};
 	}
+
+  @Bean
+  public CorsFilter corsFilter() {
+    UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration corsConfiguration = new CorsConfiguration();
+    corsConfiguration.setAllowCredentials(true);
+    //corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+    corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://13.37.112.147","http://www.tosucceed.site" ,"http://tosucceed.site"));
+    corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+      "Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Requested-With",
+      "Access-Control-Request-Method", "Access-Control-Request-Headers", "application/x-www-form-urlencoded"));
+    corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Jwt-Token", "Authorization",
+      "Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+    corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+    return new CorsFilter(urlBasedCorsConfigurationSource);
+  }
 }
+
+

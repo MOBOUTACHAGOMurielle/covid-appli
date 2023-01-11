@@ -15,6 +15,25 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import { RouterModule } from '@angular/router';
+import { MonCentreComponent } from './mon-centre/mon-centre.component';
+import { PlanningComponent } from './planning/planning.component';
+import { ConfigComponent } from './config/config.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { ClientComponent } from './client/client.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
+import { AuthGuardComponent } from './auth-guard/auth-guard.component';
+import { BasicAuthHttpInterceptorService } from './basic-auth-http-interceptor.service';
+import { FiltrePipe } from './filtre.pipe';
+import { MatDialogModule} from '@angular/material/dialog';
+import { DetailCentreComponent } from './detail-centre/detail-centre.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule} from '@angular/material/grid-list';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -23,7 +42,16 @@ import { MatIconModule } from '@angular/material/icon';
     AffichageDesCentresComponent,
     InformationsSurLutilisateurComponent,
     ConfirmationDeRendezVousComponent,
-    PageClientsComponent
+    PageClientsComponent,
+    MonCentreComponent,
+    PlanningComponent,
+    ConfigComponent,
+    LoginComponent,
+    ClientComponent,
+    AuthentificationComponent,
+    AuthGuardComponent,
+    FiltrePipe,
+    DetailCentreComponent
   ],
   imports: [
     BrowserModule,
@@ -33,11 +61,32 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatListModule,
+    RouterModule.forRoot([
+      { path: 'pageaccueil',component: PageaccueilComponent},
+      { path: '', redirectTo: 'pageaccueil', pathMatch: 'full'},
+      { path: 'affichage-des-centres', component: AffichageDesCentresComponent},
+      { path: 'mon-centre', component: MonCentreComponent},
+      { path: 'config', component: ConfigComponent},
+      { path: 'planning', component: PlanningComponent},
+      { path: 'login', component: LoginComponent},
+      { path: '**', redirectTo: 'pageaccueil' }
+    ]),
+    HttpClientModule
   ],
   providers: [
-
+    {  
+      provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true 
+    }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DetailCentreComponent]
 })
 export class AppModule { }

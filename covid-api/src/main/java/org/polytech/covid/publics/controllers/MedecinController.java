@@ -2,6 +2,7 @@ package org.polytech.covid.publics.controllers;
 
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
+import org.polytech.covid.publics.Entity.Utilisateur;
 import org.polytech.covid.publics.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,12 @@ public class MedecinController {
 
 @GetMapping("list")
  public List<Medecin> getMedecins() {return medecinService.getMedecins();}
+
+  @GetMapping("login")
+  @RequestMapping("/validateLogin")
+  public Medecin validateLogin(){
+    return new Medecin("user successfully authenticated");
+  }
 
   @PostMapping(path = "save")
   public ResponseEntity<Medecin> addNewMedecin(@RequestParam("email") String email,

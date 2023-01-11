@@ -1,8 +1,8 @@
-<div class="BoiteMere">
+<!-- <div class="BoiteMere">
     <p> prise de rendez-vous vaccination </p>
 <div class="BoiteMere" *ngIf="center">
-    <h2 [title]="center.name">{{center.name}}</h2>
-    <div class="detailCentre">{{center.address}}
+    <h2 [title]="center.nom">{{center.nom}}</h2>
+    <div class="detailCentre">{{center.adresse}}
         <span>{{center.postalcode}} {{center.city}}</span>
     </div>
 </div>
@@ -26,4 +26,38 @@
     </div>
 </form>
 <button class="reservation" type="button" (click)="Reserver()" >Réserver</button> 
-</div>
+</div> -->
+
+<mat-toolbar>
+    <span>{{centreService.formUser.controls['$key'].value?"Changer un centre":"Nouveau centre"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <form [formGroup]="centreService.formUser" class="normal-form">
+    <mat-grid-list cols="1" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <input type="hidden" formControlName="$key">
+          <mat-form-field class="show">
+            <input formControlName="nom" matInput placeholder="Nom*">
+            <mat-error>Ce champ est obligatoire</mat-error>
+          </mat-form-field>
+          <mat-form-field class="show">
+            <input formControlName="adresse" matInput placeholder="Adresse*" class="show">
+            <mat-error>Ce champ est obligatoire</mat-error>
+          </mat-form-field>
+          <mat-form-field class="show">
+            <input formControlName="postalcode" matInput placeholder="code postale*">
+            <mat-error>Ce champ est obligatoire</mat-error>
+          </mat-form-field>
+          <mat-form-field class="show">
+            <input formControlName="city" matInput placeholder="ville*">
+          </mat-form-field>
+          <div class="button-row">
+            <button mat-raised-button color="warn" type="submit">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>

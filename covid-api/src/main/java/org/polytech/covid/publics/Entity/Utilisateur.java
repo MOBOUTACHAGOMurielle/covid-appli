@@ -23,6 +23,8 @@ public class Utilisateur {
 
   private String mail;
 
+  protected String status;
+
   public Long getId() {
       return id;
   }
@@ -78,4 +80,13 @@ public class Utilisateur {
   public void setMail(String mail) {
     this.mail = mail;
   }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
 }

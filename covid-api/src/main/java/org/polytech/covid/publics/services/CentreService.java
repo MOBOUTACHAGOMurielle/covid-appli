@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 public class CentreService {
@@ -29,12 +30,12 @@ public class CentreService {
     return centre;
   }
 
-  public Centre modifierCentre (Centre centre, String address,String name, String ville,String codePostal) {
-    centre.setAdresse(address);
-    centre.setNom(name);
-    centre.setVille(ville.toLowerCase(Locale.ROOT));
-    centre.setCodePostal(codePostal);
-
+  public Centre modifierCentre (Centre centre, int id) {
+    Optional<Centre> center = iCentre.findById(id);
+    center.get().setCodePostal(centre.getCodePostal());
+    center.get().setAdresse(centre.getAdresse());
+    center.get().setNom(centre.getNom());
+    center.get().setVille(centre.getVille());
     this.iCentre.save(centre);
     return centre;
   }

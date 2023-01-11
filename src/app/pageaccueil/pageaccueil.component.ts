@@ -19,37 +19,37 @@ export class PageaccueilComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  search(): void {
-    this.listeCentres = [{
-      id: 2,
-      name: "CH Narbonne",
-      address: "Boulevard Dr Lacroix",
-      postalcode: "11100",
-      city: "Narbonne"
-    },
-    {
-      id: 3,
-      name: "CH Besançon",
-      address: "Avenue Carnot",
-      postalcode: "54300",
-      city: "Besançon"
-    },
-    {
-      id: 4,
-      name: "CH Villers-Lès-Nancy",
-      address: "Rue Maréchal",
-      postalcode: "25480",
-      city: "villers-Lès-Nancy"
-    },
-    {
-      id: 5,
-      name: "CH Toulouse",
-      address: "Rue charles III",
-      postalcode: "11085",
-      city: "Toulouse"
-    }]
-    console.log(this.city);
-  }
+  // search(): void {
+  //   this.listeCentres = [{
+  //     id: 2,
+  //     nom: "CH Narbonne",
+  //     adresse: "Boulevard Dr Lacroix",
+  //     postalcode: "11100",
+  //     city: "Narbonne"
+  //   },
+  //   {
+  //     id: 3,
+  //     nom: "CH Besançon",
+  //     adresse: "Avenue Carnot",
+  //     postalcode: "54300",
+  //     city: "Besançon"
+  //   },
+  //   {
+  //     id: 4,
+  //     nom: "CH Villers-Lès-Nancy",
+  //     adresse: "Rue Maréchal",
+  //     postalcode: "25480",
+  //     city: "villers-Lès-Nancy"
+  //   },
+  //   {
+  //     id: 5,
+  //     nom: "CH Toulouse",
+  //     adresse: "Rue charles III",
+  //     postalcode: "11085",
+  //     city: "Toulouse"
+  //   }]
+  //   console.log(this.city);
+  // }
 
   onChoose(centre:covid){
     this.selected = centre;

@@ -29,4 +29,8 @@ public class Medecin extends Utilisateur{
   public void setCentre(Centre centre) {
     this.centre = centre;
   }
+
+  public Medecin(String message) {
+    this.status = message;
+  }
 }

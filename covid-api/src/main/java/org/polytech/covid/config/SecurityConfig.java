@@ -29,11 +29,10 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http.csrf().disable().cors();
     http
             .authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
             .httpBasic(withDefaults())
-            .cors().disable()
-            .csrf().disable() //Desactivation de la protection csrf
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//On rend les session stateless
     return http.build();
   }
