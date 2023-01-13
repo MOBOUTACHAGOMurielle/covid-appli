@@ -1,5 +1,6 @@
 package org.polytech.covid.publics.controllers;
 
+import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Entity.Utilisateur;
@@ -38,5 +39,13 @@ public class MedecinController {
     Medecin newMedecin = medecinService.addNewMedecin(medecin.getMail(),medecin.getNom(),medecin.getPrenom(),medecin.getRole(), medecin.getCentre());
     return  new ResponseEntity<>(newMedecin, OK);
   }
+
+  @PostMapping(path = "/new/centre/{id}")
+  public ResponseEntity<Medecin> addNewMedecinwihCenter(@PathVariable("id")  int id ,@RequestBody AddToCentreRequest medecin){
+    Medecin newMedecin = medecinService.addnewMedecinwithCentre(id,medecin);
+    return  new ResponseEntity<>(newMedecin, OK);
+  }
+
+
 
 }

@@ -1,8 +1,11 @@
 package org.polytech.covid.publics.services;
 
+import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
+import org.polytech.covid.publics.Repos.ICentre;
 import org.polytech.covid.publics.Repos.IMedecin;
+import org.polytech.covid.publics.controllers.AddToCentreRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +14,11 @@ import java.util.List;
 public class MedecinService {
 
   private final IMedecin iMedecin;
+  private final ICentre iCentre;
 
-  public MedecinService(IMedecin medecin) {
+  public MedecinService(IMedecin medecin, ICentre iCentre) {
     this.iMedecin = medecin;
+    this.iCentre = iCentre;
   }
 
   public List<Medecin> getMedecins() { return iMedecin.findAll();}
@@ -51,4 +56,16 @@ public class MedecinService {
   }
 
   public Medecin getMedecinByNom(String nom) { return iMedecin.findMedcinByNom(nom);}
+
+  public Medecin addnewMedecinwithCentre(int id, AddToCentreRequest medecin){
+    Medecin newmedecin = new Medecin();
+    newmedecin.setNom(medecin.getNom());
+    newmedecin.setPrenom(medecin.getPrenom());
+    newmedecin.setMail(medecin.getEmail());
+    newmedecin.setLogin(medecin.getEmail());
+    newmedecin.setPassword(medecin.getPassword());
+    newmedecin.setCentre(iCentre.getCentreById(id));
+    return iMedecin.save(newmedecin);
+  }
+
 }
