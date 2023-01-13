@@ -22,6 +22,11 @@ public class MedecinController {
 @GetMapping("list")
  public List<Medecin> getMedecins() {return medecinService.getMedecins();}
 
+  @GetMapping("list/{centre}")
+  public List<Medecin> getMedecinsByCentre(@PathVariable("centre") Centre center) {
+  return medecinService.getMedecinByCentre(center);
+}
+
   @GetMapping("login")
   @RequestMapping("/validateLogin")
   public Medecin validateLogin(){
@@ -29,12 +34,8 @@ public class MedecinController {
   }
 
   @PostMapping(path = "save")
-  public ResponseEntity<Medecin> addNewMedecin(@RequestParam("email") String email,
-                                               @RequestParam("name") String name,
-                                               @RequestParam("firstname") String firstname,
-                                               @RequestParam("role") String role,
-                                               @RequestParam("center") Centre center){
-    Medecin newMedecin = medecinService.addNewMedecin(email,name,firstname,role, center);
+  public ResponseEntity<Medecin> addNewMedecin(@RequestBody Medecin medecin){
+    Medecin newMedecin = medecinService.addNewMedecin(medecin.getMail(),medecin.getNom(),medecin.getPrenom(),medecin.getRole(), medecin.getCentre());
     return  new ResponseEntity<>(newMedecin, OK);
   }
 

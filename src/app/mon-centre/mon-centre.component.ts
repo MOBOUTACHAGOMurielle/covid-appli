@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { InformationsSurLutilisateurComponent } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.component';
+import { PersonnelDunCentreComponent } from '../personnel-dun-centre/personnel-dun-centre.component';
+import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
 
 @Component({
   selector: 'app-mon-centre',
@@ -7,9 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonCentreComponent implements OnInit {
 
-  constructor() { }
+    constructor(public personnelService:personnelService,private dialog: MatDialog) { }
+
+  medecins!: PersonnelDunCentreComponent;
 
   ngOnInit(): void {
   }
-
 }

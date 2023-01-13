@@ -28,15 +28,11 @@ public class AdminController {
   public List<Admin> getAdmins() {return adminService.getAdmins();}
 
   @GetMapping("list/{centre}")
-  public Admin getAdmin(@PathVariable("centre") Centre centre) {return adminService.getAdminByCentre(centre);}
+  public List<Admin> getAdmin(@PathVariable("centre") Centre centre) {return adminService.getAdminByCentre(centre);}
 
   @PostMapping(path = "save")
-  public ResponseEntity<Admin> addNewAdmin(@RequestParam("email") String email,
-                                               @RequestParam("name") String name,
-                                               @RequestParam("firstname") String firstname,
-                                               @RequestParam("role") String role,
-                                               @RequestParam("center") Centre centre){
-    Admin newAdmin = adminService.addNewAdmin(email,name,firstname,role, centre);
+  public ResponseEntity<Admin> addNewAdmin(@RequestBody Admin admin){
+    Admin newAdmin = adminService.addNewAdmin(admin.getMail(),admin.getNom(),admin.getPrenom(),admin.getRole(),admin.getCentre());
     return  new ResponseEntity<>(newAdmin, OK);
   }
 }

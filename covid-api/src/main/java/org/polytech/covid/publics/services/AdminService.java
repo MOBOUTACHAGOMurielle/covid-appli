@@ -46,7 +46,7 @@ public class AdminService {
     this.iAdmin.delete(admin);
   }
 
-  public Admin getAdminByCentre (Centre centre) {
+  public List<Admin> getAdminByCentre (Centre centre) {
     return iAdmin.findAdminByCentre(centre);
   }
 

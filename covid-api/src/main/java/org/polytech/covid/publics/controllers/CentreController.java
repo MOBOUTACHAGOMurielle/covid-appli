@@ -1,8 +1,11 @@
 package org.polytech.covid.publics.controllers;
 
 
+import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
+import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.services.CentreService;
+import org.polytech.covid.publics.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,24 @@ public class CentreController {
   @GetMapping("list/{nom}")
   public Centre getCentre(@PathVariable("nom") String nom) {
     return centreService.getCentrebyName(nom);
+  }
+
+  @GetMapping("medecins/{id}")
+  public ResponseEntity<List<Medecin>> getMedecins(@PathVariable("id") int id) {
+    List<Medecin> medecins = centreService.getMedecins(id);
+    return new ResponseEntity<>(medecins, OK);
+  }
+
+  @GetMapping("admins/{id}")
+  public ResponseEntity<List<Admin>> getAdmins(@PathVariable("id") int id) {
+    List<Admin> admins = centreService.getAdmins(id);
+    return new ResponseEntity<>(admins, OK);
+  }
+
+  @PostMapping(path="{id}")
+  public ResponseEntity<Centre> addMedecinToCentre(@PathVariable("id") int id,@RequestBody Medecin medecin) {
+    Centre updateCentre = centreService.addNewMedecinToCentre(id, medecin);
+    return new ResponseEntity<>(updateCentre, OK);
   }
 
   @PostMapping(path = "save")

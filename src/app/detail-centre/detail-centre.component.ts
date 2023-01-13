@@ -31,6 +31,7 @@ export class DetailCentreComponent implements OnInit {
     }
     else
       this.centreService.addNewCentre(this.centreService.form.value); 
+      this.onClose();
   }
 
   onClose() {

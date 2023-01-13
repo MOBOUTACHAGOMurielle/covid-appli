@@ -1,12 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files *//* .bg-color*/
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.bg-color .mat-dialog-container{
+ .mat-dialog-container{
   background-color: #fff;
   color:black
 }
 
 .hide{
   display: none;
+}
+
+mat-footer-row mat-footer-cell{
+  justify-content: center;
+  font-style: italic;
+}
+
+mat-table {
+  background-color: #fff;
+  color: black;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+form.normal-form{
+  margin: 10px;
 }

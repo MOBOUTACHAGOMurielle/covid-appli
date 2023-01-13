@@ -46,7 +46,7 @@ public class MedecinService {
     return medecin;
   }
 
-  public Medecin getMedecinByCentre (Centre centre) {
+  public List<Medecin> getMedecinByCentre (Centre centre) {
     return iMedecin.findMedecinByCentre(centre);
   }
 

@@ -1,9 +1,12 @@
 package org.polytech.covid.publics.services;
 
+import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
+import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Repos.ICentre;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -30,6 +33,10 @@ public class CentreService {
     return centre;
   }
 
+  public Centre addNewMedecinToCentre (int id, Medecin medecin) {
+
+  }
+
   public Centre modifierCentre (Centre centre, int id) {
     Optional<Centre> center = iCentre.findById(id);
     center.get().setCodePostal(centre.getCodePostal());
@@ -48,4 +55,24 @@ public class CentreService {
     Centre a = iCentre.findCentreByVille(ville);
         return a;
     }
+
+   public List<Medecin> getMedecins (int id) {
+      Centre center = iCentre.getById(id);
+      if(center == null) {
+        throw new EntityNotFoundException();
+      }
+      else {
+        return center.getMedecins();
+      }
+   }
+
+  public List<Admin> getAdmins (int id) {
+    Centre center = iCentre.getById(id);
+    if(center == null) {
+      throw new EntityNotFoundException();
+    }
+    else {
+      return center.getAdmins();
+    }
+  }
 }

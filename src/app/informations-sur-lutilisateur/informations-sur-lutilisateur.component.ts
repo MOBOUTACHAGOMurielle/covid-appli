@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { client } from '../interfaceClient';
 import { covid } from '../interfaceCovid';
-import { centreService } from '../affichage-des-centres/affichage-des-centres.service';
 import { DialogRef } from '@angular/cdk/dialog';
+import { infoService } from './informations-sur-lutilisateur.service';
 
 @Component({
   selector: 'app-informations-sur-lutilisateur',
@@ -38,20 +38,24 @@ export class InformationsSurLutilisateurComponent implements OnInit {
     
   // }
 
-  constructor(public centreService:centreService,
+  constructor(public infoService:infoService,
     public dialogRef: DialogRef<InformationsSurLutilisateurComponent>) { }
 
     ngOnInit(): void {
     }
 
     onClear() {
-      this.centreService.form.reset();
-      this.centreService.initializeFormGroup();
+      this.infoService.UserForm.reset();
+      this.infoService.initializeUserFormGroup();
+    }
+
+    onSubmit() {
+        this.infoService.addNewMedecin(this.infoService.UserForm.value); 
     }
 
     onClose() {
-      this.centreService.form.reset();
-      this.centreService.initializeFormGroup();
+      this.infoService.UserForm.reset();
+      this.infoService.initializeUserFormGroup();
       this.dialogRef.close();
     }
 }

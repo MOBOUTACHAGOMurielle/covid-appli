@@ -7,6 +7,8 @@ import { centreService } from './affichage-des-centres.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DetailCentreComponent } from '../detail-centre/detail-centre.component';
 import { AnimationStyleMetadata } from '@angular/animations';
+import { PersonnelDunCentreComponent } from '../personnel-dun-centre/personnel-dun-centre.component';
+import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
 
 @Component({
   selector: 'app-affichage-des-centres',
@@ -41,6 +43,7 @@ export class AffichageDesCentresComponent implements OnInit {
   searchKey:string= " ";
 
   constructor(private centreService: centreService,
+    public personnelService: personnelService,
     private dialog: MatDialog) { }
 
   listeCentres: covid[] = [];
@@ -62,6 +65,9 @@ export class AffichageDesCentresComponent implements OnInit {
 
     //   //error: err => this.errMsg = err
     // );
+    this.centreService.search.subscribe((val:any)=>{
+      this.searchKey = val;
+    })
   }
 
   onCreate(){
@@ -82,6 +88,21 @@ export class AffichageDesCentresComponent implements OnInit {
     dialogConfig.width = "50%";
     dialogConfig.panelClass = 'bg-color'
     this.dialog.open(DetailCentreComponent,dialogConfig);
+  }
+
+  onView() {
+    this.personnelService.initializePersonnelFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    dialogConfig.panelClass = 'bg-color'
+    this.dialog.open(PersonnelDunCentreComponent,dialogConfig);
+  }
+
+  applyFilter(event:any){
+    this.searchKey = (event.target as HTMLInputElement).value;
+    this.centreService.search.next(this.searchKey);
   }
 
 }

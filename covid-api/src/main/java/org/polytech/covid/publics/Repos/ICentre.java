@@ -12,6 +12,8 @@ public interface ICentre extends JpaRepository<Centre, Integer> {
 
     Centre findCentreByVille(String ville);
     Centre findCentreByNom(String name);
+    Centre getById(int id);
+
 
     List<Centre> findCentresByVilleContaining(String name);
 }

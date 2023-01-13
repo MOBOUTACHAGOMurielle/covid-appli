@@ -34,6 +34,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule} from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
+import { PersonnelDunCentreComponent } from './personnel-dun-centre/personnel-dun-centre.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { MatRadioModule } from '@angular/material/radio';
     AuthentificationComponent,
     AuthGuardComponent,
     FiltrePipe,
-    DetailCentreComponent
+    DetailCentreComponent,
+    PersonnelDunCentreComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +72,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatGridListModule,
     MatToolbarModule,
     MatListModule,
+    MatTableModule,
     RouterModule.forRoot([
       { path: 'pageaccueil',component: PageaccueilComponent},
       { path: '', redirectTo: 'pageaccueil', pathMatch: 'full'},

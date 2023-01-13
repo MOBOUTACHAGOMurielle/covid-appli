@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { covid } from "../interfaceCovid";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { HttpErrorResponse } from "@angular/common/http";
 import { throwError } from "rxjs";
@@ -17,6 +17,8 @@ export class centreService {
 
     private readonly CENTRE_API_URL = environment.host;
 
+    public search = new BehaviorSubject<string>("");
+    
     constructor(private http: HttpClient){}
 
     form: FormGroup = new FormGroup({

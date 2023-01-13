@@ -32,7 +32,7 @@
         <mat-card class="searchBar">
           <mat-card-content class="searchbarContent">
               <mat-icon matSuffix id="search">search</mat-icon> 
-              <input type="text" matInput placeholder="Nom du centre" [(ngModel)]="searchKey">
+              <input type="text" matInput placeholder="Nom du centre" [(ngModel)]="searchKey" (keyup)="applyFilter($event)">
               <button mat-raised-button color="warn">Rechercher</button>
           </mat-card-content>
         </mat-card>
@@ -50,7 +50,7 @@
       </mat-card>
       <button mat-raised-button color="warn">Nouveau</button> --> 
       <div class="categories" *ngIf="listeCentres && listeCentres.length>0" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
-        <mat-card class="example-card" *ngFor="let acentre of listeCentres" >
+        <mat-card class="example-card" *ngFor="let acentre of listeCentres | filtre:searchKey:'nom'" >
           <mat-card class="design">  
           </mat-card>
             <mat-card-content>
@@ -62,7 +62,7 @@
                       {{acentre.adresse}}
                     </p>
                     <div>
-                      <mat-icon id="edit" alignItems="center" (click)="onEdit(acentre)">edit</mat-icon><mat-icon id="people" alignItems="center">people</mat-icon>
+                      <mat-icon id="edit" alignItems="center" (click)="onEdit(acentre)">edit</mat-icon><mat-icon id="people" alignItems="center" (click)="onView()">people</mat-icon>
                     </div>
                 </div>
             </mat-card-content>

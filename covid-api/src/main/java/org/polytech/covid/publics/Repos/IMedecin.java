@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface IMedecin extends JpaRepository<Medecin, Integer> {
   List<Medecin> findMedecinByCentreContaining(Centre center);
-  Medecin findMedecinByCentre(Centre center);
+  List<Medecin> findMedecinByCentre(Centre center);
   Medecin findMedcinByNom(String name);
 }
