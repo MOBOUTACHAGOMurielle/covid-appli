@@ -18,6 +18,8 @@ public class AdminService {
 
   public List<Admin> getAdmins() { return iAdmin.findAll();}
 
+  public Centre getCentre(int id) {return  iAdmin.getAdminById(id).getCentre();}
+
   public Admin addNewAdmin (String email, String name, String firstname, String role, Centre centre) {
 
     Admin admin = new Admin();

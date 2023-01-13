@@ -33,6 +33,11 @@ public class CentreController {
     return centreService.getCentrebyName(nom);
   }
 
+  @GetMapping("/{id}")
+  public Centre getCentreById(@PathVariable("id") int id) {
+    return centreService.getCentrebyiD(id);
+  }
+
   @GetMapping("medecins/{id}")
   public ResponseEntity<List<Medecin>> getMedecins(@PathVariable("id") int id) {
     List<Medecin> medecins = centreService.getMedecins(id);
@@ -46,13 +51,13 @@ public class CentreController {
   }
 
   @PostMapping(path="medecin/{id}")
-  public ResponseEntity<Centre> addMedecinToCentre(@PathVariable("id") int id,@RequestBody Medecin medecin) {
+  public ResponseEntity<Centre> addMedecinToCentre(@PathVariable("id") int id,@RequestBody AddToCentreRequest medecin) {
     Centre updateCentre = centreService.addNewMedecinToCentre(id, medecin);
     return new ResponseEntity<>(updateCentre, OK);
   }
 
   @PostMapping(path="admin/{id}")
-  public ResponseEntity<Centre> addAdminToCentre(@PathVariable("id") int id,@RequestBody Admin admin) {
+  public ResponseEntity<Centre> addAdminToCentre(@PathVariable("id") int id,@RequestBody AddToCentreRequest admin) {
     Centre updateCentre = centreService.addNewAdminToCentre(id, admin);
     return new ResponseEntity<>(updateCentre, OK);
   }
@@ -69,4 +74,5 @@ public class CentreController {
     return new ResponseEntity<>(newCentre, OK);
   }
 }
+
 

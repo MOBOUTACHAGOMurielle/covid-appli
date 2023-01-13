@@ -11,4 +11,5 @@ import java.util.List;
 public interface IAdmin extends JpaRepository<Admin, Integer> {
   List<Admin> findMedecinByCentreContaining(Centre center);
   List<Admin> findAdminByCentre(Centre center);
+  Admin getAdminById (int id);
 }

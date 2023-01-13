@@ -30,6 +30,12 @@ public class AdminController {
   @GetMapping("list/{centre}")
   public List<Admin> getAdmin(@PathVariable("centre") Centre centre) {return adminService.getAdminByCentre(centre);}
 
+  @GetMapping(path = "/centre/{id}")
+  public ResponseEntity<Centre> getAdminCentre(@PathVariable("id")  int id){
+    Centre adminCentre = adminService.getCentre(id);
+    return  new ResponseEntity<>(adminCentre, OK);
+  }
+
   @PostMapping(path = "save")
   public ResponseEntity<Admin> addNewAdmin(@RequestBody Admin admin){
     Admin newAdmin = adminService.addNewAdmin(admin.getMail(),admin.getNom(),admin.getPrenom(),admin.getRole(),admin.getCentre());
