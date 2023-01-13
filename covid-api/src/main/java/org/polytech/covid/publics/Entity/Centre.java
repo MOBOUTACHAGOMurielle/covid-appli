@@ -16,11 +16,11 @@ import static javax.persistence.GenerationType.AUTO;
 public class Centre {
 @Id
 @GeneratedValue(strategy= AUTO)
-  public int id;
-  public String ville;
-  public String nom;
-  public String adresse;
-  public String codePostal;
+  private int id;
+  private String ville;
+  private String nom;
+  private String adresse;
+  private String codePostal;
 
 
   @OneToMany
@@ -31,7 +31,7 @@ public class Centre {
 
   @OneToMany
   public List<Admin> admins;
-
+/*
   public void setVille(String ville) {
       this.ville = ville;
   }
@@ -56,5 +56,5 @@ public class Centre {
 
   public void setCodePostal(String codePostal) {
     this.codePostal = codePostal;
-  }
+  }*/
 }

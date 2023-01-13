@@ -45,9 +45,15 @@ public class CentreController {
     return new ResponseEntity<>(admins, OK);
   }
 
-  @PostMapping(path="{id}")
+  @PostMapping(path="medecin/{id}")
   public ResponseEntity<Centre> addMedecinToCentre(@PathVariable("id") int id,@RequestBody Medecin medecin) {
     Centre updateCentre = centreService.addNewMedecinToCentre(id, medecin);
+    return new ResponseEntity<>(updateCentre, OK);
+  }
+
+  @PostMapping(path="admin/{id}")
+  public ResponseEntity<Centre> addAdminToCentre(@PathVariable("id") int id,@RequestBody Admin admin) {
+    Centre updateCentre = centreService.addNewAdminToCentre(id, admin);
     return new ResponseEntity<>(updateCentre, OK);
   }
 

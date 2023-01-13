@@ -90,14 +90,9 @@ export class AffichageDesCentresComponent implements OnInit {
     this.dialog.open(DetailCentreComponent,dialogConfig);
   }
 
-  onView() {
+  onView(element:any) {
     this.personnelService.initializePersonnelFormGroup();
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
-    dialogConfig.panelClass = 'bg-color'
-    this.dialog.open(PersonnelDunCentreComponent,dialogConfig);
+    this.dialog.open(PersonnelDunCentreComponent,{data: {center:element} ,width:'50%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 
   applyFilter(event:any){
