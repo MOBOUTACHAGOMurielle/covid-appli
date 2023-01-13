@@ -9,14 +9,15 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 @Service
 public class CentreService {
   private final ICentre iCentre;
+  private final AdminService adminService;
 
-  public CentreService(ICentre iCentre) {
+  public CentreService(ICentre iCentre, AdminService adminservice) {
       this.iCentre = iCentre;
+    this.adminService = adminservice;
   }
 
   public List<Centre> getCentres () {return  iCentre.findAll();}
@@ -34,17 +35,49 @@ public class CentreService {
   }
 
   public Centre addNewMedecinToCentre (int id, Medecin medecin) {
-
+    Centre center = iCentre.getById(id);
+    if(center == null) {
+      throw new EntityNotFoundException();
+    }
+    else {
+      List<Medecin> list = center.getMedecins();
+      list.add(medecin);
+      center.setMedecins(list);
+      return center;
+    }
   }
 
+  public Centre addNewAdminToCentre (int id, Admin admin) {
+    Centre center = iCentre.getById(id);
+    if(center == null) {
+      throw new EntityNotFoundException();
+    }
+    else {
+      Admin nadmin = adminService.addNewAdmin(admin.getMail(),admin.getNom(),admin.getPrenom(),admin.getRole(),null);
+      List<Admin> list = center.getAdmins();
+      list.add(nadmin);
+      center.setAdmins(list);
+      return center;
+    }
+  }
+
+
+  /*public Centre removeAdminToCentre(int idCentre, int idAdmin){
+
+  }*/
   public Centre modifierCentre (Centre centre, int id) {
-    Optional<Centre> center = iCentre.findById(id);
-    center.get().setCodePostal(centre.getCodePostal());
-    center.get().setAdresse(centre.getAdresse());
-    center.get().setNom(centre.getNom());
-    center.get().setVille(centre.getVille());
-    this.iCentre.save(centre);
-    return centre;
+    Centre center = iCentre.getById(id);
+    if(center == null) {
+      throw new EntityNotFoundException();
+    }
+    else {
+      center.setCodePostal(centre.getCodePostal());
+      center.setAdresse(centre.getAdresse());
+      center.setNom(centre.getNom());
+      center.setVille(centre.getVille());
+      this.iCentre.save(centre);
+      return center;
+    }
   }
 
   public Centre getCentrebyName(String name) {
