@@ -5,7 +5,7 @@ import { infoService } from '../informations-sur-lutilisateur/informations-sur-l
 import { MatTableDataSource } from '@angular/material/table';
 import { client } from '../interfaceClient';
 import { covid } from '../interfaceCovid';
-import { InformationsSurLutilisateurComponent } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.component';
+import { InformationsSurSuperAdminComponent } from '../informations-sur-super-admin/informations-sur-super-admin.component';
 
 @Component({
   selector: 'app-config',
@@ -32,7 +32,7 @@ export class ConfigComponent implements OnInit {
   }
 
   onDelete(id:any){
-
+    this.personnelService.deleteSuperAdmin(id); 
   }
 
   onEdit(row:any){
@@ -43,14 +43,9 @@ export class ConfigComponent implements OnInit {
     this.centre = acentre;
   }
 
-  // onClose() {
-  //   this.personnelService.formPersonnel.reset();
-  //   this.personnelService.initializePersonnelFormGroup();
-  // }
-
-  onViewPersonnel() {
+  onViewSuperAdmin() {
     this.infoService.initializeUserFormGroup;
-    this.dialog.open(InformationsSurLutilisateurComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
+    this.dialog.open(InformationsSurSuperAdminComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 
 }

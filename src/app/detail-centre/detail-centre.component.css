@@ -3,16 +3,6 @@
     padding: 5%;    
 }
 
-.fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
-  }
-
-  form.normal-form{
-    margin: 10px;
-}
-
 .controles-container > * {
     width: 100%;
     }
@@ -27,4 +17,9 @@
 
 .show {
     visibility: visible;
+}
+
+form {
+    background-color: #3c3c3c;
+    color: #fff;
 }

@@ -25,8 +25,8 @@ export class infoService {
       prenom: new FormControl(''),
       mail: new FormControl(''),
       password: new FormControl(''),
-      role: new FormControl(''),
-      centreName: new FormControl('')
+      role: new FormControl({value:'', disabled: true }),
+      centreName: new FormControl({value:'', disabled: true })
     });
   
     initializeUserFormGroup() {

@@ -13,9 +13,9 @@ import { client } from "../interfaceClient";
     providedIn: 'root'
 })
 
-export class infoServiceAdmin {
+export class infoSuperAdminService {
 
-    private readonly UTILISATEUR_URL = environment.host;
+    private readonly SUPERADMIN_URL = environment.host;
 
     constructor(private http: HttpClient){}
 
@@ -41,20 +41,21 @@ export class infoServiceAdmin {
       });
     }
 
-    public adAdminToCentre = (element:any,id:number) =>{
-      const adminstr = JSON.stringify(element,null,2);
-      const adminJson = JSON.parse(adminstr);
-  
-      console.log(adminstr);
-      this.http.post(`${this.UTILISATEUR_URL}/admin/new/centre/${id}`, adminJson).subscribe({
-        error: (err) => {  
-          console.error(err) 
-        },
-  
-        complete: () => console.info('admin saved successful')
-  
-      });
-    }
+    public adSuperAdmin = (element:any) =>{
+        const superAdminstr = JSON.stringify(element,null,2);
+        const superAdminJson = JSON.parse(superAdminstr);
+    
+        console.log(superAdminstr)
+        this.http.post(`${this.SUPERADMIN_URL}/superAdmin/save`, superAdminJson).subscribe({
+          error: (err) => {  
+            console.error(err) 
+          },
+    
+          complete: () => console.info('superAdmin saved successful')
+    
+        });
+      }
+
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

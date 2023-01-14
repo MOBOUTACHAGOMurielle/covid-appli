@@ -46,8 +46,12 @@ export class PersonnelDunCentreComponent implements OnInit {
     );
   }
 
-  onDelete(id:any){
+  onDeleteMedecin(id:any){
+    this.personnelService.deleteMedecin(id);
+  }
 
+  onDeleteAdmin(id:any){
+    this.personnelService.deleteAdmin(id);
   }
 
   onEdit(row:any){

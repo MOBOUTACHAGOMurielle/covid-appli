@@ -13,9 +13,9 @@ import { client } from "../interfaceClient";
     providedIn: 'root'
 })
 
-export class infoServiceAdmin {
+export class configService {
 
-    private readonly UTILISATEUR_URL = environment.host;
+    private readonly SUPERADMIN_URL = environment.host;
 
     constructor(private http: HttpClient){}
 
@@ -41,20 +41,33 @@ export class infoServiceAdmin {
       });
     }
 
-    public adAdminToCentre = (element:any,id:number) =>{
-      const adminstr = JSON.stringify(element,null,2);
-      const adminJson = JSON.parse(adminstr);
+    public adSuperAdminToCentre = (element:any,id:number) =>{
+      const superAdminstr = JSON.stringify(element,null,2);
+      const superAdminJson = JSON.parse(superAdminstr);
   
-      console.log(adminstr);
-      this.http.post(`${this.UTILISATEUR_URL}/admin/new/centre/${id}`, adminJson).subscribe({
+      console.log(superAdminstr)
+      this.http.post(`${this.SUPERADMIN_URL}/superAdmin/save/${id}`, superAdminJson).subscribe({
         error: (err) => {  
           console.error(err) 
         },
   
-        complete: () => console.info('admin saved successful')
+        complete: () => console.info('superAdmin saved successful')
   
       });
     }
+
+    public deleteSuperAdmin = (id:number) =>{
+        this.http.delete(`${this.SUPERADMIN_URL}/superAdmin/delete/${id}`).subscribe({
+          error: (err) => {  
+            console.error(err) 
+          },
+    
+          complete: () => console.info('superAdmin deleted successful')
+    
+        });
+      }
+  
+
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

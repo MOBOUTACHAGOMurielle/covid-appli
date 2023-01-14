@@ -9,25 +9,25 @@
         <div class="controles-container">
           <input type="hidden" formControlName="id">
           <mat-form-field class="show">
-            <input formControlName="nom" matInput placeholder="Nom*">
+            <input type="text" formControlName="nom" matInput placeholder="Nom*">
             <mat-error>Ce champ est obligatoire</mat-error>
           </mat-form-field>
           <mat-form-field class="show">
-            <input formControlName="prenom" matInput placeholder="prenom*" class="show">
+            <input type="text" formControlName="prenom" matInput placeholder="prenom*" class="show">
             <mat-error>Ce champ est obligatoire</mat-error>
           </mat-form-field>
           <mat-form-field class="show">
-            <input formControlName="mail" matInput placeholder="email*">
+            <input type="text" formControlName="mail" matInput placeholder="email*">
             <mat-error>Ce champ est obligatoire</mat-error>
           </mat-form-field>
           <mat-form-field class="show">
-            <input formControlName="password" matInput placeholder="mot de passe*">
+            <input type="password" formControlName="password" matInput placeholder="mot de passe*">
           </mat-form-field>
           <mat-form-field class="show">
-            <input formControlName="role" matInput placeholder="role*">
+            <input type="text" formControlName="role" matInput placeholder="ADMINISTRATEUR">
           </mat-form-field>
           <mat-form-field class="show">
-            <input formControlName="centreName" matInput placeholder="centreName*">
+            <input type="text" formControlName="centreName" matInput placeholder={{centre.nom}}>
           </mat-form-field>
           <div class="button-row">
             <button mat-raised-button color="warn" type="submit">Submit</button>

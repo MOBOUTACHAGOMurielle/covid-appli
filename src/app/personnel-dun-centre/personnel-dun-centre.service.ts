@@ -68,6 +68,39 @@ export class personnelService {
       )
     }
 
+    public deleteMedecin = (id:number) =>{
+      this.http.delete(`${this.PERSONNEL_API_URL}/medecin/delete/${id}`).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('medecin deleted successful')
+  
+      });
+    }
+
+    public deleteAdmin = (id:number) =>{
+      this.http.delete(`${this.PERSONNEL_API_URL}/admin/delete/${id}`).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('admin deleted successful')
+  
+      });
+    }
+
+    public deleteSuperAdmin = (id:number) =>{
+      this.http.delete(`${this.PERSONNEL_API_URL}/superAdmin/delete/${id}`).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('superAdmin deleted successful')
+  
+      });
+    }
+
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
           console.error('An error occurred:', error.error);
