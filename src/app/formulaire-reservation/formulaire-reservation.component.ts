@@ -26,7 +26,7 @@ export class FormulaireReservationComponent implements OnInit {
   centre: covid;
 
   onSubmit() {
-    this.personnel.adReservationToCentre(this.personnel.patientForm.value,this.personnel.patientForm.value.id); 
+    this.personnel.adReservationToCentre(this.personnel.patientForm.value,this.centre.id); 
     this.onClose();
   }
 

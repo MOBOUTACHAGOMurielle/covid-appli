@@ -47,3 +47,10 @@ form {
   background-color: #3c3c3c;
   color: #fff;
 }
+
+#titreCentre{
+  font-weight: bold;
+  font-size: 20px;
+  margin:5px;
+  text-align: center;
+}

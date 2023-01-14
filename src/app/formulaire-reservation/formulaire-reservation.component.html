@@ -1,5 +1,8 @@
 <mat-toolbar>
-    <span>Prendre un rendez-vous</span>
+    <span>Rendez-vous chez</span><br>
+    <div id = "titreCentre"> 
+      {{centre.nom}}!
+    </div>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
   </mat-toolbar>

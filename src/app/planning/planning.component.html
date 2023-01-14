@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div class="image">
     </div>
     <div class="programme">
@@ -35,23 +35,22 @@
             <mat-toolbar>
                 <span>Reservation du....</span>
                 <span class="fill-remaining-space"></span>
-                <!-- <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button> -->
+                <!-- <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
               </mat-toolbar>
               <div class="mat-elevation-z8">
-                  <mat-table [dataSource]="listeReservations" width="1000px">
+                  <mat-table [dataSource]="centre.reservation" width="1000px">
                     <ng-container matColumnDef="id">
                       <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
                       <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="nom">
                       <mat-header-cell *matHeaderCellDef>nom</mat-header-cell>
-                      <mat-cell *matCellDef="let element">{{element.centre.nom}}</mat-cell>
+                      <mat-cell *matCellDef="let element">{{element.centre.}}</mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="actions">
                       <mat-header-cell *matHeaderCellDef></mat-header-cell>
                       <mat-cell *matCellDef="let element"> 
-                        <mat-icon (click)="onEdit(element)">edit</mat-icon>
-                        <button mat-icon-button color="warn" (click)="onDelete(element.id)"><mat-icon>clear</mat-icon></button>
+                        <button mat-raised-button color="warn" type="submit">Valider</button>
                       </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="loading">
@@ -70,7 +69,5 @@
                     <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
                   </mat-table>
                 </div> 
-        </div>
-        
-        
-</div>
+        </div>     
+</div> -->
