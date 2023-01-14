@@ -19,6 +19,7 @@ import static javax.persistence.GenerationType.AUTO;
 public class Centre {
 @Id
 @GeneratedValue(strategy= AUTO)
+@Column(name = "centre_id")
   private int id;
   private String ville;
   private String nom;
@@ -26,11 +27,11 @@ public class Centre {
   private String codePostal;
 
 
-  @OneToMany
+  @OneToMany(mappedBy = "centre",cascade = CascadeType.ALL,orphanRemoval = true)
   @JsonManagedReference(value = "reservationtocours")
   public List<Reservation> reservations;
 
-  @OneToMany
+  @OneToMany(mappedBy = "centre",cascade = CascadeType.ALL,orphanRemoval = true)
   @JsonManagedReference(value = "medecintocours")
   public List<Medecin> medecins;
 

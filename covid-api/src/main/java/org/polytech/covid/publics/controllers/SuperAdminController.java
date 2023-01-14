@@ -37,4 +37,9 @@ public class SuperAdminController {
     return  new ResponseEntity<>(newSuperAdmin, OK);
 
   }
+
+  @DeleteMapping("delete/{id}")
+  public void deleteSuperAdminByid(@PathVariable("id") Long id) {
+    superAdminService.deleteSuperAdmin(id);
+  }
 }

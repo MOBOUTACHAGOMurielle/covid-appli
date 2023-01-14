@@ -33,6 +33,11 @@ public class AdminController {
   @GetMapping("{id}")
   public ResponseEntity<Admin> getAdminByid(@PathVariable("id") Long id) {return new ResponseEntity<>(adminService.getAdmin(id),OK);}
 
+  @DeleteMapping("delete/{id}")
+  public void deleteAdminByid(@PathVariable("id") Long id) {
+    adminService.deleteAdmin(id);
+  }
+
 
   @GetMapping(path = "/centre/{id}")
   public ResponseEntity<Centre> getAdminCentre(@PathVariable("id")  Long id){

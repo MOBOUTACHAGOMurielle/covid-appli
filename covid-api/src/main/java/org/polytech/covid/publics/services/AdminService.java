@@ -7,9 +7,11 @@ import org.polytech.covid.publics.Repos.ICentre;
 import org.polytech.covid.publics.controllers.AddToCentreRequest;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+
 public class AdminService {
 
   public final IAdmin iAdmin;
@@ -32,6 +34,7 @@ public class AdminService {
     Admin admin = new Admin();
     admin.setMail(email);
     admin.setNom(name);
+    admin.setRole("ADMINISTRATEUR");
     admin.setPrenom(firstname);
     admin.setRole(role);
     admin.setCentre(centre);
@@ -68,10 +71,22 @@ public class AdminService {
     newadmin.setNom(admin.getNom());
     newadmin.setPrenom(admin.getPrenom());
     newadmin.setMail(admin.getEmail());
+    newadmin.setRole("ADMINISTRATEUR");
     newadmin.setLogin(admin.getEmail());
     newadmin.setPassword(admin.getPassword());
     newadmin.setCentre(iCentre.getCentreById(id));
     return iAdmin.save(newadmin);
+  }
+
+  public void deleteAdmin(Long id){
+    boolean test = iAdmin.existsById(id);
+
+    if(!test) {
+      throw new IllegalStateException("User with id " + id +" doesn't exist");
+    }
+    else
+    iAdmin.deleteAdminById(id);
+
   }
 
 

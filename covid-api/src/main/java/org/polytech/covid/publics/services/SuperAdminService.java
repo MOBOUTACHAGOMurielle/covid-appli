@@ -46,6 +46,16 @@ public class SuperAdminService {
     return superAdmin;
   }
 
+  public void deleteSuperAdmin(Long id ){
+    boolean test = iSuperAdmin.existsById(id);
+
+    if(!test) {
+      throw new IllegalStateException("User with id " + id +" doesn't exist");
+    }
+    else
+      iSuperAdmin.deleteSuperAdminById(id);
+
+  }
   public SuperAdmin getSuperAdminByMail(final String mail) {
     return iSuperAdmin.findByLogin(mail);
   }

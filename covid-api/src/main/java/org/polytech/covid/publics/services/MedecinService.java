@@ -61,11 +61,24 @@ public class MedecinService {
     Medecin newmedecin = new Medecin();
     newmedecin.setNom(medecin.getNom());
     newmedecin.setPrenom(medecin.getPrenom());
+    newmedecin.setRole("MEDECIN");
     newmedecin.setMail(medecin.getEmail());
     newmedecin.setLogin(medecin.getEmail());
     newmedecin.setPassword(medecin.getPassword());
     newmedecin.setCentre(iCentre.getCentreById(id));
     return iMedecin.save(newmedecin);
+  }
+
+  public void deleteMedecin(Long id){
+
+    boolean test = iMedecin.existsById(id);
+
+    if(!test) {
+      throw new IllegalStateException("User with id " + id +" doesn't exist");
+    }
+    else
+      iMedecin.deleteMedecinById(id);
+
   }
 
 }

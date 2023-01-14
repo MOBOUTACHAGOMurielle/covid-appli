@@ -62,6 +62,7 @@ public class CentreService {
   }
 
   public Centre addNewAdminToCentre (int id, AddToCentreRequest admin) {
+
     Centre center = iCentre.getCentreById(id);
     if(center == null) {
       throw new EntityNotFoundException();
