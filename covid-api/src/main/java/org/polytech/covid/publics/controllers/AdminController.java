@@ -2,6 +2,7 @@ package org.polytech.covid.publics.controllers;
 
 import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
+import org.polytech.covid.publics.Repos.IAdmin;
 import org.polytech.covid.publics.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,14 @@ import static org.springframework.http.HttpStatus.OK;
 public class AdminController {
   private final AdminService adminService;
   private CentreController center;
+  private final IAdmin iAdmin;
 
   @Autowired
-  public AdminController(AdminService adminService) {
-    this.adminService = adminService; }
+  public AdminController(AdminService adminService,
+                         IAdmin iAdmin) {
+    this.adminService = adminService;
+    this.iAdmin = iAdmin;
+  }
 
   @GetMapping("list")
   public List<Admin> getAdmins() {return adminService.getAdmins();}
@@ -58,6 +63,12 @@ public class AdminController {
   public ResponseEntity<Admin> modifyAdmin(@RequestBody UserForm form,@PathVariable("id") Long id) {
     Admin updatedadmin = adminService.modifierAdmin(form, id);
     return new ResponseEntity<>(updatedadmin, OK);
+  }
+
+  @PostMapping("role")
+  public ResponseEntity<Boolean> isAdmin(@RequestBody String mail){
+    return new ResponseEntity<>(adminService.isAdmin(mail),OK);
+
   }
 
 }

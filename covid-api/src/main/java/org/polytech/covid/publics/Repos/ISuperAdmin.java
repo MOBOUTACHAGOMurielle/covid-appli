@@ -14,5 +14,6 @@ public interface ISuperAdmin extends JpaRepository<SuperAdmin, Integer> {
   SuperAdmin findByLogin(final String email);
   Boolean existsById(Long id);
   SuperAdmin getMedecinById(Long id);
+  Boolean existsByMail(String mail);
   void deleteSuperAdminById(Long id);
 }

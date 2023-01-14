@@ -20,8 +20,8 @@
             <input formControlName="codePostal" matInput placeholder="code postale*">
             <mat-error>Ce champ est obligatoire</mat-error>
           </mat-form-field>
-          <mat-form-field class="show">
-            <input formControlName="ville" matInput placeholder="ville*">
+          <mat-form-field class="show" ngIf="">
+            <input formControlName="ville" matInput placeholder={ngIf* }>
           </mat-form-field>
           <div class="button-row">
             <button mat-raised-button color="warn" type="submit">Submit</button>

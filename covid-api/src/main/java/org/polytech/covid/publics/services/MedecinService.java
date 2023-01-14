@@ -6,6 +6,7 @@ import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Repos.ICentre;
 import org.polytech.covid.publics.Repos.IMedecin;
 import org.polytech.covid.publics.controllers.UserForm;
+import org.polytech.covid.publics.controllers.roleForm;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -81,6 +82,11 @@ public class MedecinService {
       iMedecin.deleteMedecinById(id);
 
   }
+
+  public Boolean isMedecin (roleForm mailform) {
+    return iMedecin.existsByMail(mailform.mail);
+  }
+
 
   public Medecin modifierMedecin (UserForm form, Long id) {
     Medecin medecin = iMedecin.getMedecinById(id);

@@ -17,6 +17,8 @@ public interface IMedecin extends JpaRepository<Medecin, Integer> {
   Medecin findMedcinByNom(String name);
   Medecin getMedecinById(Long id);
 
+  Boolean existsByMail(String mail);
+
   Boolean existsById(Long id);
   void deleteMedecinById(Long id);
 }

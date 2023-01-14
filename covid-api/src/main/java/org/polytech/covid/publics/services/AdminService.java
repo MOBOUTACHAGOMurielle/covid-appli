@@ -87,6 +87,12 @@ public class AdminService {
 
   }
 
+
+  public Boolean isAdmin (String mail) {
+    return iAdmin.existsByMail(mail);
+  }
+
+
   public Admin modifierAdmin (UserForm form, Long id) {
     Admin admin = iAdmin.getAdminById(id);
     if(admin == null) {

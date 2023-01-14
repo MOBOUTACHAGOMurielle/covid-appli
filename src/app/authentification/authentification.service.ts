@@ -36,4 +36,26 @@ export class AuthentificationService {
   logOut() {
     sessionStorage.removeItem('username')
   }
+
+
+
+  isUserSuperAdmin(user: string, password:string){
+
+  }
+
+  isUserAdmin(user: string, password:string) {
+
+  }
+
+  isUserMedecin(user: string, password:string) {
+
+  }
+
+
+
+
+
+
+
+
 }

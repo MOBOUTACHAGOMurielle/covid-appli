@@ -43,9 +43,9 @@ public class CovidApiApplication {
       adminService.addNewAdmin("remi@Martin.fr", "MartinAdm", "remi", "ADMINISTRATEUR", centreService.getCentre("paris"));
       adminService.addNewAdmin("christine@Borne.fr", "BorneADM", "Christine", "ADMINISTRATEUR", centreService.getCentre("anger"));
 
-      superAdminService.addNewSuperAdmin("jean@durand.fr", "DurandSupADM", "jean", "SUPER_ADMINISTRATEUR");
-      superAdminService.addNewSuperAdmin("remi@Martin.fr", "MartinSUPADM", "remi", "SUPER_ADMINISTRATEUR");
-      superAdminService.addNewSuperAdmin("christine@Borne.fr", "BorneSUPADM", "Christine", "SUPER_ADMINISTRATEUR");
+      superAdminService.addNewSuperAdmin("jean@durandadm.fr", "DurandSupADM", "jean", "SUPER_ADMINISTRATEUR");
+      superAdminService.addNewSuperAdmin("remi@Martinadm.fr", "MartinSUPADM", "remi", "SUPER_ADMINISTRATEUR");
+      superAdminService.addNewSuperAdmin("christine@Borneadm.fr", "BorneSUPADM", "Christine", "SUPER_ADMINISTRATEUR");
 
       patientService.addNewPatient("Blondeau", "Brice", "bb@gmail.com", medecinService.getMedecinByNom("TestName"));
       patientService.addNewPatient("Macron", "Remi", "macronremi@gmail.com", medecinService.getMedecinByNom("MartinMED"));

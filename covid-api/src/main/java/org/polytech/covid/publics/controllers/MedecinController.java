@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
+import org.polytech.covid.publics.Repos.IMedecin;
 import org.polytech.covid.publics.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,13 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("medecin")
 public class MedecinController {
   private final MedecinService medecinService;
+  private final IMedecin iMedecin;
 
-@Autowired
-  public MedecinController(MedecinService medecin) { this.medecinService = medecin;}
+  @Autowired
+  public MedecinController(MedecinService medecin,
+                           IMedecin iMedecin) { this.medecinService = medecin;
+    this.iMedecin = iMedecin;
+  }
 
 @GetMapping("list")
  public List<Medecin> getMedecins() {return medecinService.getMedecins();}
@@ -33,6 +38,11 @@ public class MedecinController {
   @RequestMapping("/validateLogin")
   public Medecin validateLogin(){
     return new Medecin("user successfully authenticated");
+  }
+
+  @PostMapping("role")
+  public ResponseEntity<Boolean> isMedecin(@RequestBody roleForm mailform){
+    return new ResponseEntity<>(medecinService.isMedecin(mailform),OK);
   }
 
   @PostMapping(path = "save")

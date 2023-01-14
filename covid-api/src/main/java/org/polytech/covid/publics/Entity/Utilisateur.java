@@ -1,6 +1,7 @@
 package org.polytech.covid.publics.Entity;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 
 
 @Entity(name = "UTILISATEUR")
@@ -21,6 +22,7 @@ public class Utilisateur {
 
   private String prenom;
 
+  @Column(unique = true)
   private String mail;
 
   protected String status;

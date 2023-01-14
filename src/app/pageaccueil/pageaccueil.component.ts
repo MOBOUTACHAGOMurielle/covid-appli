@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { client } from '../interfaceClient';
 import { covid } from '../interfaceCovid';
+import { RoleService } from '../role/role-service';
 
 @Component({
   selector: 'app-pageaccueil',
@@ -14,7 +16,7 @@ export class PageaccueilComponent implements OnInit {
 
   selected?: covid;
 
-  constructor() { }
+  constructor(public roleservice: RoleService , private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -53,6 +55,11 @@ export class PageaccueilComponent implements OnInit {
 
   onChoose(centre:covid){
     this.selected = centre;
+  }
+
+  onClick() {
+    // this.roleservice.isSuperAdmin();
+    this.router.navigateByUrl("/affichage-des-centres")
   }
 
   AfficherPlus(): void {

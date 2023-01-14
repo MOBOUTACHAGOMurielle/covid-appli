@@ -42,6 +42,11 @@ public class SuperAdminController {
     return new ResponseEntity<>(updateSuperAdmin, OK);
   }
 
+  @PostMapping("role")
+  public ResponseEntity<Boolean> isSuperAdmin(@RequestBody roleForm mailform){
+    return new ResponseEntity<>(superAdminService.isSuperAdmin(mailform.mail),OK);
+  }
+
   @DeleteMapping("delete/{id}")
   public void deleteSuperAdminByid(@PathVariable("id") Long id) {
     superAdminService.deleteSuperAdmin(id);

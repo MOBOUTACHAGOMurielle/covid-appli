@@ -54,6 +54,10 @@ public class SuperAdminService {
     }
   }
 
+  public Boolean isSuperAdmin (String mail) {
+    return iSuperAdmin.existsByMail(mail);
+  }
+
   public void deleteSuperAdmin(Long id ){
     boolean test = iSuperAdmin.existsById(id);
 
