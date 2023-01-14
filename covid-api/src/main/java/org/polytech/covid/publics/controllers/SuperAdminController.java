@@ -36,6 +36,12 @@ public class SuperAdminController {
 
   }
 
+  @PostMapping(path="modify/{id}")
+  public ResponseEntity<SuperAdmin> modifySuperAdmin(@RequestBody UserForm form, @PathVariable("id") Long id) {
+    SuperAdmin updateSuperAdmin = superAdminService.modifierSuperAdmin(form, id);
+    return new ResponseEntity<>(updateSuperAdmin, OK);
+  }
+
   @DeleteMapping("delete/{id}")
   public void deleteSuperAdminByid(@PathVariable("id") Long id) {
     superAdminService.deleteSuperAdmin(id);

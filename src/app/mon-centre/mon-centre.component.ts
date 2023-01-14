@@ -17,7 +17,6 @@ import { MatTableDataSource } from '@angular/material/table';
 export class MonCentreComponent implements OnInit {
 
   constructor(public personnelService:personnelService,
-    public infoService: infoService,
     private dialog: MatDialog) { 
     }
 
@@ -53,7 +52,7 @@ export class MonCentreComponent implements OnInit {
   // }
 
   onViewPersonnel() {
-    this.infoService.initializeUserFormGroup;
+    this.personnelService.initializeUserFormGroup;
     this.dialog.open(InformationsSurLutilisateurComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 

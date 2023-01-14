@@ -39,27 +39,27 @@ export class centreService {
       });
     }
 
-    formUser: FormGroup = new FormGroup({
-      id: new FormControl(null),
-      nom: new FormControl(''),
-      prenom: new FormControl(''),
-      mail: new FormControl(''),
-      password: new FormControl(''),
-      role: new FormControl(''),
-      centreName: new FormControl('')
-    })
+    // formUser: FormGroup = new FormGroup({
+    //   id: new FormControl(null),
+    //   nom: new FormControl(''),
+    //   prenom: new FormControl(''),
+    //   mail: new FormControl(''),
+    //   password: new FormControl(''),
+    //   role: new FormControl(''),
+    //   centreName: new FormControl('')
+    // })
 
-    initializeUserFormGroup() {
-      this.form.setValue({
-        id: null,
-        nom: '',
-        prenom: '',
-        mail: '',
-        password: '',
-        role: '',
-        centreName: ''
-      })
-    }
+    // initializeUserFormGroup() {
+    //   this.form.setValue({
+    //     id: null,
+    //     nom: '',
+    //     prenom: '',
+    //     mail: '',
+    //     password: '',
+    //     role: '',
+    //     centreName: ''
+    //   })
+    // }
     
     public getCentres(): Observable<covid[]> {
         return this.http.get<covid[]>(`${this.CENTRE_API_URL}/centre/list`).pipe(

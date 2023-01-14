@@ -18,29 +18,7 @@ export class infoServiceAdmin {
     private readonly UTILISATEUR_URL = environment.host;
 
     constructor(private http: HttpClient){}
-
-    UserForm: FormGroup = new FormGroup({
-      id: new FormControl(null),
-      nom: new FormControl(''),
-      prenom: new FormControl(''),
-      mail: new FormControl(''),
-      password: new FormControl(''),
-      role: new FormControl({value:'', disabled: true }),
-      centreName: new FormControl({value:'', disabled: true })
-    });
-  
-    initializeUserFormGroup() {
-      this.UserForm.setValue({
-        id: null,
-        nom: '',
-        prenom: '',
-        mail: '',
-        password: '',
-        role: '',
-        centreName: ''
-      });
-    }
-
+ 
     public adAdminToCentre = (element:any,id:number) =>{
       const adminstr = JSON.stringify(element,null,2);
       const adminJson = JSON.parse(adminstr);
@@ -55,6 +33,21 @@ export class infoServiceAdmin {
   
       });
     }
+
+    public updateAdmin = (element:any, id:number) =>{
+      const centrestr = JSON.stringify(element,null,2);
+      const centreJson = JSON.parse(centrestr);
+  
+      this.http.post(`${this.UTILISATEUR_URL}/admin/modify/${id}`, centreJson).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('admin updated successful')
+  
+      });
+    }
+
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

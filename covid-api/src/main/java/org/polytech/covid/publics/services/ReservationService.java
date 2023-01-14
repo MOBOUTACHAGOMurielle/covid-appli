@@ -2,30 +2,39 @@ package org.polytech.covid.publics.services;
 
 import org.polytech.covid.publics.Entity.*;
 import org.polytech.covid.publics.Repos.IReservation;
-import org.springframework.hateoas.Link;
+import org.polytech.covid.publics.Repos.IUserPatient;
+import org.polytech.covid.publics.controllers.ReservationForm;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.List;
+import org.polytech.covid.publics.Repos.ICentre;
 
 @Service
 public class ReservationService {
 
   private final IReservation ireservation;
+  private final ICentre iCentre;
+  private final IUserPatient iPatient;
 
-  public ReservationService(IReservation reservation) {
-      this.ireservation = reservation;
+  public ReservationService(IReservation reservation, ICentre iCentre, IUserPatient patient) {
+    this.ireservation = reservation;
+    this.iCentre = iCentre;
+    this.iPatient = patient;
   }
 
   public List<Reservation> getReservations() { return ireservation.findAll();}
 
-  public Reservation addnewReservation (Date _creneau , Boolean _status, Centre _centre, UserPatient _patient ) {
+  public Reservation addnewReservation (ReservationForm rdv, int id) {
       Reservation reservation = new Reservation();
-      reservation.setDate(_creneau);
-      reservation.setStatus(_status);
-      reservation.setCentre(_centre);
-      reservation.setUtilisateur(_patient);
+      reservation.setDate(rdv.getDate());
+      reservation.setStatus(false);
+      reservation.setCentre(iCentre.getCentreById(id));
+      UserPatient patient = new UserPatient();
+      patient.setNom(rdv.nom);
+      patient.setPrenom(rdv.prenom);
+      patient.setMail(rdv.email);
+      reservation.setUtilisateur(patient);
       this.ireservation.save(reservation);
       return reservation;
   }

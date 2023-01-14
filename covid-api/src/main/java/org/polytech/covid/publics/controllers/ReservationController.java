@@ -50,21 +50,17 @@ public class ReservationController {
   public Reservation getResevation(@PathVariable("creneau") Date creneau){ return reservationService.getReservationByCreneau(creneau);}
 
 
-  @PostMapping(path = "save")
-  public ResponseEntity<Reservation> addNewReservation(@RequestBody Reservation reservation) throws Exception {
+  @PostMapping(path = "save/{id}")
+  public ResponseEntity<Reservation> addNewReservation(@RequestBody ReservationForm reservation, @PathVariable("id")  int id) throws Exception {
 
     ConsumptionProbe probe = bucket.tryConsumeAndReturnRemaining(1);
 
     if(probe.isConsumed()) {
-      if (reservation.getCentre() == null) {
-        throw new Exception("The center doesn't exist");
-      } else {
-        Reservation newReservation = reservationService.addnewReservation(reservation.getCreneau(), reservation.getStatus(), reservation.getCentre(), reservation.getPatient());
+        Reservation newReservation = reservationService.addnewReservation(reservation, id);
         newReservation.add(Link.of("http://localhost:12037/reservations/list"));
         HttpHeaders head = new HttpHeaders();
         head.set("X-Rate-Limit-Remaining", Long.toString(probe.getRemainingTokens()));
         return new ResponseEntity<>(newReservation, head, OK);
-      }
     }
     long delaiEnSeconde = probe.getNanosToWaitForRefill() / 1_000_000_000;
     return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)

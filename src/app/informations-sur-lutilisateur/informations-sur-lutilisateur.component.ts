@@ -56,18 +56,26 @@ export class InformationsSurLutilisateurComponent implements OnInit {
     }
 
     onClear() {
-      this.infoService.UserForm.reset();
-      this.infoService.initializeUserFormGroup();
+      this.personneCentre.UserForm.reset();
+      this.personneCentre.initializeUserFormGroup();
     }
-
-    onSubmitMedecin() {
-        this.infoService.adMedecinToCentre(this.infoService.UserForm.value,this.centre.id); 
+    
+  onSubmitMedecin() {
+    if( this.personneCentre.UserForm.value.id) {
+        console.log(this.personneCentre.UserForm.value);
+        this.infoService.updateMedecin(this.personneCentre.UserForm.value,this.personneCentre.UserForm.value.id);
+        this.personneCentre.UserForm.reset();
+        this.personneCentre.initializeUserFormGroup();
         this.onClose();
     }
+    else
+    this.infoService.adMedecinToCentre(this.personneCentre.UserForm.value,this.centre.id); 
+    this.onClose();
+  }
 
     onClose() {
-      this.infoService.UserForm.reset();
-      this.infoService.initializeUserFormGroup();
+      this.personneCentre.UserForm.reset();
+      this.personneCentre.initializeUserFormGroup();
       this.dialogRef.close();
     }
 }

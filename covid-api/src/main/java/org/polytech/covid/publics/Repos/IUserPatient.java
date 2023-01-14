@@ -7,10 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import org.polytech.covid.publics.Entity.UserPatient;
 
 @Repository
 public interface IUserPatient extends JpaRepository<UserPatient, Long> {
   UserPatient findPatientByReservations(Reservation reservation);
   UserPatient findPatientByNom(String nom);
   List<UserPatient> findPatientByMedecin(Medecin medecin);
+  UserPatient getPatientById(int id);
 }

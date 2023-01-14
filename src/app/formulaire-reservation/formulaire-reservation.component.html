@@ -1,15 +1,15 @@
 <mat-toolbar>
-    <span>Ajouter un superAdmin</span>
+    <span>Prendre un rendez-vous</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
   </mat-toolbar>
-  <form [formGroup]="infoService.UserForm" class="normal-form" (submit)="onSubmitSuperAdmin()">
-    <mat-grid-list cols="1" rowHeight="400px">
+  <form [formGroup]="personnel.patientForm" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="1" rowHeight="300px">
       <mat-grid-tile>
         <div class="controles-container">
           <input type="hidden" formControlName="id">
           <mat-form-field class="show">
-            <input type="text" formControlName="nom" matInput placeholder="Nom*">
+            <input formControlName="nom" matInput placeholder="Nom*">
             <mat-error>Ce champ est obligatoire</mat-error>
           </mat-form-field>
           <mat-form-field class="show">
@@ -17,21 +17,14 @@
             <mat-error>Ce champ est obligatoire</mat-error>
           </mat-form-field>
           <mat-form-field class="show">
-            <input type="text" formControlName="mail" matInput placeholder="email*">
+            <input formControlName="mail" matInput placeholder="email*">
             <mat-error>Ce champ est obligatoire</mat-error>
           </mat-form-field>
           <mat-form-field class="show">
-            <input formControlName="password" type="password" matInput placeholder="mot de passe*">
-          </mat-form-field>
-          <mat-form-field class="show">
-            <input type="text" formControlName="role" matInput placeholder="SUPERADMIN">
-          </mat-form-field>
-          <mat-form-field class="show">
-            <input type="text" formControlName="centreName" matInput matInput placeholder="">
+            <input formControlName="date" type="date" matInput placeholder="créneau*">
           </mat-form-field>
           <div class="button-row">
-            <button mat-raised-button color="warn" type="submit">Submit</button>
-            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+            <button mat-raised-button color="warn" type="submit">Reserver</button>
           </div>
         </div>
       </mat-grid-tile>

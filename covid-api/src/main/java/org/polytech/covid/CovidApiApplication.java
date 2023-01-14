@@ -50,12 +50,12 @@ public class CovidApiApplication {
       patientService.addNewPatient("Blondeau", "Brice", "bb@gmail.com", medecinService.getMedecinByNom("TestName"));
       patientService.addNewPatient("Macron", "Remi", "macronremi@gmail.com", medecinService.getMedecinByNom("MartinMED"));
       patientService.addNewPatient("Mergez", "Berenice", "berenicemergez@gmail.com", medecinService.getMedecinByNom("Bornemed"));
-
+/*
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
       reservation.addnewReservation(simpleDateFormat.parse("18/01/2022"), true, centreService.getCentre("nancy"), patientService.getPatientByName("Blondeau"));
       reservation.addnewReservation(simpleDateFormat.parse("20/12/2022"), false, centreService.getCentre("paris"), patientService.getPatientByName("Macron") );
       reservation.addnewReservation(simpleDateFormat.parse("25/12/2022"), true, centreService.getCentre("anger"), patientService.getPatientByName("Mergez") );
-      reservation.addnewReservation(simpleDateFormat.parse("26/03/2023"), true, centreService.getCentre("nancy"), patientService.getPatientByName("Blondeau") );
+      reservation.addnewReservation(simpleDateFormat.parse("26/03/2023"), true, centreService.getCentre("nancy"), patientService.getPatientByName("Blondeau") );*/
     };
   }
 

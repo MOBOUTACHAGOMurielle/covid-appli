@@ -25,9 +25,17 @@ export class InformationsSurSuperAdminComponent implements OnInit {
       this.infoService.initializeUserFormGroup();
     }
 
-    onSubmitSperAdmin() {
-        this.infoService.adSuperAdmin(this.infoService.UserForm.value); 
-        this.onClose();
+    onSubmitSuperAdmin() {
+      if( this.infoService.UserForm.value.id) {
+          console.log(this.infoService.UserForm.value);
+          this.infoService.updateSuperAdmin(this.infoService.UserForm.value,this.infoService.UserForm.value.id);
+          this.infoService.UserForm.reset();
+          this.infoService.initializeUserFormGroup();
+          this.onClose();
+      }
+      else
+      this.infoService.adSuperAdmin(this.infoService.UserForm.value); 
+      this.onClose();
     }
 
     onClose() {

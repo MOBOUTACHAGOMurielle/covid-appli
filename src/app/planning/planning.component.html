@@ -48,7 +48,7 @@
                       <mat-cell *matCellDef="let element">{{element.centre.nom}}</mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="actions">
-                      <mat-header-cell *matHeaderCellDef><mat-icon (click)="onViewPersonnel()">add_circle_outline</mat-icon></mat-header-cell>
+                      <mat-header-cell *matHeaderCellDef></mat-header-cell>
                       <mat-cell *matCellDef="let element"> 
                         <mat-icon (click)="onEdit(element)">edit</mat-icon>
                         <button mat-icon-button color="warn" (click)="onDelete(element.id)"><mat-icon>clear</mat-icon></button>

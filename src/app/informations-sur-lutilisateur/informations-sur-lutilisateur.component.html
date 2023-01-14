@@ -29,11 +29,11 @@
 </div> -->
 
 <mat-toolbar>
-    <span>Ajouter un medecin</span>
+    <span>{{personneCentre.UserForm.controls['id'].value?"Changer un Medecin":"Ajouter Un Medecin"}}</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
   </mat-toolbar>
-  <form [formGroup]="infoService.UserForm" class="normal-form" (submit)="onSubmitMedecin()">
+  <form [formGroup]="personneCentre.UserForm" class="normal-form" (submit)="onSubmitMedecin()">
     <mat-grid-list cols="1" rowHeight="400px">
       <mat-grid-tile>
         <div class="controles-container">
