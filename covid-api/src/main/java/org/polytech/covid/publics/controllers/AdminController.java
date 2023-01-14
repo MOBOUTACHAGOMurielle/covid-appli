@@ -2,10 +2,7 @@ package org.polytech.covid.publics.controllers;
 
 import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
-import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.services.AdminService;
-import org.polytech.covid.publics.services.CentreService;
-import org.polytech.covid.publics.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,8 +49,15 @@ public class AdminController {
   }
 
   @PostMapping(path = "/new/centre/{id}")
-  public ResponseEntity<Admin> addNewAdminwithCentre(@PathVariable("id")  int id ,@RequestBody AddToCentreRequest admin){
+  public ResponseEntity<Admin> addNewAdminwithCentre(@PathVariable("id")  int id ,@RequestBody UserForm admin){
     Admin newAdmin = adminService.addnewAdminwithCentre(id,admin);
     return  new ResponseEntity<>(newAdmin, OK);
   }
+
+  @PostMapping(path="modify/{id}")
+  public ResponseEntity<Admin> modifyAdmin(@RequestBody UserForm form,@PathVariable("id") Long id) {
+    Admin updatedadmin = adminService.modifierAdmin(form, id);
+    return new ResponseEntity<>(updatedadmin, OK);
+  }
+
 }

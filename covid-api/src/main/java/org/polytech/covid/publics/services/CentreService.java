@@ -6,7 +6,7 @@ import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Repos.IAdmin;
 import org.polytech.covid.publics.Repos.ICentre;
 import org.polytech.covid.publics.Repos.IMedecin;
-import org.polytech.covid.publics.controllers.AddToCentreRequest;
+import org.polytech.covid.publics.controllers.UserForm;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -41,7 +41,7 @@ public class CentreService {
     return centre;
   }
 
-  public Centre addNewMedecinToCentre (int id, AddToCentreRequest medecin) {
+  public Centre addNewMedecinToCentre (int id, UserForm medecin) {
     Centre center = iCentre.getCentreById(id);
     if(center == null) {
       throw new EntityNotFoundException();
@@ -58,38 +58,6 @@ public class CentreService {
       center.setMedecins(list);
       iCentre.save(center);
       return center;
-    }
-  }
-
-  public Centre addNewAdminToCentre (int id, AddToCentreRequest admin) {
-
-    Centre center = iCentre.getCentreById(id);
-    if(center == null) {
-      throw new EntityNotFoundException();
-    }
-    else {
-      //Create admin from form info
-      Admin newadmin = new Admin();
-      newadmin.setNom(admin.getNom());
-      newadmin.setPrenom(admin.getPrenom());
-      newadmin.setMail(admin.getEmail());
-      newadmin.setLogin(admin.getEmail());
-      newadmin.setPassword(admin.getPassword());
-
-      //Adding this center to admin center list
-      newadmin.setCentre(center);
-
-
-      //save medecin
-      Admin entity = iAdmin.save(newadmin);
-
-
-      //update center admin list
-//      List<Admin> list = center.getAdmins();
-//      list.add(entity);
-//      center.setAdmins(list);
-      Centre updatedcenter = iCentre.getCentreById(id);
-      return updatedcenter;
     }
   }
 

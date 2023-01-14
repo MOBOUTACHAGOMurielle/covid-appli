@@ -4,9 +4,10 @@ import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Repos.IAdmin;
 import org.polytech.covid.publics.Repos.ICentre;
-import org.polytech.covid.publics.controllers.AddToCentreRequest;
+import org.polytech.covid.publics.controllers.UserForm;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -63,7 +64,7 @@ public class AdminService {
     return iAdmin.findAdminById(id);
   }
 
-  public Admin addnewAdminwithCentre(int id, AddToCentreRequest admin){
+  public Admin addnewAdminwithCentre(int id, UserForm admin){
     Admin newadmin = new Admin();
     newadmin.setNom(admin.getNom());
     newadmin.setPrenom(admin.getPrenom());
@@ -85,4 +86,21 @@ public class AdminService {
       iAdmin.deleteAdminById(id);
 
   }
+
+  public Admin modifierAdmin (UserForm form, Long id) {
+    Admin admin = iAdmin.getAdminById(id);
+    if(admin == null) {
+      throw new EntityNotFoundException();
+    }
+    else {
+      admin.setNom(form.getNom());
+      admin.setPrenom(form.getPrenom());
+      admin.setMail(form.getEmail());
+      admin.setRole("ADMINISTRATEUR");
+      admin.setLogin(form.getEmail());
+      admin.setPassword(form.getPassword());
+      return iAdmin.save(admin);
+    }
+  }
+
 }

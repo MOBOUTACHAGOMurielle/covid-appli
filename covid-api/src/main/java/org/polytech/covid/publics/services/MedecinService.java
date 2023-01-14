@@ -1,12 +1,14 @@
 package org.polytech.covid.publics.services;
 
+import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Repos.ICentre;
 import org.polytech.covid.publics.Repos.IMedecin;
-import org.polytech.covid.publics.controllers.AddToCentreRequest;
+import org.polytech.covid.publics.controllers.UserForm;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -56,7 +58,7 @@ public class MedecinService {
 
   public Medecin getMedecinByNom(String nom) { return iMedecin.findMedcinByNom(nom);}
 
-  public Medecin addnewMedecinwithCentre(int id, AddToCentreRequest medecin){
+  public Medecin addnewMedecinwithCentre(int id, UserForm medecin){
     Medecin newmedecin = new Medecin();
     newmedecin.setNom(medecin.getNom());
     newmedecin.setPrenom(medecin.getPrenom());
@@ -78,5 +80,21 @@ public class MedecinService {
     else
       iMedecin.deleteMedecinById(id);
 
+  }
+
+  public Medecin modifierMedecin (UserForm form, Long id) {
+    Medecin medecin = iMedecin.getMedecinById(id);
+    if(medecin == null) {
+      throw new EntityNotFoundException();
+    }
+    else {
+      medecin.setNom(form.getNom());
+      medecin.setPrenom(form.getPrenom());
+      medecin.setMail(form.getEmail());
+      medecin.setRole("MEDECIN");
+      medecin.setLogin(form.getEmail());
+      medecin.setPassword(form.getPassword());
+      return iMedecin.save(medecin);
+    }
   }
 }
