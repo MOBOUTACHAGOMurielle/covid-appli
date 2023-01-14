@@ -5,7 +5,6 @@ import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.services.CentreService;
-import org.polytech.covid.publics.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,16 +50,16 @@ public class CentreController {
   }
 
   @PostMapping(path="medecin/{id}")
-  public ResponseEntity<Centre> addMedecinToCentre(@PathVariable("id") int id,@RequestBody AddToCentreRequest medecin) {
+  public ResponseEntity<Centre> addMedecinToCentre(@PathVariable("id") int id,@RequestBody UserForm medecin) {
     Centre updateCentre = centreService.addNewMedecinToCentre(id, medecin);
     return new ResponseEntity<>(updateCentre, OK);
   }
 
-  @PostMapping(path="admin/{id}")
-  public ResponseEntity<Centre> addAdminToCentre(@PathVariable("id") int id,@RequestBody AddToCentreRequest admin) {
-    Centre updateCentre = centreService.addNewAdminToCentre(id, admin);
-    return new ResponseEntity<>(updateCentre, OK);
-  }
+//  @PostMapping(path="admin/{id}")
+//  public ResponseEntity<Centre> addAdminToCentre(@PathVariable("id") int id,@RequestBody UserForm admin) {
+//    Centre updateCentre = centreService.addNewAdminToCentre(id, admin);
+//    return new ResponseEntity<>(updateCentre, OK);
+//  }
 
   @PostMapping(path = "save")
   public ResponseEntity<Centre> addNewCentre(@RequestBody Centre center) {
@@ -74,5 +73,4 @@ public class CentreController {
     return new ResponseEntity<>(newCentre, OK);
   }
 }
-
 

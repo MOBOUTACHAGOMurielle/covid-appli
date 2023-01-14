@@ -1,7 +1,6 @@
 package org.polytech.covid.publics.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -24,7 +23,8 @@ public class Admin extends Utilisateur {
   @JsonBackReference(value = "admintocours")
   private Centre centre;
 
-
+  @OneToMany
+  private List<Medecin> medecins;
 
   public Centre getCentre() {
     return centre;

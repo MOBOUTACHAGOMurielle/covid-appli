@@ -3,7 +3,6 @@ package org.polytech.covid.publics.Entity;
 import javax.persistence.*;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 

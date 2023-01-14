@@ -5,7 +5,6 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
-import org.polytech.covid.publics.Entity.Utilisateur;
 import org.polytech.covid.publics.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,11 +48,14 @@ public class MedecinController {
   }
 
   @PostMapping(path = "/new/centre/{id}")
-  public ResponseEntity<Medecin> addNewMedecinwihCenter(@PathVariable("id")  int id ,@RequestBody AddToCentreRequest medecin){
-    Medecin newMedecin = medecinService.addnewMedecinwithCentre(id,medecin);
-    return  new ResponseEntity<>(newMedecin, OK);
+  public ResponseEntity<Medecin> addNewMedecinwihCenter(@PathVariable("id")  int id ,@RequestBody UserForm medecin) {
+    Medecin newMedecin = medecinService.addnewMedecinwithCentre(id, medecin);
+    return new ResponseEntity<>(newMedecin, OK);
   }
 
-
-
+  @PostMapping(path="modify/{id}")
+  public ResponseEntity<Medecin> modifyMedecin(@RequestBody UserForm form, @PathVariable("id") Long id) {
+    Medecin updatedmedecin = medecinService.modifierMedecin(form, id);
+    return new ResponseEntity<>(updatedmedecin, OK);
+  }
 }

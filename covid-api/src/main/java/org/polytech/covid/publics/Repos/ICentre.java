@@ -11,11 +11,11 @@ import java.util.List;
 @Repository
 public interface ICentre extends JpaRepository<Centre, Integer> {
 
-    Centre findCentreByVille(String ville);
-    Centre findCentreByNom(String name);
-    Centre getCentreByAdminsContaining(Admin admin);
-    Centre getCentreById(int id);
+  Centre findCentreByVille(String ville);
+  Centre findCentreByNom(String name);
+  Centre getCentreByAdminsContaining(Admin admin);
+  Centre getCentreById(int id);
 
 
-    List<Centre> findCentresByVilleContaining(String name);
+  List<Centre> findCentresByVilleContaining(String name);
 }

@@ -1,5 +1,6 @@
 package org.polytech.covid.publics.Repos;
 
+import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +15,8 @@ public interface IMedecin extends JpaRepository<Medecin, Integer> {
   List<Medecin> findMedecinByCentreContaining(Centre center);
   List<Medecin> findMedecinByCentre(Centre center);
   Medecin findMedcinByNom(String name);
+  Medecin getMedecinById(Long id);
+
   Boolean existsById(Long id);
   void deleteMedecinById(Long id);
 }

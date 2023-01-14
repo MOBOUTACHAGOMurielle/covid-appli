@@ -17,5 +17,4 @@ public interface IAdmin extends JpaRepository<Admin, Integer> {
   Admin getAdminById (Long id);
   Boolean existsById(Long id);
   void deleteAdminById(Long id);
-
 }

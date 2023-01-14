@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import * as _ from 'lodash';
 import { client } from "../interfaceClient";
 import { covid } from "../interfaceCovid";
+import { reservation } from "../interfaceReservations";
 
 @Injectable({
     providedIn: 'root'
@@ -33,7 +34,6 @@ export class personnelService {
     }
     
     public getAdminByCentre(id:number): Observable<client[]> {
-        console.log("admin")
         return this.http.get<client[]>(`${this.PERSONNEL_API_URL}/centre/admins/${id}`).pipe(
           tap(unCentre => console.log('admin: ', unCentre)),
           catchError(this.handleError)
@@ -45,6 +45,60 @@ export class personnelService {
         tap(unCentre => console.log('medecin: ', unCentre)),
         catchError(this.handleError)
       )
+    }
+
+    public getMedecins(): Observable<client[]> {
+      return this.http.get<client[]>(`${this.PERSONNEL_API_URL}/medecin/list`).pipe(
+        tap(unMedecin => console.log('medecin: ', unMedecin)),
+        catchError(this.handleError)
+      )
+    }
+
+    public getSuperAdmins(): Observable<client[]> {
+      return this.http.get<client[]>(`${this.PERSONNEL_API_URL}/superAdmin/list`).pipe(
+        tap(unSuperAdmin => console.log('superAdmin: ', unSuperAdmin)),
+        catchError(this.handleError)
+      )
+    }
+
+    public getReservations(): Observable<reservation[]> {
+      return this.http.get<reservation[]>(`${this.PERSONNEL_API_URL}/reservations/list`).pipe(
+        tap(uneReservation => console.log('reservation: ', uneReservation)),
+        catchError(this.handleError)
+      )
+    }
+
+    public deleteMedecin = (id:number) =>{
+      this.http.delete(`${this.PERSONNEL_API_URL}/medecin/delete/${id}`).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('medecin deleted successful')
+  
+      });
+    }
+
+    public deleteAdmin = (id:number) =>{
+      this.http.delete(`${this.PERSONNEL_API_URL}/admin/delete/${id}`).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('admin deleted successful')
+  
+      });
+    }
+
+    public deleteSuperAdmin = (id:number) =>{
+      this.http.delete(`${this.PERSONNEL_API_URL}/superAdmin/delete/${id}`).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('superAdmin deleted successful')
+  
+      });
     }
 
     private handleError(error: HttpErrorResponse) {

@@ -36,6 +36,8 @@ import { MatGridListModule} from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { PersonnelDunCentreComponent } from './personnel-dun-centre/personnel-dun-centre.component';
 import { MatTableModule } from '@angular/material/table';
+import { InformationsSurAdminComponent } from './informations-sur-admin/informations-sur-admin.component';
+import { InformationsSurSuperAdminComponent } from './informations-sur-super-admin/informations-sur-super-admin.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { MatTableModule } from '@angular/material/table';
     AuthGuardComponent,
     FiltrePipe,
     DetailCentreComponent,
-    PersonnelDunCentreComponent
+    PersonnelDunCentreComponent,
+    InformationsSurAdminComponent,
+    InformationsSurSuperAdminComponent
   ],
   imports: [
     BrowserModule,

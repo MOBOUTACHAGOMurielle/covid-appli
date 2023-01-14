@@ -13,9 +13,9 @@ import { client } from "../interfaceClient";
     providedIn: 'root'
 })
 
-export class infoService {
+export class infoSuperAdminService {
 
-    private readonly UTILISATEUR_URL = environment.host;
+    private readonly SUPERADMIN_URL = environment.host;
 
     constructor(private http: HttpClient){}
 
@@ -41,20 +41,20 @@ export class infoService {
       });
     }
 
-    public adMedecinToCentre = (element:any,id:number) =>{
-      const medecinstr = JSON.stringify(element,null,2);
-      const medecinJson = JSON.parse(medecinstr);
-  
-      console.log(medecinstr)
-      this.http.post(`${this.UTILISATEUR_URL}/medecin/new/centre/${id}`, medecinJson).subscribe({
-        error: (err) => {  
-          console.error(err) 
-        },
-  
-        complete: () => console.info('medecin saved successful')
-  
-      });
-    }
+    public adSuperAdmin = (element:any) =>{
+        const superAdminstr = JSON.stringify(element,null,2);
+        const superAdminJson = JSON.parse(superAdminstr);
+    
+        console.log(superAdminstr)
+        this.http.post(`${this.SUPERADMIN_URL}/superAdmin/save`, superAdminJson).subscribe({
+          error: (err) => {  
+            console.error(err) 
+          },
+    
+          complete: () => console.info('superAdmin saved successful')
+    
+        });
+      }
 
 
     private handleError(error: HttpErrorResponse) {
