@@ -1,6 +1,7 @@
 package org.polytech.covid.publics.controllers;
 
 import org.polytech.covid.publics.Entity.Centre;
+import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Entity.SuperAdmin;
 import org.polytech.covid.publics.services.CentreService;
 import org.polytech.covid.publics.services.SuperAdminService;
@@ -29,11 +30,8 @@ public class SuperAdminController {
   public SuperAdmin getSuperAdmin(@PathVariable("mail") String mail) {return superAdminService.getSuperAdminByMail(mail);}
 
   @PostMapping(path = "save")
-  public ResponseEntity<SuperAdmin> addNewSuperAdmin(@RequestParam("email") String email,
-                                                     @RequestParam("name") String name,
-                                                     @RequestParam("firstname") String prenom,
-                                                     @RequestParam("role") String role){
-    SuperAdmin newSuperAdmin = superAdminService.addNewSuperAdmin(email,name,prenom,role);
+  public ResponseEntity<SuperAdmin> addNewSuperAdmin(@RequestBody SuperAdmin superAdmin){
+    SuperAdmin newSuperAdmin = superAdminService.addNewSuperAdmin(superAdmin.getMail(),superAdmin.getNom(),superAdmin.getPrenom(),superAdmin.getRole());
     return  new ResponseEntity<>(newSuperAdmin, OK);
 
   }
