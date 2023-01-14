@@ -36,8 +36,7 @@ public class ReservationService {
       patient.setMail(rdv.email);
       UserPatient user = iPatient.save(patient);
       reservation.setUtilisateur(user);
-      this.ireservation.save(reservation);
-      return reservation;
+      return this.ireservation.save(reservation);
   }
 
   public Reservation getReservationByCreneau(Date _creneau) {

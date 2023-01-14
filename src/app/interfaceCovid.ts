@@ -6,5 +6,5 @@ export interface covid {
     adresse: string;
     codePostal: string;
     ville: string;
-    reservation: reservation[];
+    reservations: reservation[];
 }
