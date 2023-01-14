@@ -1,14 +1,14 @@
 package org.polytech.covid.publics.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity(name = "UTILISATEUR")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Utilisateur {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
   private Long id;
 
   private String login;

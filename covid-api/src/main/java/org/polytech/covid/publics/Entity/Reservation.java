@@ -1,12 +1,10 @@
 package org.polytech.covid.publics.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -33,6 +31,8 @@ public class Reservation extends RepresentationModel<Reservation> {
   private Boolean status;
 
   @ManyToOne
+  @JoinColumn(name = "centre_id")
+  @JsonBackReference(value = "reservationtocours")
   private Centre centre;
 
   @ManyToOne

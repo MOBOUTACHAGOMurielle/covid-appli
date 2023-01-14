@@ -2,6 +2,8 @@ package org.polytech.covid.publics.Entity;
 
 import javax.persistence.*;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -16,6 +18,7 @@ import static javax.persistence.GenerationType.AUTO;
 public class Centre {
 @Id
 @GeneratedValue(strategy= AUTO)
+@Column(name = "centre_id")
   private int id;
   private String ville;
   private String nom;
@@ -23,13 +26,16 @@ public class Centre {
   private String codePostal;
 
 
-  @OneToMany
+  @OneToMany(mappedBy = "centre",cascade = CascadeType.ALL,orphanRemoval = true)
+  @JsonManagedReference(value = "reservationtocours")
   public List<Reservation> reservations;
 
-  @OneToMany
+  @OneToMany(mappedBy = "centre",cascade = CascadeType.ALL,orphanRemoval = true)
+  @JsonManagedReference(value = "medecintocours")
   public List<Medecin> medecins;
 
-  @OneToMany
+  @OneToMany (mappedBy = "centre",cascade = CascadeType.ALL,orphanRemoval = true)
+  @JsonManagedReference(value = "admintocours")
   public List<Admin> admins;
 /*
   public void setVille(String ville) {

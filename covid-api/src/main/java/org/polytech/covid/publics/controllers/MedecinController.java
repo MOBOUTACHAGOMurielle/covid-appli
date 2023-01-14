@@ -1,5 +1,7 @@
 package org.polytech.covid.publics.controllers;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Entity.Utilisateur;
@@ -39,4 +41,15 @@ public class MedecinController {
     return  new ResponseEntity<>(newMedecin, OK);
   }
 
+  @DeleteMapping("delete/{id}")
+  @OnDelete(action = OnDeleteAction.CASCADE)
+  public void deleteMedecinByid(@PathVariable("id") Long id) {
+    medecinService.deleteMedecin(id);
+  }
+
+  @PostMapping(path = "/new/centre/{id}")
+  public ResponseEntity<Medecin> addNewMedecinwihCenter(@PathVariable("id")  int id ,@RequestBody AddToCentreRequest medecin) {
+    Medecin newMedecin = medecinService.addnewMedecinwithCentre(id, medecin);
+    return new ResponseEntity<>(newMedecin, OK);
+  }
 }

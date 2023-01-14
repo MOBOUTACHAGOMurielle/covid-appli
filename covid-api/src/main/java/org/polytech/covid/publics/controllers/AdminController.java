@@ -30,9 +30,30 @@ public class AdminController {
   @GetMapping("list/{centre}")
   public List<Admin> getAdmin(@PathVariable("centre") Centre centre) {return adminService.getAdminByCentre(centre);}
 
+  @GetMapping("{id}")
+  public ResponseEntity<Admin> getAdminByid(@PathVariable("id") Long id) {return new ResponseEntity<>(adminService.getAdmin(id),OK);}
+
+  @DeleteMapping("delete/{id}")
+  public void deleteAdminByid(@PathVariable("id") Long id) {
+    adminService.deleteAdmin(id);
+  }
+
+
+  @GetMapping(path = "/centre/{id}")
+  public ResponseEntity<Centre> getAdminCentre(@PathVariable("id")  Long id){
+    Centre adminCentre = adminService.getCentre(id);
+    return  new ResponseEntity<>(adminCentre, OK);
+  }
+
   @PostMapping(path = "save")
   public ResponseEntity<Admin> addNewAdmin(@RequestBody Admin admin){
     Admin newAdmin = adminService.addNewAdmin(admin.getMail(),admin.getNom(),admin.getPrenom(),admin.getRole(),admin.getCentre());
+    return  new ResponseEntity<>(newAdmin, OK);
+  }
+
+  @PostMapping(path = "/new/centre/{id}")
+  public ResponseEntity<Admin> addNewAdminwithCentre(@PathVariable("id")  int id ,@RequestBody AddToCentreRequest admin){
+    Admin newAdmin = adminService.addnewAdminwithCentre(id,admin);
     return  new ResponseEntity<>(newAdmin, OK);
   }
 }

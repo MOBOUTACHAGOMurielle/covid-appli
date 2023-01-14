@@ -29,28 +29,29 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("reservations")
 public class ReservationController {
 
-    public ReservationService reservationService;
-    public CentreService centreService;
+  public ReservationService reservationService;
+  public CentreService centreService;
 
-    //rajoute 10 tokens toutes les minutes
-    Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
-    //capacité max de 10 token
-    Bandwidth limit = Bandwidth.classic(10, refill);
-    Bucket bucket = Bucket.builder().addLimit(limit).build();
+  //rajoute 10 tokens toutes les minutes
+  Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
+  //capacité max de 10 token
+  Bandwidth limit = Bandwidth.classic(10, refill);
+  Bucket bucket = Bucket.builder().addLimit(limit).build();
 
-    @Autowired
-    public ReservationController(ReservationService reservationService) {
-        this.reservationService = reservationService;
-    }
+  @Autowired
+  public ReservationController(ReservationService reservationService) {
+    this.reservationService = reservationService;
+  }
 
-    @GetMapping("list")
-    public List<Reservation> getReservations() {return reservationService.getReservations();}
+  @GetMapping("list")
+  public List<Reservation> getReservations() {return reservationService.getReservations();}
 
-    @GetMapping("list/{creneau}")
-    public Reservation getResevation(@PathVariable("creneau") Date creneau){ return reservationService.getReservationByCreneau(creneau);}
+  @GetMapping("list/{creneau}")
+  public Reservation getResevation(@PathVariable("creneau") Date creneau){ return reservationService.getReservationByCreneau(creneau);}
 
-    @PostMapping(path = "save")
-    public ResponseEntity<Reservation> addNewReservation(@RequestBody Reservation reservation) throws Exception {
+
+  @PostMapping(path = "save")
+  public ResponseEntity<Reservation> addNewReservation(@RequestBody Reservation reservation) throws Exception {
 
     ConsumptionProbe probe = bucket.tryConsumeAndReturnRemaining(1);
 
@@ -67,7 +68,7 @@ public class ReservationController {
     }
     long delaiEnSeconde = probe.getNanosToWaitForRefill() / 1_000_000_000;
     return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
-    .header("X-Rate-Limit-Retry-After-Seconds", String.valueOf(delaiEnSeconde))
-    .build();
-    }
+      .header("X-Rate-Limit-Retry-After-Seconds", String.valueOf(delaiEnSeconde))
+      .build();
+  }
 }

@@ -30,11 +30,16 @@ public class SuperAdminController {
 
   @PostMapping(path = "save")
   public ResponseEntity<SuperAdmin> addNewSuperAdmin(@RequestParam("email") String email,
-                                             @RequestParam("name") String name,
-                                             @RequestParam("firstname") String prenom,
-                                             @RequestParam("role") String role){
+                                                     @RequestParam("name") String name,
+                                                     @RequestParam("firstname") String prenom,
+                                                     @RequestParam("role") String role){
     SuperAdmin newSuperAdmin = superAdminService.addNewSuperAdmin(email,name,prenom,role);
     return  new ResponseEntity<>(newSuperAdmin, OK);
 
+  }
+
+  @DeleteMapping("delete/{id}")
+  public void deleteSuperAdminByid(@PathVariable("id") Long id) {
+    superAdminService.deleteSuperAdmin(id);
   }
 }

@@ -1,12 +1,11 @@
 package org.polytech.covid.publics.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import org.hibernate.annotations.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,8 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "medecins")
+@PrimaryKeyJoinColumn(name = "id")
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class Medecin extends Utilisateur{
   @ManyToOne
+  @JoinColumn(name = "centre_id")
+  @JsonBackReference(value = "medecintocours")
   private Centre centre;
 
   @OneToMany
