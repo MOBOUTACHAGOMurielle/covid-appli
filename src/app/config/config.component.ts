@@ -44,7 +44,7 @@ export class ConfigComponent implements OnInit {
   }
 
   onViewSuperAdmin() {
-    this.infoService.initializeUserFormGroup;
+    this.personnelService.initializeUserFormGroup;
     this.dialog.open(InformationsSurSuperAdminComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 

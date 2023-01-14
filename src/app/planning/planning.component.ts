@@ -15,7 +15,7 @@ import { InformationsSurLutilisateurComponent } from '../informations-sur-lutili
 })
 export class PlanningComponent implements OnInit {
 
-  constructor(public personnelService:personnelService, public centreService: centreService,public infoService: infoService,
+  constructor(public personnelService:personnelService, public centreService: centreService,
     private dialog: MatDialog) { }
 
   listeReservations: reservation[] = [];
@@ -61,7 +61,7 @@ export class PlanningComponent implements OnInit {
   // }
 
   onViewPersonnel() {
-    this.infoService.initializeUserFormGroup;
+    this.personnelService.initializeUserFormGroup;
     this.dialog.open(InformationsSurLutilisateurComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 

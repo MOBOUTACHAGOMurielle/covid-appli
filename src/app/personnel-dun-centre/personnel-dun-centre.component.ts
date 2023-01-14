@@ -2,6 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { infoServiceAdmin } from '../informations-sur-admin/information-sur-admin.service';
 import { InformationsSurAdminComponent } from '../informations-sur-admin/informations-sur-admin.component';
 import { InformationsSurLutilisateurComponent } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.component';
 import { infoService } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.service';
@@ -17,7 +18,6 @@ import { personnelService } from './personnel-dun-centre.service';
 export class PersonnelDunCentreComponent implements OnInit {
 
   constructor(public personnelService:personnelService,
-    public infoService: infoService,
     private dialog: MatDialog,
     public dialogRef: DialogRef<PersonnelDunCentreComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {center: covid}) {
@@ -54,8 +54,14 @@ export class PersonnelDunCentreComponent implements OnInit {
     this.personnelService.deleteAdmin(id);
   }
 
-  onEdit(row:any){
-    
+  onEditMedecin(element:any){
+    this.personnelService.populateForm(element);
+    this.dialog.open(InformationsSurLutilisateurComponent,{data: {center:this.centre} ,width:'50%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
+  }
+
+  onEditAdmin(element:any){
+    this.personnelService.populateForm(element);
+    this.dialog.open(InformationsSurAdminComponent,{data: {center:this.centre} ,width:'50%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 
   setcentre(acentre:covid):void {
@@ -69,12 +75,12 @@ export class PersonnelDunCentreComponent implements OnInit {
   }
 
   onViewAdmin() {
-    this.infoService.initializeUserFormGroup;
+    this.personnelService.initializeUserFormGroup;
     this.dialog.open(InformationsSurAdminComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 
   onViewMedecin() {
-    this.infoService.initializeUserFormGroup;
+    this.personnelService.initializeUserFormGroup;
     this.dialog.open(InformationsSurLutilisateurComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 

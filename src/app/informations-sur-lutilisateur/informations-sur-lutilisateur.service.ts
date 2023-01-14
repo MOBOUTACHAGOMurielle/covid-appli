@@ -19,28 +19,6 @@ export class infoService {
 
     constructor(private http: HttpClient){}
 
-    UserForm: FormGroup = new FormGroup({
-      id: new FormControl(null),
-      nom: new FormControl(''),
-      prenom: new FormControl(''),
-      mail: new FormControl(''),
-      password: new FormControl(''),
-      role: new FormControl({value:'', disabled: true }),
-      centreName: new FormControl({value:'', disabled: true })
-    });
-  
-    initializeUserFormGroup() {
-      this.UserForm.setValue({
-        id: null,
-        nom: '',
-        prenom: '',
-        mail: '',
-        password: '',
-        role: '',
-        centreName: ''
-      });
-    }
-
     public adMedecinToCentre = (element:any,id:number) =>{
       const medecinstr = JSON.stringify(element,null,2);
       const medecinJson = JSON.parse(medecinstr);
@@ -56,6 +34,19 @@ export class infoService {
       });
     }
 
+    public updateMedecin = (element:any, id:number) =>{
+      const centrestr = JSON.stringify(element,null,2);
+      const centreJson = JSON.parse(centrestr);
+  
+      this.http.post(`${this.UTILISATEUR_URL}/medecin/modify/${id}`, centreJson).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('medecin updated successful')
+  
+      });
+    }
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

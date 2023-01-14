@@ -41,6 +41,18 @@ export class infoSuperAdminService {
       });
     }
 
+    populateForm(element:any) {
+      this.UserForm.setValue({
+        id: element.id,
+        nom: element.nom,
+        prenom: element.prenom,
+        mail: element.mail,
+        password: element.password,
+        role: element.role,
+        centreName: element.centreName
+      })
+    }
+
     public adSuperAdmin = (element:any) =>{
         const superAdminstr = JSON.stringify(element,null,2);
         const superAdminJson = JSON.parse(superAdminstr);
@@ -52,6 +64,20 @@ export class infoSuperAdminService {
           },
     
           complete: () => console.info('superAdmin saved successful')
+    
+        });
+      }
+
+      public updateSuperAdmin = (element:any, id:number) =>{
+        const superAdminstr = JSON.stringify(element,null,2);
+        const superAdminJson = JSON.parse(superAdminstr);
+    
+        this.http.post(`${this.SUPERADMIN_URL}/superAdmin/modify/${id}`, superAdminJson).subscribe({
+          error: (err) => {  
+            console.error(err) 
+          },
+    
+          complete: () => console.info('superAdmin updated successful')
     
         });
       }

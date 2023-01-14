@@ -16,7 +16,7 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef><mat-icon (click)="onViewAdmin()">add_circle_outline</mat-icon></mat-header-cell>
         <mat-cell *matCellDef="let element"> 
-          <mat-icon (click)="onEdit(element)">edit</mat-icon>
+          <mat-icon (click)="onEditAdmin(element)">edit</mat-icon>
           <button mat-icon-button color="warn" (click)="onDeleteAdmin(element.id)"><mat-icon>clear</mat-icon></button>
         </mat-cell>
       </ng-container>
@@ -55,7 +55,7 @@
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef><mat-icon (click)="onViewMedecin()">add_circle_outline</mat-icon></mat-header-cell>
           <mat-cell *matCellDef="let element"> 
-            <mat-icon (click)="onEdit(element)">edit</mat-icon>
+            <mat-icon (click)="onEditMedecin(element)">edit</mat-icon>
             <button mat-icon-button color="warn" (click)="onDeleteMedecin(element.id)"><mat-icon>clear</mat-icon></button>
           </mat-cell>
         </ng-container>

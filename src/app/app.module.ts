@@ -23,7 +23,6 @@ import { PlanningComponent } from './planning/planning.component';
 import { ConfigComponent } from './config/config.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { ClientComponent } from './client/client.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { AuthGuardComponent } from './auth-guard/auth-guard.component';
 import { BasicAuthHttpInterceptorService } from './basic-auth-http-interceptor.service';
@@ -38,6 +37,7 @@ import { PersonnelDunCentreComponent } from './personnel-dun-centre/personnel-du
 import { MatTableModule } from '@angular/material/table';
 import { InformationsSurAdminComponent } from './informations-sur-admin/informations-sur-admin.component';
 import { InformationsSurSuperAdminComponent } from './informations-sur-super-admin/informations-sur-super-admin.component';
+import { FormulaireReservationComponent } from './formulaire-reservation/formulaire-reservation.component';
 
 @NgModule({
   declarations: [
@@ -51,14 +51,14 @@ import { InformationsSurSuperAdminComponent } from './informations-sur-super-adm
     PlanningComponent,
     ConfigComponent,
     LoginComponent,
-    ClientComponent,
     AuthentificationComponent,
     AuthGuardComponent,
     FiltrePipe,
     DetailCentreComponent,
     PersonnelDunCentreComponent,
     InformationsSurAdminComponent,
-    InformationsSurSuperAdminComponent
+    InformationsSurSuperAdminComponent,
+    FormulaireReservationComponent
   ],
   imports: [
     BrowserModule,

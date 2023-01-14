@@ -9,6 +9,7 @@ import { DetailCentreComponent } from '../detail-centre/detail-centre.component'
 import { AnimationStyleMetadata } from '@angular/animations';
 import { PersonnelDunCentreComponent } from '../personnel-dun-centre/personnel-dun-centre.component';
 import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
+import { FormulaireReservationComponent } from '../formulaire-reservation/formulaire-reservation.component';
 
 @Component({
   selector: 'app-affichage-des-centres',
@@ -48,6 +49,7 @@ export class AffichageDesCentresComponent implements OnInit {
 
   listeCentres: covid[] = [];
   FilteredCenters: covid[] = []
+  role:string | null = "";
 
   ngOnInit() {
     this.centreService.getCentres().subscribe(
@@ -57,6 +59,8 @@ export class AffichageDesCentresComponent implements OnInit {
 
       //error: err => this.errMsg = err
     );
+
+    this.role = localStorage.getItem("role")
 
     // this.centreService.getCentresByName(this.searchKey).subscribe(
     //   (FilteredCenters : covid []) => {
@@ -88,6 +92,11 @@ export class AffichageDesCentresComponent implements OnInit {
     dialogConfig.width = "50%";
     dialogConfig.panelClass = 'bg-color'
     this.dialog.open(DetailCentreComponent,dialogConfig);
+  }
+
+  onChoose(element:any){
+    this.personnelService.initialisePatientForm();
+    this.dialog.open(FormulaireReservationComponent,{data: {center:element} ,width:'50%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 
   onView(element:any) {

@@ -32,6 +32,58 @@ export class personnelService {
         nom: '',
       })
     }
+
+    UserForm: FormGroup = new FormGroup({
+      id: new FormControl(null),
+      nom: new FormControl(''),
+      prenom: new FormControl(''),
+      mail: new FormControl(''),
+      password: new FormControl(''),
+      role: new FormControl({value:'', disabled: true }),
+      centreName: new FormControl({value:'', disabled: true })
+    });
+  
+    initializeUserFormGroup() {
+      this.UserForm.setValue({
+        id: null,
+        nom: '',
+        prenom: '',
+        mail: '',
+        password: '',
+        role: '',
+        centreName: ''
+      });
+    }
+
+    patientForm: FormGroup = new FormGroup({
+      id: new FormControl(null),
+      nom: new FormControl(''),
+      prenom: new FormControl(''),
+      mail: new FormControl(''),
+      date: new FormControl('')
+    })
+
+    initialisePatientForm(){
+      this.UserForm.setValue({
+        id: null,
+        nom: '',
+        prenom: '',
+        mail: '',
+        date: ''
+      });
+    }
+
+    populateForm(element:any) {
+      this.UserForm.setValue({
+        id: element.id,
+        nom: element.nom,
+        prenom: element.prenom,
+        mail: element.mail,
+        password: element.password,
+        role: element.role,
+        centreName: ''
+      })
+    }
     
     public getAdminByCentre(id:number): Observable<client[]> {
         return this.http.get<client[]>(`${this.PERSONNEL_API_URL}/centre/admins/${id}`).pipe(
@@ -97,6 +149,21 @@ export class personnelService {
         },
   
         complete: () => console.info('superAdmin deleted successful')
+  
+      });
+    }
+
+    public adReservationToCentre = (element:any,id:number) =>{
+      const reservationstr = JSON.stringify(element,null,2);
+      const reservationsJson = JSON.parse(reservationstr);
+  
+      console.log(reservationstr);
+      this.http.post(`${this.PERSONNEL_API_URL}/reservations/save/${id}`, reservationsJson).subscribe({
+        error: (err) => {  
+          console.error(err) 
+        },
+  
+        complete: () => console.info('reservation saved successful')
   
       });
     }

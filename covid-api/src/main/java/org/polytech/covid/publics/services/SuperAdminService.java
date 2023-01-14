@@ -5,8 +5,10 @@ import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Entity.SuperAdmin;
 import org.polytech.covid.publics.Repos.ISuperAdmin;
+import org.polytech.covid.publics.controllers.UserForm;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -36,14 +38,20 @@ public class SuperAdminService {
     this.iSuperAdmin.delete(superAdmin);
   }
 
-  public SuperAdmin modifierMedecin (SuperAdmin superAdmin,String email, String name, String firstname, String role, Centre centre) {
-    superAdmin.setMail(email);
-    superAdmin.setNom(name);
-    superAdmin.setPrenom(firstname);
-    superAdmin.setRole(role);
-
-    this.iSuperAdmin.save(superAdmin);
-    return superAdmin;
+  public SuperAdmin modifierSuperAdmin (UserForm form, Long id) {
+    SuperAdmin superAdmin = iSuperAdmin.getMedecinById(id);
+    if(superAdmin == null) {
+      throw new EntityNotFoundException();
+    }
+    else {
+      superAdmin.setNom(form.getNom());
+      superAdmin.setPrenom(form.getPrenom());
+      superAdmin.setMail(form.getEmail());
+      superAdmin.setRole("SUPERADMIN");
+      superAdmin.setLogin(form.getEmail());
+      superAdmin.setPassword(form.getPassword());
+      return iSuperAdmin.save(superAdmin);
+    }
   }
 
   public void deleteSuperAdmin(Long id ){

@@ -61,9 +61,10 @@
                     <p id="address"> <mat-icon> place</mat-icon>
                       {{acentre.adresse}}
                     </p>
-                    <div>
+                    <div *ngIf="role==='SUPERADMINISTRATEUR'">
                       <mat-icon id="edit" alignItems="center" (click)="onEdit(acentre)">edit</mat-icon><mat-icon id="people" alignItems="center" (click)="onView(acentre)">people</mat-icon>
                     </div>
+                    <div id="item"><button mat-raised-button color="warn" (click)="onChoose(acentre)">Choisir</button></div>
                 </div>
             </mat-card-content>
         </mat-card>
