@@ -13,7 +13,7 @@ import { client } from "../interfaceClient";
     providedIn: 'root'
 })
 
-export class infoService {
+export class infoServiceAdmin {
 
     private readonly UTILISATEUR_URL = environment.host;
 
@@ -41,21 +41,20 @@ export class infoService {
       });
     }
 
-    public adMedecinToCentre = (element:any,id:number) =>{
-      const medecinstr = JSON.stringify(element,null,2);
-      const medecinJson = JSON.parse(medecinstr);
+    public adAdminToCentre = (element:any,id:number) =>{
+      const adminstr = JSON.stringify(element,null,2);
+      const adminJson = JSON.parse(adminstr);
   
-      console.log(medecinstr)
-      this.http.post(`${this.UTILISATEUR_URL}/medecin/new/centre/${id}`, medecinJson).subscribe({
+      console.log(adminstr);
+      this.http.post(`${this.UTILISATEUR_URL}/admin/new/centre/${id}`, adminJson).subscribe({
         error: (err) => {  
           console.error(err) 
         },
   
-        complete: () => console.info('medecin saved successful')
+        complete: () => console.info('admin saved successful')
   
       });
     }
-
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

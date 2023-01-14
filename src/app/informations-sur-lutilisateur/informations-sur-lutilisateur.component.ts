@@ -1,8 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { client } from '../interfaceClient';
 import { covid } from '../interfaceCovid';
 import { DialogRef } from '@angular/cdk/dialog';
 import { infoService } from './informations-sur-lutilisateur.service';
+import { centreService } from '../affichage-des-centres/affichage-des-centres.service';
+import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-informations-sur-lutilisateur',
@@ -39,7 +42,15 @@ export class InformationsSurLutilisateurComponent implements OnInit {
   // }
 
   constructor(public infoService:infoService,
-    public dialogRef: DialogRef<InformationsSurLutilisateurComponent>) { }
+    public personneCentre:personnelService,
+    public dialogRef: DialogRef<InformationsSurLutilisateurComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {center: covid}) {
+
+      this.centre=data.center;
+
+    }
+   
+    centre: covid;
 
     ngOnInit(): void {
     }
@@ -49,8 +60,9 @@ export class InformationsSurLutilisateurComponent implements OnInit {
       this.infoService.initializeUserFormGroup();
     }
 
-    onSubmit() {
-        this.infoService.addNewMedecin(this.infoService.UserForm.value); 
+    onSubmitMedecin() {
+        this.infoService.adMedecinToCentre(this.infoService.UserForm.value,this.centre.id); 
+        this.onClose();
     }
 
     onClose() {

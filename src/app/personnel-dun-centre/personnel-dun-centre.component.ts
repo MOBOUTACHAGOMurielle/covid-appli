@@ -1,7 +1,8 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { InformationsSurAdminComponent } from '../informations-sur-admin/informations-sur-admin.component';
 import { InformationsSurLutilisateurComponent } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.component';
 import { infoService } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.service';
 import { client } from '../interfaceClient';
@@ -14,18 +15,22 @@ import { personnelService } from './personnel-dun-centre.service';
   styleUrls: ['./personnel-dun-centre.component.css']
 })
 export class PersonnelDunCentreComponent implements OnInit {
-  [x: string]: any;
 
   constructor(public personnelService:personnelService,
     public infoService: infoService,
     private dialog: MatDialog,
-    public dialogRef: DialogRef<PersonnelDunCentreComponent>) { }
+    public dialogRef: DialogRef<PersonnelDunCentreComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {center: covid}) {
 
-    listData!: MatTableDataSource<any>;
-    displayedColumns: string[] = ['id', 'nom', 'actions'];
-    listeAdmins: client[] = [];
-    listeMedecins: client[] = [];
-    centre!: covid;
+      this.centre=data.center;
+
+    }
+
+  listData!: MatTableDataSource<any>;
+  displayedColumns: string[] = ['id', 'nom', 'actions'];
+  listeAdmins: client[] = [];
+  listeMedecins: client[] = [];
+  centre!: covid;
 
   ngOnInit(): void {
     this.personnelService.getAdminByCentre(this.centre.id).subscribe(
@@ -34,7 +39,6 @@ export class PersonnelDunCentreComponent implements OnInit {
       },
 
     );
-
     this.personnelService.getMedecinsByCentre(this.centre.id).subscribe(
     (listeMedecins : client []) => {
         this.listeMedecins = listeMedecins;
@@ -50,22 +54,24 @@ export class PersonnelDunCentreComponent implements OnInit {
     
   }
 
- 
+  setcentre(acentre:covid):void {
+    this.centre = acentre;
+  }
+
   onClose() {
     this.personnelService.formPersonnel.reset();
     this.personnelService.initializePersonnelFormGroup();
     this.dialogRef.close();
   }
 
-  onViewPersonnel() {
+  onViewAdmin() {
     this.infoService.initializeUserFormGroup;
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "40%";
-    dialogConfig.panelClass = 'bg-color'
-    this.dialog.open(InformationsSurLutilisateurComponent,dialogConfig);
+    this.dialog.open(InformationsSurAdminComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 
+  onViewMedecin() {
+    this.infoService.initializeUserFormGroup;
+    this.dialog.open(InformationsSurLutilisateurComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
+  }
 
 }
