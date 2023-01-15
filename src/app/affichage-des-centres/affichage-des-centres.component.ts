@@ -19,6 +19,7 @@ import { RoleService } from '../role/role-service';
 })
 
 export class AffichageDesCentresComponent implements OnInit {
+
  
   // @Input() center?: covid; 
 
@@ -49,16 +50,23 @@ export class AffichageDesCentresComponent implements OnInit {
     private dialog: MatDialog,
     public roleSerice:RoleService) { 
 
-      this.roleSerice.isSuperAdmin();
 
-      this.role = localStorage.getItem('role');
 
 
     }
 
+
+
+    isSuperAdmin(): boolean {
+      var role = localStorage.getItem('role');
+      if (role==='SUPERADMINISTRATEUR') return true;
+      else return false;
+      }
+
+
   listeCentres: covid[] = [];
   FilteredCenters: covid[] = []
-  role:string | null = "";
+  // role:string | null = "";
 
   ngOnchanges(){
 
@@ -72,6 +80,8 @@ export class AffichageDesCentresComponent implements OnInit {
     // console.log(localStorage.getItem('role'))
 
 
+
+    // this.role = localStorage.getItem('role');
 
     this.centreService.getCentres().subscribe(
       (listeCentres : covid []) => {

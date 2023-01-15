@@ -38,6 +38,7 @@ import { MatTableModule } from '@angular/material/table';
 import { InformationsSurAdminComponent } from './informations-sur-admin/informations-sur-admin.component';
 import { InformationsSurSuperAdminComponent } from './informations-sur-super-admin/informations-sur-super-admin.component';
 import { FormulaireReservationComponent } from './formulaire-reservation/formulaire-reservation.component';
+import { SuperAdminGuard } from './auth-guard/super-admin-guard';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import { FormulaireReservationComponent } from './formulaire-reservation/formula
     RouterModule.forRoot([
       { path: 'pageaccueil',component: PageaccueilComponent},
       { path: '', redirectTo: 'pageaccueil', pathMatch: 'full'},
-      { path: 'affichage-des-centres', component: AffichageDesCentresComponent},
+      { path: 'affichage-des-centres', component: AffichageDesCentresComponent,canActivate: [SuperAdminGuard]},
       { path: 'mon-centre', component: MonCentreComponent},
       { path: 'config', component: ConfigComponent},
       { path: 'planning', component: PlanningComponent},
