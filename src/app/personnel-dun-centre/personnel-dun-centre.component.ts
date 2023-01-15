@@ -36,12 +36,14 @@ export class PersonnelDunCentreComponent implements OnInit {
     this.personnelService.getAdminByCentre(this.centre.id).subscribe(
       (listeAdmins : client []) => {
         this.listeAdmins = listeAdmins;
+        this.listData = new MatTableDataSource(this.listeAdmins);
       },
 
     );
     this.personnelService.getMedecinsByCentre(this.centre.id).subscribe(
     (listeMedecins : client []) => {
         this.listeMedecins = listeMedecins;
+        this.listData = new MatTableDataSource(this.listeMedecins);
       },
     );
   }

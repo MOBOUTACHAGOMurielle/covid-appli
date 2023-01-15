@@ -7,7 +7,7 @@
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
         <div class="element">
-          <a [routerLink]="['/mon-c entre']">Mon centre</a>
+          <a [routerLink]="['/mon-centre']">Mon centre</a>
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
         <div class="element">
@@ -31,12 +31,12 @@
           </mat-card>
         </div> 
         
-        <div class="body" *ngFor="let rdv of listeReservations | filtre:searchKey:'patient.nom'">
+        <div class="body">
           <div id="nomCentre">
             Vous avez des rendez-vous dans le centre <span id="name">{{centre.nom}}!</span>
           </div>
             <mat-toolbar>
-                <span>Reservation du {{listeReservations[0].creneau}}</span>
+                <span>Reservation du</span>
                 <span class="fill-remaining-space"></span>
               </mat-toolbar>
               <div class="mat-elevation-z8">

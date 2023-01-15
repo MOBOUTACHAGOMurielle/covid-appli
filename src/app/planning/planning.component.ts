@@ -41,8 +41,7 @@ export class PlanningComponent implements OnInit {
   }
 
   applyFilter(event:any){
-    this.searchKey = (event.target as HTMLInputElement).value;
-    this.personnelService.search.next(this.searchKey);
+    this.listData.filter = this.searchKey.trim().toLowerCase();
   }
 
   onDelete(id:any){
