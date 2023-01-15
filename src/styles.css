@@ -54,3 +54,9 @@ form {
   margin:5px;
   text-align: center;
 }
+
+.logOut {
+  margin-top: -10px;
+  color: chocolate;
+  display:flex;
+}

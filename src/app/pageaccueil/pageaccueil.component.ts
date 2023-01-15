@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthentificationService } from '../authentification/authentification.service';
 import { client } from '../interfaceClient';
 import { covid } from '../interfaceCovid';
 import { RoleService } from '../role/role-service';
@@ -16,7 +17,8 @@ export class PageaccueilComponent implements OnInit {
 
   selected?: covid;
 
-  constructor(public roleService:RoleService, private router:Router) { }
+  constructor(public roleService:RoleService, private router:Router,
+    public authentification: AuthentificationService) { }
 
   ngOnInit(): void {
   }

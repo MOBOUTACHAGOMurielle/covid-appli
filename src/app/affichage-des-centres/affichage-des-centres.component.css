@@ -46,6 +46,11 @@ h2,.detailCentre,p {
     display:flex;
   }
 
+  .logOut {
+    margin-top: -10px;
+    color: chocolate;
+  }
+
   a {
     color: black;
     text-decoration:none;
