@@ -49,6 +49,11 @@ public class ReservationController {
   @GetMapping("list/{creneau}")
   public Reservation getResevation(@PathVariable("creneau") Date creneau){ return reservationService.getReservationByCreneau(creneau);}
 
+  @GetMapping("validate/{id}")
+  public ResponseEntity<Boolean> validate(@PathVariable("id") Long reservation){ return new ResponseEntity<>(reservationService.validateReservation(reservation),OK);}
+
+
+
 
   @PostMapping(path = "save/{id}")
   public ResponseEntity<Reservation> addNewReservation(@RequestBody ReservationForm reservation, @PathVariable("id")  int id) throws Exception {

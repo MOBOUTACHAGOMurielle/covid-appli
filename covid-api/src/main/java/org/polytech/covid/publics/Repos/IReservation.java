@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface IReservation extends JpaRepository<Reservation, Long> {
 
+    Reservation getReservationById(Long id);
     Reservation findReservationByCentre(String centre);
     Reservation findReservationsByCreneau(Date date);
 }

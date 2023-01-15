@@ -23,6 +23,15 @@ public class ReservationService {
     this.iPatient = patient;
   }
 
+  public Boolean validateReservation(Long id) {
+    Reservation updatedreser = ireservation.getReservationById(id);
+
+    updatedreser.setStatus(true);
+    Reservation updated = ireservation.save(updatedreser);
+
+    return (updated != null) ;
+  }
+
   public List<Reservation> getReservations() { return ireservation.findAll();}
 
   public Reservation addnewReservation (ReservationForm rdv, int id) {

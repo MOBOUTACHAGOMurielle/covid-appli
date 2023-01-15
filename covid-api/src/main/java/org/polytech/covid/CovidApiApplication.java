@@ -5,6 +5,7 @@ import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.SuperAdmin;
 import org.polytech.covid.publics.Repos.IAdmin;
 import org.polytech.covid.publics.Repos.ISuperAdmin;
+import org.polytech.covid.publics.controllers.ReservationForm;
 import org.polytech.covid.publics.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -71,6 +72,11 @@ public class CovidApiApplication {
       patientService.addNewPatient("Blondeau", "Brice", "bb@gmail.com", medecinService.getMedecinByNom("TestName"));
       patientService.addNewPatient("Macron", "Remi", "macronremi@gmail.com", medecinService.getMedecinByNom("MartinMED"));
       patientService.addNewPatient("Mergez", "Berenice", "berenicemergez@gmail.com", medecinService.getMedecinByNom("Bornemed"));
+
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+      reservation.addnewReservation(new ReservationForm("patrick","fiori","patrick@test",simpleDateFormat.parse("18/01/2022")),1);
+
+
 /*
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
       reservation.addnewReservation(simpleDateFormat.parse("18/01/2022"), true, centreService.getCentre("nancy"), patientService.getPatientByName("Blondeau"));
