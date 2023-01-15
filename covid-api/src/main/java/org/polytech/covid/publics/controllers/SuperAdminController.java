@@ -26,8 +26,8 @@ public class SuperAdminController {
   @GetMapping("list")
   public List<SuperAdmin> getSuperAdmins() {return superAdminService.getAdmins();}
 
-  @GetMapping("list/{mail}")
-  public SuperAdmin getSuperAdmin(@PathVariable("mail") String mail) {return superAdminService.getSuperAdminByMail(mail);}
+  @PostMapping("list/mail")
+  public ResponseEntity<SuperAdmin> getSuperAdminByMail(@RequestBody RoleForm form) {return new ResponseEntity<>(superAdminService.getSuperAdminByMail(form),OK);}
 
   @PostMapping(path = "save")
   public ResponseEntity<SuperAdmin> addNewSuperAdmin(@RequestBody SuperAdmin superAdmin){

@@ -1,7 +1,9 @@
 package org.polytech.covid;
 
+import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.SuperAdmin;
+import org.polytech.covid.publics.Repos.IAdmin;
 import org.polytech.covid.publics.Repos.ISuperAdmin;
 import org.polytech.covid.publics.services.*;
 import org.springframework.boot.CommandLineRunner;
@@ -23,9 +25,12 @@ import java.util.Date;
 @SpringBootApplication
 public class CovidApiApplication {
   private final ISuperAdmin iSuperAdmin;
+  private final IAdmin iAdmin;
 
-  public CovidApiApplication(ISuperAdmin iSuperAdmin) {
+  public CovidApiApplication(ISuperAdmin iSuperAdmin,
+                             IAdmin iAdmin) {
     this.iSuperAdmin = iSuperAdmin;
+    this.iAdmin = iAdmin;
   }
 
   public static void main(String[] args) {
@@ -47,10 +52,13 @@ public class CovidApiApplication {
 
       centreService.addNewCentre("2 Rue Jean l'amour, 54000", "Polytech Nancy","Nancy", "54500");
       centreService.addNewCentre("3 Rue Jean d'arc, 95300", "OuiLab","Paris", "25480");
+
       centreService.addNewCentre("2 Rue Des Marthyr, 75000", "Ma santé","Anger", "33400");
 
       adminService.addNewAdmin("jean@durandadm.fr", "DurandAdm", "jean", "ADMINISTRATEUR", centreService.getCentre("nancy"));
-      adminService.addNewAdmin("remi@Martinadm.fr", "MartinAdm", "remi", "ADMINISTRATEUR", centreService.getCentre("paris"));
+      Admin adm = adminService.addNewAdmin("remi@Martinadm.fr", "MartinAdm", "remi", "ADMINISTRATEUR", centreService.getCentre("paris"));
+      adm.setPassword(passwordEncoder.encode("password"));
+      iAdmin.save(adm);
       adminService.addNewAdmin("christine@Borneadm.fr", "BorneADM", "Christine", "ADMINISTRATEUR", centreService.getCentre("anger"));
 
       superAdminService.addNewSuperAdmin("jean@durand.fr", "DurandSupADM", "jean", "SUPER_ADMINISTRATEUR");

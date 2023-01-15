@@ -37,6 +37,7 @@ public class AdminService {
     Admin admin = new Admin();
     admin.setMail(email);
     admin.setNom(name);
+    admin.setLogin(email);
     admin.setRole("ADMINISTRATEUR");
     admin.setPrenom(firstname);
     admin.setRole(role);
@@ -49,6 +50,7 @@ public class AdminService {
   public Admin modifierAdmin (Admin admin,String email, String name, String firstname, String role, Centre centre) {
     admin.setMail(email);
     admin.setNom(name);
+    admin.setLogin(email);
     admin.setPrenom(firstname);
     admin.setRole(role);
     admin.setCentre(centre);
@@ -93,6 +95,10 @@ public class AdminService {
   }
   public Boolean isAdmin(RoleForm form){
     return iAdmin.existsByMail(form.mail);
+  }
+
+  public Admin getAdminBymail(RoleForm form){
+    return iAdmin.getAdminByMail(form.mail);
   }
 
   public Admin modifierAdmin (UserForm form, Long id) {

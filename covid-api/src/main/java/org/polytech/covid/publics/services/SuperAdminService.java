@@ -71,7 +71,8 @@ public class SuperAdminService {
       iSuperAdmin.deleteSuperAdminById(id);
 
   }
-  public SuperAdmin getSuperAdminByMail(final String mail) {
-    return iSuperAdmin.findByLogin(mail);
+
+  public SuperAdmin getSuperAdminByMail(RoleForm form) {
+    return iSuperAdmin.getSuperAdminByMail(form.mail);
   }
 }

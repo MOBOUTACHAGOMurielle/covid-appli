@@ -1,5 +1,6 @@
 package org.polytech.covid.publics.services;
 
+import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
 import org.polytech.covid.publics.Repos.ICentre;
@@ -32,6 +33,7 @@ public class MedecinService {
     Medecin medecin = new Medecin();
     medecin.setMail(email);
     medecin.setNom(name);
+    medecin.setLogin(email);
     medecin.setPrenom(firstname);
     medecin.setRole(role);
     medecin.setCentre(centre);
@@ -76,6 +78,11 @@ public class MedecinService {
   public Boolean isMedecin(RoleForm form){
     return iMedecin.existsByMail(form.mail);
   }
+
+  public Medecin getMedecinBymail(RoleForm form){
+    return iMedecin.getMedecinByMail(form.mail);
+  }
+
 
 
   public void deleteMedecin(Long id){

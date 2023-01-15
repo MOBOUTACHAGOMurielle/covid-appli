@@ -2,6 +2,7 @@ package org.polytech.covid.publics.controllers;
 
 import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
+import org.polytech.covid.publics.Entity.SuperAdmin;
 import org.polytech.covid.publics.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +47,11 @@ public class AdminController {
   public ResponseEntity<Boolean> modifySuperAdmin(@RequestBody RoleForm form) {
     return new ResponseEntity<>(adminService.isAdmin(form), OK);
   }
+
+  @PostMapping("list/mail")
+  public ResponseEntity<Admin> getAdminByMail(@RequestBody RoleForm form) {return new ResponseEntity<>(adminService.getAdminBymail(form),OK);}
+
+
   @PostMapping(path = "save")
   public ResponseEntity<Admin> addNewAdmin(@RequestBody Admin admin){
     Admin newAdmin = adminService.addNewAdmin(admin.getMail(),admin.getNom(),admin.getPrenom(),admin.getRole(),admin.getCentre());

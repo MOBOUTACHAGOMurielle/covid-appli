@@ -14,8 +14,11 @@ export class SuperAdminGuard implements CanActivate {
     canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot) {
 
         this.roleService.isSuperAdmin();
+
         return true;
  
   
     }
+
+
 }

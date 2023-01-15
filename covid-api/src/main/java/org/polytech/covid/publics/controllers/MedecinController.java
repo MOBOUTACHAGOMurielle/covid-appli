@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
+import org.polytech.covid.publics.Entity.SuperAdmin;
 import org.polytech.covid.publics.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +57,9 @@ public class MedecinController {
     Medecin newMedecin = medecinService.addnewMedecinwithCentre(id, medecin);
     return new ResponseEntity<>(newMedecin, OK);
   }
+
+  @PostMapping ("list/mail")
+  public ResponseEntity<Medecin> geMedecinByMail(@RequestBody RoleForm form) {return new ResponseEntity<>( medecinService.getMedecinBymail(form),OK);}
 
   @PostMapping(path="modify/{id}")
   public ResponseEntity<Medecin> modifyMedecin(@RequestBody UserForm form, @PathVariable("id") Long id) {
