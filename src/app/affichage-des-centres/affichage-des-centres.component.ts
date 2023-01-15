@@ -10,6 +10,7 @@ import { AnimationStyleMetadata } from '@angular/animations';
 import { PersonnelDunCentreComponent } from '../personnel-dun-centre/personnel-dun-centre.component';
 import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
 import { FormulaireReservationComponent } from '../formulaire-reservation/formulaire-reservation.component';
+import { RoleService } from '../role/role-service';
 
 @Component({
   selector: 'app-affichage-des-centres',
@@ -18,6 +19,7 @@ import { FormulaireReservationComponent } from '../formulaire-reservation/formul
 })
 
 export class AffichageDesCentresComponent implements OnInit {
+
  
   // @Input() center?: covid; 
 
@@ -45,13 +47,42 @@ export class AffichageDesCentresComponent implements OnInit {
 
   constructor(private centreService: centreService,
     public personnelService: personnelService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    public roleSerice:RoleService) { 
+
+
+
+
+    }
+
+
+
+    isSuperAdmin(): boolean {
+      var role = localStorage.getItem('role');
+      if (role==='SUPERADMINISTRATEUR') return true;
+      else return false;
+      }
+
 
   listeCentres: covid[] = [];
   FilteredCenters: covid[] = []
-  role:string | null = "";
+  // role:string | null = "";
+
+  ngOnchanges(){
+
+  }
 
   ngOnInit() {
+
+    // this.roleSerice.isSuperAdmin();
+
+    // this.role = localStorage.getItem('role');
+    // console.log(localStorage.getItem('role'))
+
+
+
+    // this.role = localStorage.getItem('role');
+
     this.centreService.getCentres().subscribe(
       (listeCentres : covid []) => {
         this.listeCentres = listeCentres;
@@ -60,7 +91,6 @@ export class AffichageDesCentresComponent implements OnInit {
       //error: err => this.errMsg = err
     );
 
-    this.role = localStorage.getItem("role")
 
     // this.centreService.getCentresByName(this.searchKey).subscribe(
     //   (FilteredCenters : covid []) => {
@@ -73,6 +103,8 @@ export class AffichageDesCentresComponent implements OnInit {
       this.searchKey = val;
     })
   }
+
+
 
   onCreate(){
     this.centreService.initializeFormGroup();

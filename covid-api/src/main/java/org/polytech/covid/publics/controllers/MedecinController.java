@@ -5,7 +5,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Entity.Medecin;
-import org.polytech.covid.publics.Repos.IMedecin;
+import org.polytech.covid.publics.Entity.SuperAdmin;
 import org.polytech.covid.publics.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,9 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("medecin")
 public class MedecinController {
   private final MedecinService medecinService;
-  private final IMedecin iMedecin;
 
-  @Autowired
-  public MedecinController(MedecinService medecin,
-                           IMedecin iMedecin) { this.medecinService = medecin;
-    this.iMedecin = iMedecin;
-  }
+@Autowired
+  public MedecinController(MedecinService medecin) { this.medecinService = medecin;}
 
 @GetMapping("list")
  public List<Medecin> getMedecins() {return medecinService.getMedecins();}
@@ -40,17 +36,16 @@ public class MedecinController {
     return new Medecin("user successfully authenticated");
   }
 
-  @PostMapping("role")
-  public ResponseEntity<Boolean> isMedecin(@RequestBody roleForm mailform){
-    return new ResponseEntity<>(medecinService.isMedecin(mailform),OK);
-  }
-
   @PostMapping(path = "save")
   public ResponseEntity<Medecin> addNewMedecin(@RequestBody Medecin medecin){
     Medecin newMedecin = medecinService.addNewMedecin(medecin.getMail(),medecin.getNom(),medecin.getPrenom(),medecin.getRole(), medecin.getCentre());
     return  new ResponseEntity<>(newMedecin, OK);
   }
 
+  @PostMapping(path="role")
+  public ResponseEntity<Boolean> modifySuperAdmin(@RequestBody RoleForm form) {
+    return new ResponseEntity<>(medecinService.isMedecin(form), OK);
+  }
   @DeleteMapping("delete/{id}")
   @OnDelete(action = OnDeleteAction.CASCADE)
   public void deleteMedecinByid(@PathVariable("id") Long id) {
@@ -62,6 +57,9 @@ public class MedecinController {
     Medecin newMedecin = medecinService.addnewMedecinwithCentre(id, medecin);
     return new ResponseEntity<>(newMedecin, OK);
   }
+
+  @PostMapping ("list/mail")
+  public ResponseEntity<Medecin> geMedecinByMail(@RequestBody RoleForm form) {return new ResponseEntity<>( medecinService.getMedecinBymail(form),OK);}
 
   @PostMapping(path="modify/{id}")
   public ResponseEntity<Medecin> modifyMedecin(@RequestBody UserForm form, @PathVariable("id") Long id) {

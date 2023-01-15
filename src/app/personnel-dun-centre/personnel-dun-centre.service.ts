@@ -64,7 +64,7 @@ export class personnelService {
     })
 
     initialisePatientForm(){
-      this.UserForm.setValue({
+      this.patientForm.setValue({
         id: null,
         nom: '',
         prenom: '',
@@ -166,6 +166,13 @@ export class personnelService {
         complete: () => console.info('reservation saved successful')
   
       });
+    }
+
+    public getAdminCentre(id:number): Observable<covid> {
+      return this.http.get<covid>(`${this.PERSONNEL_API_URL}/admin/centre/${id}`).pipe(
+        tap(centre => console.log('centre de l admin: ', centre)),
+        catchError(this.handleError)
+      )
     }
 
     private handleError(error: HttpErrorResponse) {

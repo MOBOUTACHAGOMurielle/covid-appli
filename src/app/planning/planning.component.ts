@@ -18,24 +18,26 @@ export class PlanningComponent implements OnInit {
   constructor(public personnelService:personnelService, public centreService: centreService,
     private dialog: MatDialog) { }
 
-  listeReservations: reservation[] = [];
   searchKey:string= " ";
   listData!: MatTableDataSource<any>;
+  listeReservations: reservation[] = [];
   displayedColumns: string[] = ['id', 'nom', 'actions'];
   centre!: covid;
 
   ngOnInit(): void {
-    this.personnelService.getReservations().subscribe(
-      (listeReservations : reservation []) => {
-        this.listeReservations = listeReservations;
+    this.personnelService.getAdminCentre(3).subscribe(
+     
+      (center : covid) => {
+        this.listeReservations = center.reservations;
+        console.log(center);
       },
 
       //error: err => this.errMsg = err
     );
 
-    this.centreService.search.subscribe((val:any)=>{
-      this.searchKey = val;
-    })
+    // this.centreService.search.subscribe((val:any)=>{
+    //   this.searchKey = val;
+    // })
   }
 
   applyFilter(event:any){

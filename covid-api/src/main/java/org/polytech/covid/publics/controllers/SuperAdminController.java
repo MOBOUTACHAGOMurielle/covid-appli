@@ -26,8 +26,8 @@ public class SuperAdminController {
   @GetMapping("list")
   public List<SuperAdmin> getSuperAdmins() {return superAdminService.getAdmins();}
 
-  @GetMapping("list/{mail}")
-  public SuperAdmin getSuperAdmin(@PathVariable("mail") String mail) {return superAdminService.getSuperAdminByMail(mail);}
+  @PostMapping("list/mail")
+  public ResponseEntity<SuperAdmin> getSuperAdminByMail(@RequestBody RoleForm form) {return new ResponseEntity<>(superAdminService.getSuperAdminByMail(form),OK);}
 
   @PostMapping(path = "save")
   public ResponseEntity<SuperAdmin> addNewSuperAdmin(@RequestBody SuperAdmin superAdmin){
@@ -42,10 +42,11 @@ public class SuperAdminController {
     return new ResponseEntity<>(updateSuperAdmin, OK);
   }
 
-  @PostMapping("role")
-  public ResponseEntity<Boolean> isSuperAdmin(@RequestBody roleForm mailform){
-    return new ResponseEntity<>(superAdminService.isSuperAdmin(mailform.mail),OK);
+  @PostMapping(path="role")
+  public ResponseEntity<Boolean> modifySuperAdmin(@RequestBody RoleForm form) {
+    return new ResponseEntity<>(superAdminService.isSuperAdmin(form), OK);
   }
+
 
   @DeleteMapping("delete/{id}")
   public void deleteSuperAdminByid(@PathVariable("id") Long id) {

@@ -16,7 +16,7 @@ export class PageaccueilComponent implements OnInit {
 
   selected?: covid;
 
-  constructor(public roleservice: RoleService , private router:Router) { }
+  constructor(public roleService:RoleService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -57,10 +57,11 @@ export class PageaccueilComponent implements OnInit {
     this.selected = centre;
   }
 
-  onClick() {
-    // this.roleservice.isSuperAdmin();
-    this.router.navigateByUrl("/affichage-des-centres")
-  }
+  // onClick(){
+  //   this.roleService.isSuperAdmin();
+  //   // this.roleService.isAdmin();
+  //   this.router.navigateByUrl("/affichage-des-centres")
+  // }
 
   AfficherPlus(): void {
     
