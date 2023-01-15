@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
 
 @Component({
   selector: 'app-confirmation-de-rendez-vous',

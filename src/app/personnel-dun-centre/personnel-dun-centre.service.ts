@@ -185,6 +185,13 @@ export class personnelService {
       )
     }
 
+    public ValidateStatut(id:number): Observable<boolean> {
+      return this.http.get<boolean>(`${this.PERSONNEL_API_URL}/reservations/validate/${id}`).pipe(
+        tap(reservation => console.log('statut: ', reservation)),
+        catchError(this.handleError)
+      )
+    }
+
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
           console.error('An error occurred:', error.error);

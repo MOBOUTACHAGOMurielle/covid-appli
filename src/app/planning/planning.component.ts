@@ -74,14 +74,6 @@ export class PlanningComponent implements OnInit {
     this.listData.filter = this.searchKey.trim().toLowerCase();
   }
 
-  onDelete(id:any){
-
-  }
-
-  onEdit(row:any){
-    
-  }
-
   setcentre(acentre:covid):void {
     this.centre = acentre;
   }
@@ -96,5 +88,7 @@ export class PlanningComponent implements OnInit {
     this.dialog.open(InformationsSurLutilisateurComponent,{data: {center:this.centre} ,width:'40%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
 
-
+  onValidate(element:any) {
+    this.personnelService.ValidateStatut(element.id)
+  }
 }

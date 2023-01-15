@@ -58,7 +58,10 @@
                     <ng-container matColumnDef="actions">
                       <mat-header-cell *matHeaderCellDef></mat-header-cell>
                       <mat-cell *matCellDef="let element"> 
-                        <button mat-raised-button color="warn" type="submit">Valider</button>
+                        <button *ngIf="element.statut==false" mat-raised-button color="warn" type="submit" (click)="onValidate(element.id)" id="valider">Valider</button>
+                      </mat-cell>
+                      <mat-cell *matCellDef="let element"> 
+                        <mat-icon>done</mat-icon>
                       </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="loading">

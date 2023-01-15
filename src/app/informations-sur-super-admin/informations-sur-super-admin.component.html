@@ -1,9 +1,9 @@
 <mat-toolbar>
-  <span>{{infoService.UserForm.controls['id'].value?"Changer un SuperAdmin":"Ajouter Un SuperAdmin"}}</span>
+  <span>{{personneCentre.UserForm.controls['id'].value?"Changer un SuperAdmin":"Ajouter Un SuperAdmin"}}</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
   </mat-toolbar>
-  <form [formGroup]="infoService.UserForm" class="normal-form" (submit)="onSubmitSuperAdmin()">
+  <form [formGroup]="personneCentre.UserForm" class="normal-form" (submit)="onSubmitSuperAdmin()">
     <mat-grid-list cols="1" rowHeight="400px">
       <mat-grid-tile>
         <div class="controles-container">
