@@ -75,9 +75,9 @@ public class AdminService {
     Admin newadmin = new Admin();
     newadmin.setNom(admin.getNom());
     newadmin.setPrenom(admin.getPrenom());
-    newadmin.setMail(admin.getEmail());
+    newadmin.setMail(admin.getMail());
     newadmin.setRole("ADMINISTRATEUR");
-    newadmin.setLogin(admin.getEmail());
+    newadmin.setLogin(admin.getMail());
     newadmin.setPassword(admin.getPassword());
     newadmin.setCentre(iCentre.getCentreById(id));
     return iAdmin.save(newadmin);
@@ -109,9 +109,9 @@ public class AdminService {
     else {
       admin.setNom(form.getNom());
       admin.setPrenom(form.getPrenom());
-      admin.setMail(form.getEmail());
+      admin.setMail(form.getMail());
       admin.setRole("ADMINISTRATEUR");
-      admin.setLogin(form.getEmail());
+      admin.setLogin(form.getMail());
       admin.setPassword(passwordEncoder.encode(form.getPassword()));
       return iAdmin.save(admin);
     }

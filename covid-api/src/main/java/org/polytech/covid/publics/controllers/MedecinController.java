@@ -58,6 +58,12 @@ public class MedecinController {
     return new ResponseEntity<>(newMedecin, OK);
   }
 
+  @GetMapping(path = "/centre/{id}")
+  public ResponseEntity<Centre> getMedecinCentre(@PathVariable("id")  Long id){
+    Centre medecinCentre = medecinService.getCentre(id);
+    return  new ResponseEntity<>(medecinCentre, OK);
+  }
+
   @PostMapping ("list/mail")
   public ResponseEntity<Medecin> geMedecinByMail(@RequestBody RoleForm form) {return new ResponseEntity<>( medecinService.getMedecinBymail(form),OK);}
 

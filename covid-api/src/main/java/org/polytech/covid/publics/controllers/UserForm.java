@@ -6,6 +6,6 @@ import lombok.Getter;
 public class UserForm {
   public String nom;
   public String prenom;
-  public String email;
+  public String mail;
   public String password;
 }

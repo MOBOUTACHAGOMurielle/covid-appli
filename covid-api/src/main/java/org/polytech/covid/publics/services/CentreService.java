@@ -50,7 +50,7 @@ public class CentreService {
       Medecin newmedecin = new Medecin();
       newmedecin.setNom(medecin.getNom());
       newmedecin.setPrenom(medecin.getPrenom());
-      newmedecin.setMail(medecin.getEmail());
+      newmedecin.setMail(medecin.getMail());
       Medecin entity = iMedecin.save(newmedecin);
 
       List<Medecin> list = center.getMedecins();

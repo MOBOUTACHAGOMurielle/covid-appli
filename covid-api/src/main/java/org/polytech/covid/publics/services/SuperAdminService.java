@@ -49,9 +49,9 @@ public class SuperAdminService {
     else {
       superAdmin.setNom(form.getNom());
       superAdmin.setPrenom(form.getPrenom());
-      superAdmin.setMail(form.getEmail());
+      superAdmin.setMail(form.getMail());
       superAdmin.setRole("SUPERADMIN");
-      superAdmin.setLogin(form.getEmail());
+      superAdmin.setLogin(form.getMail());
       superAdmin.setPassword(passwordEncoder.encode(form.getPassword()));
       return iSuperAdmin.save(superAdmin);
     }
