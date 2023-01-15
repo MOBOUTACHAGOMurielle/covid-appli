@@ -25,6 +25,12 @@ export class LoginComponent implements OnInit {
     private loginservice: AuthentificationService) { }
 
   ngOnInit(): void {
+
+    // localStorage.removeItem('username');
+    // localStorage.removeItem('password');
+    // localStorage.removeItem('role')
+    localStorage.removeItem('role')
+    sessionStorage.removeItem('basicauth')
     
   }
 
