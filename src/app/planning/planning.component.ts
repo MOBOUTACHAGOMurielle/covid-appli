@@ -8,6 +8,8 @@ import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.s
 import { infoService } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.service';
 import { InformationsSurLutilisateurComponent } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.component';
 import { AuthentificationService } from '../authentification/authentification.service';
+import { client } from '../interfaceClient';
+import { RoleService } from '../role/role-service';
 
 @Component({
   selector: 'app-planning',
@@ -18,24 +20,50 @@ export class PlanningComponent implements OnInit {
 
   constructor(public personnelService:personnelService, public centreService: centreService,
     public authentification: AuthentificationService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    public roleService:RoleService) { }
 
   searchKey:string= " ";
   listData!: MatTableDataSource<any>;
   listeReservations: reservation[] = [];
   displayedColumns: string[] = ['id', 'nom', 'actions'];
   centre!: covid;
+  user! : client;
 
   ngOnInit(): void {
-    this.personnelService.getAdminCentre(3).subscribe(
-     
-      (center : covid) => {
-        this.centre = center;
-        this.listeReservations = center.reservations;
-        this.listData = new MatTableDataSource(this.listeReservations);
-        console.log(center);
-      },
-    );
+
+    if(this.roleService.isUserinStorage()){
+      this.user = this.roleService.getUseFromLocalCache();
+
+      if(this.user.role==="ADMINISTRATEUR") {
+
+        this.personnelService.getAdminCentre(this.user.id).subscribe(
+       
+          (center : covid) => {
+            this.centre = center;
+            this.listeReservations = center.reservations;
+            this.listData = new MatTableDataSource(this.listeReservations);
+            console.log(center);
+          },
+        );
+  
+      }
+  
+      if(this.user.role==="MEDECIN") {
+        
+        this.personnelService.getMedecinCentre(this.user.id).subscribe(
+       
+          (center : covid) => {
+            this.centre = center;
+            this.listeReservations = center.reservations;
+            this.listData = new MatTableDataSource(this.listeReservations);
+            console.log(center);
+          },
+        );
+      }
+    }
+
+
 
     this.personnelService.search.subscribe((val:any)=>{
       this.searchKey = val;
