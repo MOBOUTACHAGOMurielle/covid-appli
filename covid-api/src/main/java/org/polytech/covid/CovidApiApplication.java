@@ -92,7 +92,7 @@ public class CovidApiApplication {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
     corsConfiguration.setAllowCredentials(true);
     //corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-    corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://13.37.112.147","http://www.tosucceed.site" ,"http://tosucceed.site"));
+    corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4455","http://13.37.112.147","http://www.tosucceed.site" ,"http://tosucceed.site","http://localhost:4455"));
     corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
       "Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Requested-With",
       "Access-Control-Request-Method", "Access-Control-Request-Headers", "application/x-www-form-urlencoded"));

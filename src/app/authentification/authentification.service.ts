@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { client } from '../interfaceClient';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthentificationService {
   authenticate(user: string, password:string) {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa((user + ':' + password)) })
     headers.set('Content-Type', 'application/json')
-    return this.httpClient.get<client>('http://localhost:12037/medecin/validateLogin',{headers}).pipe(
+    return this.httpClient.get<client>(environment.host+'/medecin/validateLogin',{headers}).pipe(
      map(
        (       userData: any) => {
         sessionStorage.setItem('username',user);
