@@ -80,3 +80,13 @@
     margin-top: 20px;
     transform: translate(-50%);
   }
+
+  #nomCentre {
+    padding: 30px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+ #name {
+    color:chocolate;
+  }

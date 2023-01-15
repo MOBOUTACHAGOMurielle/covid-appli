@@ -7,7 +7,7 @@
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
         <div class="element">
-          <a [routerLink]="['/mon-centre']">Mon centre</a>
+          <a [routerLink]="['/mon-c entre']">Mon centre</a>
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
         <div class="element">
@@ -25,15 +25,18 @@
           <mat-card class="searchBar">
             <mat-card-content class="searchbarContent">
                 <mat-icon matSuffix id="search">search</mat-icon> 
-                <input type="text" matInput placeholder="Nom du centre">
+                <input type="text" matInput placeholder="Nom du centre" [(ngModel)]="searchKey" (keyup)="applyFilter($event)">
                 <button mat-raised-button color="warn">Rechercher</button>
             </mat-card-content>
           </mat-card>
         </div> 
         
-        <div class="body">
+        <div class="body" *ngFor="let rdv of listeReservations | filtre:searchKey:'patient.nom'">
+          <div id="nomCentre">
+            Vous avez des rendez-vous dans le centre <span id="name">{{centre.nom}}!</span>
+          </div>
             <mat-toolbar>
-                <span>Reservation du</span>
+                <span>Reservation du {{listeReservations[0].creneau}}</span>
                 <span class="fill-remaining-space"></span>
               </mat-toolbar>
               <div class="mat-elevation-z8">

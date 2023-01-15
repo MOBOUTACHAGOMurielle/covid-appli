@@ -49,13 +49,7 @@ export class AffichageDesCentresComponent implements OnInit {
     public personnelService: personnelService,
     private dialog: MatDialog,
     public roleSerice:RoleService) { 
-
-
-
-
     }
-
-
 
     isSuperAdmin(): boolean {
       var role = localStorage.getItem('role');
