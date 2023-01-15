@@ -59,6 +59,7 @@ public class CovidApiApplication {
       Admin adm = adminService.addNewAdmin("remi@Martinadm.fr", "MartinAdm", "remi", "ADMINISTRATEUR", centreService.getCentre("paris"));
       adm.setPassword(passwordEncoder.encode("password"));
       iAdmin.save(adm);
+
       adminService.addNewAdmin("christine@Borneadm.fr", "BorneADM", "Christine", "ADMINISTRATEUR", centreService.getCentre("anger"));
 
       superAdminService.addNewSuperAdmin("jean@durand.fr", "DurandSupADM", "jean", "SUPER_ADMINISTRATEUR");

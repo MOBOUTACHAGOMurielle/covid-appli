@@ -15,7 +15,6 @@ public interface IAdmin extends JpaRepository<Admin, Integer> {
   List<Admin> findAdminByCentre(Centre center);
   Admin findAdminById(Long id);
 
-  Boolean existsByMail(String mail);
 
 
   Admin getAdminById (Long id);

@@ -7,6 +7,7 @@ import { reservation } from '../interfaceReservations';
 import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
 import { infoService } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.service';
 import { InformationsSurLutilisateurComponent } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.component';
+import { RoleService } from '../role/role-service';
 
 @Component({
   selector: 'app-planning',
@@ -16,7 +17,7 @@ import { InformationsSurLutilisateurComponent } from '../informations-sur-lutili
 export class PlanningComponent implements OnInit {
 
   constructor(public personnelService:personnelService, public centreService: centreService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,public roleService:RoleService) { }
 
   searchKey:string= " ";
   listData!: MatTableDataSource<any>;
@@ -25,6 +26,11 @@ export class PlanningComponent implements OnInit {
   centre!: covid;
 
   ngOnInit(): void {
+
+    // var user = roleService.;
+
+
+
     this.personnelService.getAdminCentre(3).subscribe(
      
       (center : covid) => {
