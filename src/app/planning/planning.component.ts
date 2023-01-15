@@ -34,21 +34,20 @@ export class PlanningComponent implements OnInit {
     this.personnelService.getAdminCentre(3).subscribe(
      
       (center : covid) => {
+        this.centre = center;
         this.listeReservations = center.reservations;
+        this.listData = new MatTableDataSource(this.listeReservations);
         console.log(center);
       },
-
-      //error: err => this.errMsg = err
     );
 
-    // this.centreService.search.subscribe((val:any)=>{
-    //   this.searchKey = val;
-    // })
+    this.personnelService.search.subscribe((val:any)=>{
+      this.searchKey = val;
+    })
   }
 
   applyFilter(event:any){
-    this.searchKey = (event.target as HTMLInputElement).value;
-    this.centreService.search.next(this.searchKey);
+    this.listData.filter = this.searchKey.trim().toLowerCase();
   }
 
   onDelete(id:any){

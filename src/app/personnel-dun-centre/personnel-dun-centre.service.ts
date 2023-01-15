@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { HttpErrorResponse } from "@angular/common/http";
 import { throwError } from "rxjs";
@@ -21,6 +21,8 @@ export class personnelService {
 
     constructor(private http: HttpClient){}
 
+    public search = new BehaviorSubject<string>("");
+    
     formPersonnel: FormGroup = new FormGroup({
       id: new FormControl(null),
       nom: new FormControl(''),

@@ -81,7 +81,7 @@ h2,.detailCentre,p {
     grid-template-columns: repeat(auto-fit, minmax(180px, 0.5fr));
     gap: 20px;
     position:absolute;
-    top: 110%;
+    top: 80%;
     left: 50%;
     transform: translate(-50%,-80%);
   }
@@ -139,3 +139,8 @@ h2,.detailCentre,p {
 #nouveau {
   color: #fff;
 }
+
+/* form {
+  color: #fff;
+  background-color: #3c3c3c;
+} */

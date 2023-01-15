@@ -76,8 +76,7 @@ import { RoleForm } from "./roleForm";
             const roleJson = JSON.parse(formstr);
             this.httpClient.post(environment.host + "/medecin/role", roleJson).subscribe(
                 data => {
-    
-                    console.log("Hello Wold")
+
                     if (data===true) {
                         localStorage.setItem('role', 'MEDECIN');
                         console.log(localStorage.getItem('role'))
