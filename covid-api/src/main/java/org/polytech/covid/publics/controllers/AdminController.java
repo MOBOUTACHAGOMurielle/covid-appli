@@ -42,6 +42,10 @@ public class AdminController {
     return  new ResponseEntity<>(adminCentre, OK);
   }
 
+  @PostMapping(path="role")
+  public ResponseEntity<Boolean> modifySuperAdmin(@RequestBody RoleForm form) {
+    return new ResponseEntity<>(adminService.isAdmin(form), OK);
+  }
   @PostMapping(path = "save")
   public ResponseEntity<Admin> addNewAdmin(@RequestBody Admin admin){
     Admin newAdmin = adminService.addNewAdmin(admin.getMail(),admin.getNom(),admin.getPrenom(),admin.getRole(),admin.getCentre());

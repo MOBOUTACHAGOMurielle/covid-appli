@@ -41,6 +41,10 @@ public class MedecinController {
     return  new ResponseEntity<>(newMedecin, OK);
   }
 
+  @PostMapping(path="role")
+  public ResponseEntity<Boolean> modifySuperAdmin(@RequestBody RoleForm form) {
+    return new ResponseEntity<>(medecinService.isMedecin(form), OK);
+  }
   @DeleteMapping("delete/{id}")
   @OnDelete(action = OnDeleteAction.CASCADE)
   public void deleteMedecinByid(@PathVariable("id") Long id) {

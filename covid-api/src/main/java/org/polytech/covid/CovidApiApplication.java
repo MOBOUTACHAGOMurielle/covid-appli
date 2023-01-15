@@ -1,6 +1,8 @@
 package org.polytech.covid;
 
 import org.polytech.covid.publics.Entity.Centre;
+import org.polytech.covid.publics.Entity.SuperAdmin;
+import org.polytech.covid.publics.Repos.ISuperAdmin;
 import org.polytech.covid.publics.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.hateoas.Link;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -19,8 +22,13 @@ import java.util.Date;
 
 @SpringBootApplication
 public class CovidApiApplication {
+  private final ISuperAdmin iSuperAdmin;
 
-	public static void main(String[] args) {
+  public CovidApiApplication(ISuperAdmin iSuperAdmin) {
+    this.iSuperAdmin = iSuperAdmin;
+  }
+
+  public static void main(String[] args) {
 		SpringApplication.run(CovidApiApplication.class, args);
 	}
 
@@ -31,21 +39,26 @@ public class CovidApiApplication {
                            AdminService adminService,
                            SuperAdminService superAdminService,
                            UserPatientService patientService,
-                           ReservationService reservation
+                           ReservationService reservation,
+                           PasswordEncoder password
   ){
     return args -> {
+      final PasswordEncoder passwordEncoder = password;
 
       centreService.addNewCentre("2 Rue Jean l'amour, 54000", "Polytech Nancy","Nancy", "54500");
       centreService.addNewCentre("3 Rue Jean d'arc, 95300", "OuiLab","Paris", "25480");
       centreService.addNewCentre("2 Rue Des Marthyr, 75000", "Ma santé","Anger", "33400");
 
-      adminService.addNewAdmin("jean@durand.fr", "DurandAdm", "jean", "ADMINISTRATEUR", centreService.getCentre("nancy"));
-      adminService.addNewAdmin("remi@Martin.fr", "MartinAdm", "remi", "ADMINISTRATEUR", centreService.getCentre("paris"));
-      adminService.addNewAdmin("christine@Borne.fr", "BorneADM", "Christine", "ADMINISTRATEUR", centreService.getCentre("anger"));
+      adminService.addNewAdmin("jean@durandadm.fr", "DurandAdm", "jean", "ADMINISTRATEUR", centreService.getCentre("nancy"));
+      adminService.addNewAdmin("remi@Martinadm.fr", "MartinAdm", "remi", "ADMINISTRATEUR", centreService.getCentre("paris"));
+      adminService.addNewAdmin("christine@Borneadm.fr", "BorneADM", "Christine", "ADMINISTRATEUR", centreService.getCentre("anger"));
 
       superAdminService.addNewSuperAdmin("jean@durand.fr", "DurandSupADM", "jean", "SUPER_ADMINISTRATEUR");
       superAdminService.addNewSuperAdmin("remi@Martin.fr", "MartinSUPADM", "remi", "SUPER_ADMINISTRATEUR");
-      superAdminService.addNewSuperAdmin("christine@Borne.fr", "BorneSUPADM", "Christine", "SUPER_ADMINISTRATEUR");
+      SuperAdmin admin =  superAdminService.addNewSuperAdmin("christine@Borne.fr", "BorneSUPADM", "Christine", "SUPER_ADMINISTRATEUR");
+
+      admin.setPassword(passwordEncoder.encode("password"));
+      iSuperAdmin.save(admin);
 
       patientService.addNewPatient("Blondeau", "Brice", "bb@gmail.com", medecinService.getMedecinByNom("TestName"));
       patientService.addNewPatient("Macron", "Remi", "macronremi@gmail.com", medecinService.getMedecinByNom("MartinMED"));

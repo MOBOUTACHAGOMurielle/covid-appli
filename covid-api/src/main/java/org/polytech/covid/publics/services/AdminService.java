@@ -4,7 +4,9 @@ import org.polytech.covid.publics.Entity.Admin;
 import org.polytech.covid.publics.Entity.Centre;
 import org.polytech.covid.publics.Repos.IAdmin;
 import org.polytech.covid.publics.Repos.ICentre;
+import org.polytech.covid.publics.controllers.RoleForm;
 import org.polytech.covid.publics.controllers.UserForm;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,10 +15,13 @@ import java.util.List;
 @Service
 public class AdminService {
 
+  private final PasswordEncoder passwordEncoder;
+
   private final IAdmin iAdmin;
   private final ICentre iCentre;
 
-  public AdminService(IAdmin iAdmin, ICentre iCentre) {
+  public AdminService(PasswordEncoder passwordEncoder, IAdmin iAdmin, ICentre iCentre) {
+    this.passwordEncoder = passwordEncoder;
     this.iAdmin = iAdmin;
     this.iCentre = iCentre;
   }
@@ -86,6 +91,9 @@ public class AdminService {
       iAdmin.deleteAdminById(id);
 
   }
+  public Boolean isAdmin(RoleForm form){
+    return iAdmin.existsByMail(form.mail);
+  }
 
   public Admin modifierAdmin (UserForm form, Long id) {
     Admin admin = iAdmin.getAdminById(id);
@@ -98,7 +106,7 @@ public class AdminService {
       admin.setMail(form.getEmail());
       admin.setRole("ADMINISTRATEUR");
       admin.setLogin(form.getEmail());
-      admin.setPassword(form.getPassword());
+      admin.setPassword(passwordEncoder.encode(form.getPassword()));
       return iAdmin.save(admin);
     }
   }
