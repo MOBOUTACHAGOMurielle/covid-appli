@@ -11,6 +11,7 @@ import { PersonnelDunCentreComponent } from '../personnel-dun-centre/personnel-d
 import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
 import { FormulaireReservationComponent } from '../formulaire-reservation/formulaire-reservation.component';
 import { RoleService } from '../role/role-service';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-affichage-des-centres',
@@ -48,7 +49,8 @@ export class AffichageDesCentresComponent implements OnInit {
   constructor(private centreService: centreService,
     public personnelService: personnelService,
     private dialog: MatDialog,
-    public roleSerice:RoleService) { 
+    public roleSerice:RoleService,
+    public authentification: AuthentificationService) { 
     }
 
     isSuperAdmin(): boolean {

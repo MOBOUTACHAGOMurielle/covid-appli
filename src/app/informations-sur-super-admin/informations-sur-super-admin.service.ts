@@ -49,7 +49,7 @@ export class infoSuperAdminService {
         mail: element.mail,
         password: element.password,
         role: element.role,
-        centreName: element.centreName
+        centreName: ''
       })
     }
 

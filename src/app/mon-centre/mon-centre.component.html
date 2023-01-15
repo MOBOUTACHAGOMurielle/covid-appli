@@ -18,6 +18,12 @@
           <a [routerLink]="['/config']">Config</a>
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
+        <div class="logOut" *ngIf="authentification.isUserLoggedIn()">
+          <button mat-icon-button (click)="authentification.logOut()" ><mat-icon>launch</mat-icon></button>
+        </div>
+        <div class="logOut" *ngIf="!authentification.isUserLoggedIn()" (click)="authentification.logIn()">
+          <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+        </div>
       </div>
 </div>
 

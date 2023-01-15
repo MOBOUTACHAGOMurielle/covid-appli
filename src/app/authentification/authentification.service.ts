@@ -2,13 +2,14 @@ import { Injectable, Type } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { client } from '../interfaceClient';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private router:Router) { }
 
   authenticate(user: string, password:string) {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa((user + ':' + password)) })
@@ -35,5 +36,11 @@ export class AuthentificationService {
 
   logOut() {
     sessionStorage.removeItem('username')
+    sessionStorage.removeItem('user')
+    this.router.navigateByUrl('pageaccueil')
+  }
+
+  logIn(){
+    this.router.navigateByUrl('login')
   }
 }

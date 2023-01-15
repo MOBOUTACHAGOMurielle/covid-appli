@@ -18,6 +18,12 @@
           <a [routerLink]="['/config']">Config</a>
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
+        <div class="logOut" *ngIf="authentification.isUserLoggedIn()">
+          <button mat-icon-button (click)="authentification.logOut()" ><mat-icon>launch</mat-icon></button>
+        </div>
+        <div class="logOut" *ngIf="!authentification.isUserLoggedIn()" (click)="authentification.logIn()">
+          <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+        </div>
       </div>
       <div class="barAndText">
         <p id="titre">Mon planning</p> 
@@ -25,7 +31,7 @@
           <mat-card class="searchBar">
             <mat-card-content class="searchbarContent">
                 <mat-icon matSuffix id="search">search</mat-icon> 
-                <input type="text" matInput placeholder="Nom du centre" [(ngModel)]="searchKey" (keyup)="applyFilter($event)">
+                <input type="text" matInput placeholder="Nom du centre" [(ngModel)]="searchKey" (keyup)="applyFilter()">
                 <button mat-raised-button color="warn">Rechercher</button>
             </mat-card-content>
           </mat-card>
@@ -40,7 +46,7 @@
                 <span class="fill-remaining-space"></span>
               </mat-toolbar>
               <div class="mat-elevation-z8">
-                  <mat-table [dataSource]="listeReservations" width="1000px">
+                  <mat-table [dataSource]="listData" width="1000px">
                     <ng-container matColumnDef="id">
                       <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
                       <mat-cell *matCellDef="let element">{{element.patient.id}}</mat-cell>

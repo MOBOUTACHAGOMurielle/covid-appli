@@ -15,6 +15,7 @@ export class InformationsSurSuperAdminComponent implements OnInit {
 
   constructor(public infoService:infoSuperAdminService,
     public config:configService,
+    public personneCentre:personnelService,
     public dialogRef: DialogRef<InformationsSurSuperAdminComponent>) {}
 
     ngOnInit(): void {
@@ -26,15 +27,16 @@ export class InformationsSurSuperAdminComponent implements OnInit {
     }
 
     onSubmitSuperAdmin() {
-      if( this.infoService.UserForm.value.id) {
-          console.log(this.infoService.UserForm.value);
+      if( this.personneCentre.UserForm.value.id) {
+          console.log(this.personneCentre.UserForm.value);
           this.infoService.updateSuperAdmin(this.infoService.UserForm.value,this.infoService.UserForm.value.id);
-          this.infoService.UserForm.reset();
-          this.infoService.initializeUserFormGroup();
+          this.personneCentre.UserForm.reset();
+          this.personneCentre.initializeUserFormGroup();
           this.onClose();
       }
       else
       this.infoService.adSuperAdmin(this.infoService.UserForm.value); 
+      console.log(this.personneCentre.UserForm.value.id)
       this.onClose();
     }
 

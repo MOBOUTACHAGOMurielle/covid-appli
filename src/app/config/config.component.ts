@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { client } from '../interfaceClient';
 import { covid } from '../interfaceCovid';
 import { InformationsSurSuperAdminComponent } from '../informations-sur-super-admin/informations-sur-super-admin.component';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-config',
@@ -16,7 +17,8 @@ export class ConfigComponent implements OnInit {
 
   constructor(public personnelService:personnelService,
     public infoService: infoService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    public authentification: AuthentificationService) { }
 
     listData!: MatTableDataSource<any>;
     displayedColumns: string[] = ['id', 'nom', 'actions'];
@@ -35,9 +37,11 @@ export class ConfigComponent implements OnInit {
     this.personnelService.deleteSuperAdmin(id); 
   }
 
-  onEdit(row:any){
-    
+  onEditSuperAdmin(element:any){
+    this.personnelService.populateForm(element);
+    this.dialog.open(InformationsSurSuperAdminComponent,{data: {center:this.centre} ,width:'50%',disableClose:true,autoFocus:true,panelClass:'bg-color'});
   }
+
 
   setcentre(acentre:covid):void {
     this.centre = acentre;

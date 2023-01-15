@@ -8,6 +8,7 @@ import { covid } from '../interfaceCovid';
 import { DialogRef } from '@angular/cdk/dialog';
 import { client } from '../interfaceClient';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-mon-centre',
@@ -17,6 +18,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class MonCentreComponent implements OnInit {
 
   constructor(public personnelService:personnelService,
+    public authentification: AuthentificationService,
     private dialog: MatDialog) { 
     }
 

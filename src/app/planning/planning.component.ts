@@ -7,6 +7,7 @@ import { reservation } from '../interfaceReservations';
 import { personnelService } from '../personnel-dun-centre/personnel-dun-centre.service';
 import { infoService } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.service';
 import { InformationsSurLutilisateurComponent } from '../informations-sur-lutilisateur/informations-sur-lutilisateur.component';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-planning',
@@ -16,6 +17,7 @@ import { InformationsSurLutilisateurComponent } from '../informations-sur-lutili
 export class PlanningComponent implements OnInit {
 
   constructor(public personnelService:personnelService, public centreService: centreService,
+    public authentification: AuthentificationService,
     private dialog: MatDialog) { }
 
   searchKey:string= " ";
@@ -40,7 +42,7 @@ export class PlanningComponent implements OnInit {
     })
   }
 
-  applyFilter(event:any){
+  applyFilter(){
     this.listData.filter = this.searchKey.trim().toLowerCase();
   }
 
