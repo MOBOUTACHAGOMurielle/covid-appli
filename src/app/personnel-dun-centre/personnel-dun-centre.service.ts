@@ -177,6 +177,14 @@ export class personnelService {
       )
     }
 
+
+    public getMedecinCentre(id:number): Observable<covid> {
+      return this.http.get<covid>(`${this.PERSONNEL_API_URL}/medecin/centre/${id}`).pipe(
+        tap(centre => console.log('centre du medecin: ', centre)),
+        catchError(this.handleError)
+      )
+    }
+
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
           console.error('An error occurred:', error.error);

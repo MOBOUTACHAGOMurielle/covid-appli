@@ -18,7 +18,9 @@ export class PlanningMonCentreGuard implements CanActivate {
        this.roleService.isMedecin();
 
 
-       if(this.roleService.isUserinStorage()) return true;
+
+
+       if(this.testAdmin() || this.testMedecin()) {return true;}
 
        else {
            this.router.navigate(['access-denied']);
@@ -31,16 +33,16 @@ export class PlanningMonCentreGuard implements CanActivate {
     
 
 
-    // testAdmin(): boolean {
-    //     var role = localStorage.getItem('role');
-    //     if (role==='ADMINISTRATEUR') return true;
-    //     else return false;
-    //     }
+    testAdmin(): boolean {
+        var role = localStorage.getItem('role');
+        if (role==='ADMINISTRATEUR') return true;
+        else return false;
+        }
 
-    // testMedecin(): boolean {
-    //     var role = localStorage.getItem('role');
-    //     if (role==='MEDECIN') return true;
-    //     else return false;
-    //     }
+    testMedecin(): boolean {
+        var role = localStorage.getItem('role');
+        if (role==='MEDECIN') return true;
+        else return false;
+        }
 
 }

@@ -57,11 +57,7 @@ export class PageaccueilComponent implements OnInit {
     this.selected = centre;
   }
 
-  // onClick(){
-  //   this.roleService.isSuperAdmin();
-  //   // this.roleService.isAdmin();
-  //   this.router.navigateByUrl("/affichage-des-centres")
-  // }
+
 
   AfficherPlus(): void {
     

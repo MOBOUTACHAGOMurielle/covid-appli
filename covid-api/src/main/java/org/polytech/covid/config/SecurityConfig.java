@@ -30,8 +30,10 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.csrf().disable().cors();
+    http.authorizeRequests().antMatchers( "/centre/list/**", "/reservations/save/**","/actuator/**","/swagger-ui/**", "/v3/api-docs/**").permitAll();
+
     http
-            .authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
+           // .authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
             .httpBasic(withDefaults())
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//On rend les session stateless
     return http.build();

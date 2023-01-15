@@ -42,6 +42,10 @@ public class MedecinService {
     return medecin;
   }
 
+  public Centre getCentre(Long id) {
+    return  iCentre.getCentreByMedecinsContaining(iMedecin.getMedecinById(id));
+  }
+
   public void reMoveMedecin ( Medecin medecin) {
     this.iMedecin.delete(medecin);
   }
@@ -68,8 +72,8 @@ public class MedecinService {
     newmedecin.setNom(medecin.getNom());
     newmedecin.setPrenom(medecin.getPrenom());
     newmedecin.setRole("MEDECIN");
-    newmedecin.setMail(medecin.getEmail());
-    newmedecin.setLogin(medecin.getEmail());
+    newmedecin.setMail(medecin.getMail());
+    newmedecin.setLogin(medecin.getMail());
     newmedecin.setPassword(passwordEncoder.encode(medecin.getPassword()));
     newmedecin.setCentre(iCentre.getCentreById(id));
     return iMedecin.save(newmedecin);
@@ -105,9 +109,9 @@ public class MedecinService {
     else {
       medecin.setNom(form.getNom());
       medecin.setPrenom(form.getPrenom());
-      medecin.setMail(form.getEmail());
+      medecin.setMail(form.getMail());
       medecin.setRole("MEDECIN");
-      medecin.setLogin(form.getEmail());
+      medecin.setLogin(form.getMail());
       medecin.setPassword(form.getPassword());
       return iMedecin.save(medecin);
     }
