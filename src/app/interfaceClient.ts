@@ -1,7 +1,10 @@
 export interface client {
     id: number;
-    name: string;
+    login: string;
+    password:string;
+    role:string;
+    nom: string;
     prenom: string;
-    email: string;
-    Date: Date;
+    mail: string;
+    status:string
 }

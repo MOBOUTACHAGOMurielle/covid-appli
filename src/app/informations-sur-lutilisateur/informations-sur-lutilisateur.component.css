@@ -1,4 +1,4 @@
-div {
+/* div {
     padding: 10px 20px;
     display: flex;
     flex-direction: column;
@@ -36,4 +36,20 @@ h2,.detailCentre,p {
     bottom: 0px;
     right: -660px;
     width: 100px;
+} */
+
+.controles-container > * {
+    width: 100%;
+    }
+
+.add-bottom-padding{
+    padding-bottom: 10px;
+}
+
+.button-row button{
+    margin:5px
+}
+
+.show {
+    visibility: visible;
 }

@@ -1,7 +1,10 @@
+import { reservation } from "./interfaceReservations";
+
 export interface covid {
     id: number;
-    name: string;
-    address: string;
-    postalcode: string;
-    city: string;
+    nom: string;
+    adresse: string;
+    codePostal: string;
+    ville: string;
+    reservations: reservation[];
 }
