@@ -22,8 +22,9 @@ de gérer les rendez vous, les medecins, les administrateurs des centres de sant
 
 
 ## Informations membres binome 
-### Nom : MOBOU-TACHAGO Murielle
-### Numéro étudiant : 32027026
-
-### Nom : SANON Wilfried
-### Numéro étudiant : 31828632
+* Etudiante 1:
+# Nom : MOBOU-TACHAGO Murielle
+# Numéro étudiant : 32027026
+* Etudiante 2:
+# Nom : SANON Wilfried
+# Numéro étudiant : 31828632
