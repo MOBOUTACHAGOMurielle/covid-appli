@@ -3,7 +3,7 @@
 ## API (SpringBoot) + db PostgreeSQL + UI (Angular) 
 
 Ceci est une application permettant de réserver un rendez-vous dans un centre de santé,
-de gérer les rende
+de gérer les rendez vous, les medecins, les administrateurs des centres de santé
 
 * Dépot git : `https://github.com/MOBOUTACHAGOMurielle/covid-appli`
 
@@ -16,3 +16,14 @@ de gérer les rende
 
 ## Documentation de l'API avec open-api / Swagger 
 - Lien vers le swagger lorsque l'appli est déployer dans le conteneur 
+`http://localhost:9099/swagger-ui/index.html`
+
+## Users & Password
+
+
+## Informations membres binome 
+### Nom : MOBOU-TACHAGO Murielle
+### Numéro étudiant : 32027026
+
+### Nom : SANON Wilfried
+### Numéro étudiant : 31828632
