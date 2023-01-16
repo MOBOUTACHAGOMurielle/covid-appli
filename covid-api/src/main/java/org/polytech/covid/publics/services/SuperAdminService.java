@@ -31,6 +31,7 @@ public class SuperAdminService {
     superAdmin.setNom(name);
     superAdmin.setPrenom(firstname);
     superAdmin.setLogin(email);
+    superAdmin.setPassword(passwordEncoder.encode("password"));
     superAdmin.setRole(role);
 
     return this.iSuperAdmin.save(superAdmin);

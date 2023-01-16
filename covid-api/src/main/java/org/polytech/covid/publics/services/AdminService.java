@@ -42,7 +42,7 @@ public class AdminService {
     admin.setPrenom(firstname);
     admin.setRole(role);
     admin.setCentre(centre);
-
+    admin.setPassword(passwordEncoder.encode("password"));
     this.iAdmin.save(admin);
     return admin;
   }
@@ -54,6 +54,7 @@ public class AdminService {
     admin.setPrenom(firstname);
     admin.setRole(role);
     admin.setCentre(centre);
+    admin.setPassword(passwordEncoder.encode("password"));
 
     this.iAdmin.save(admin);
     return admin;
@@ -78,7 +79,7 @@ public class AdminService {
     newadmin.setMail(admin.getMail());
     newadmin.setRole("ADMINISTRATEUR");
     newadmin.setLogin(admin.getMail());
-    newadmin.setPassword(admin.getPassword());
+    newadmin.setPassword(passwordEncoder.encode(admin.getPassword()));
     newadmin.setCentre(iCentre.getCentreById(id));
     return iAdmin.save(newadmin);
   }

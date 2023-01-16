@@ -66,8 +66,6 @@ public class CovidApiApplication {
       superAdminService.addNewSuperAdmin("remi@Martin.fr", "MartinSUPADM", "remi", "SUPER_ADMINISTRATEUR");
       SuperAdmin admin =  superAdminService.addNewSuperAdmin("christine@Borne.fr", "BorneSUPADM", "Christine", "SUPER_ADMINISTRATEUR");
 
-      admin.setPassword(passwordEncoder.encode("password"));
-      iSuperAdmin.save(admin);
 
       patientService.addNewPatient("Blondeau", "Brice", "bb@gmail.com", medecinService.getMedecinByNom("TestName"));
       patientService.addNewPatient("Macron", "Remi", "macronremi@gmail.com", medecinService.getMedecinByNom("MartinMED"));

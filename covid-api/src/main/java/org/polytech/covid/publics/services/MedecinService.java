@@ -57,6 +57,7 @@ public class MedecinService {
     medecin.setRole(role);
     medecin.setCentre(centre);
 
+    medecin.setPassword(passwordEncoder.encode("password"));
     this.iMedecin.save(medecin);
     return medecin;
   }
@@ -112,7 +113,7 @@ public class MedecinService {
       medecin.setMail(form.getMail());
       medecin.setRole("MEDECIN");
       medecin.setLogin(form.getMail());
-      medecin.setPassword(form.getPassword());
+      medecin.setPassword(passwordEncoder.encode(medecin.getPassword()));
       return iMedecin.save(medecin);
     }
   }
