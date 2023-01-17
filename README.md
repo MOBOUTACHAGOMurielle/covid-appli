@@ -21,12 +21,12 @@ Ce bug est aussi valable en lancement local
 
 ## Déploiement de l'application en local
 
-###Config API
+### Config API
 * Modifier le fichier application properties de l'api pour la config de la db 
 * Port de déploiement : 12037
 
-###Config UI
-* t
+### Config UI
+* port de déploiement : 4200
 
 
 ## Documentation de l'API avec open-api / Swagger 
