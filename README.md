@@ -7,6 +7,10 @@ de gérer les rendez vous, les medecins, les administrateurs des centres de sant
 
 * Dépot git : `https://github.com/MOBOUTACHAGOMurielle/covid-appli`
 
+## Vidéo de démonstration de l'application
+* Lien ClipChamp (Visualiser sans télécharger la vidéo) : `https://clipchamp.com/watch/MgmzKzqfJ8q
+* Lien Google Drive : `https://drive.google.com/uc?id=1usifRZK0Rb1j7_0PtNsyCSC3VtRDJ8pd&export=download`
+
 ## Déploiement de l'application par docker 
 
 * Se placer dans le répertoire covid-appli 
