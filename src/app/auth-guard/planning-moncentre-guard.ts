@@ -19,6 +19,7 @@ export class PlanningMonCentreGuard implements CanActivate {
 
 
 
+       if(!this.roleService.isUserLoggedIn()) return false;
 
        if(this.testAdmin() || this.testMedecin()) {return true;}
 
